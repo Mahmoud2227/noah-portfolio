@@ -1,0 +1,28 @@
+.body {
+	cursor: pointer;
+
+	p {
+		background: linear-gradient(to right, #570530, #A91079, #00ADB5);
+		background-size: 200% 200%;
+		animation: gradient-text 2s ease-in-out infinite;
+		background-clip: text;
+    -webkit-background-clip: text;
+    transition: 0.2s ease-in-out;
+
+    &:hover {
+      color:rgba(0,0,0,0);
+    }
+	}
+}
+
+@keyframes gradient-text {
+	0% {
+		background-position: left;
+	}
+	50% {
+		background-position: right;
+	}
+	100% {
+		background-position: left;
+	}
+}
