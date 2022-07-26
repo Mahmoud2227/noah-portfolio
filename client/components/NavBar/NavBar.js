@@ -1,8 +1,12 @@
+import {useEffect, useState} from "react";
+import {createPortal} from "react-dom";
+
 import Logo from "./Logo";
 import NavLink from "./NavLink";
+import BrandLogo from "../UI/BrandLogo";
+import NavMenu from "./NavMenu";
 
 import classes from "./navBar.module.scss";
-import BrandLogo from "../UI/BrandLogo";
 
 import spotify from "../../assets/spotify.svg";
 import deezer from "../../assets/deezer.svg";
@@ -10,17 +14,26 @@ import appleMusic from "../../assets/apple-music.svg";
 import youtubeMusic from "../../assets/youtube-music.svg";
 
 const NavBar = () => {
+	const [isOpen, setIsOpen] = useState(false);
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+
+		return () => setMounted(false);
+	}, []);
+
 	return (
 		<nav className={classes.body}>
 			<Logo />
 			<ul>
 				<NavLink name='Home' href='/' />
 				<NavLink name='About' href='/about' />
-				<NavLink name='music' href='/music' />
-				<NavLink name='concerts' href='/concerts' />
-				<NavLink name='contact' href='/contact' />
+				<NavLink name='Music' href='/music' />
+				<NavLink name='Concerts' href='/concerts' />
+				<NavLink name='Contact' href='/contact' />
 			</ul>
-			<ul>
+			<div className={classes["music-brands"]}>
 				<BrandLogo icon={spotify} href='https://open.spotify.com/' title='Spotify' />
 				<BrandLogo
 					icon={deezer}
@@ -38,7 +51,14 @@ const NavBar = () => {
 					href='https://music.youtube.com/channel/UCDn60yx-RdHOWSCPLodFonA'
 					title='YouTube Music'
 				/>
-			</ul>
+			</div>
+			<div
+				className={`${classes["menuBurger"]} ${isOpen ? classes.open : ""}`}
+				onClick={() => setIsOpen((prevState) => !prevState)}>
+				<span></span>
+				<span></span>
+			</div>
+			{mounted && isOpen && createPortal(<NavMenu isOpen={isOpen} setIsOpen={setIsOpen} />, document.querySelector("#__next"))}
 		</nav>
 	);
 };

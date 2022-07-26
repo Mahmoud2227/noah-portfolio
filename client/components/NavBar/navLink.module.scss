@@ -1,17 +1,69 @@
+@use "../../SassStyles/mixins" as *;
+
 .body {
 	cursor: pointer;
 
-	p,&.active {
-		background: linear-gradient(to right, #570530, #A91079, #00ADB5);
+	font-size: 30px;
+
+	@include mdMinBreakPoint {
+		font-size: 16px;
+
+		& ::after {
+			display: none;
+		}
+	}
+
+	p::after {
+		content: "";
+		position: absolute;
+		width: 80%;
+		height: 5px;
+		bottom: -5px;
+		transition: 0.2s ease-in-out;
+	}
+
+	&:nth-child(even) p {
+		position: relative;
+		padding-left: 20%;
+
+		&::after {
+			left: 20%;
+			border-radius: 0 0 0 5px;
+		}
+	}
+
+	&:nth-child(odd) p {
+		text-align: right;
+		position: relative;
+		padding-right: 20%;
+
+		&::after {
+			right: 20%;
+			border-radius: 0 0 5px 0;
+		}
+	}
+
+	&:hover p::after , &.active p::after {
+		background: linear-gradient(to right, #570530, #a91079, #00adb5);
+		background-size: 200% 200%;
+		animation: gradient-text 2s ease-in-out infinite;
+		transition: 0.2s ease-in-out;
+
+	}
+
+	p,
+	&.active {
+		background: linear-gradient(to right, #570530, #a91079, #00adb5);
 		background-size: 200% 200%;
 		animation: gradient-text 2s ease-in-out infinite;
 		background-clip: text;
-    -webkit-background-clip: text;
-    transition: 0.2s ease-in-out;
+		-webkit-background-clip: text;
+		transition: 0.2s ease-in-out;
 
-    &:hover,&.active {
-      color:rgba(0,0,0,0);
-    }
+		&:hover,
+		&.active {
+			color: rgba(0, 0, 0, 0);
+		}
 	}
 }
 
