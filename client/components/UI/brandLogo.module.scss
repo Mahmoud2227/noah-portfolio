@@ -2,11 +2,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.2s ease-in-out;
   cursor: pointer;
   
   a {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  &:hover {
+    transform: scale(1.2);
   }
 }
