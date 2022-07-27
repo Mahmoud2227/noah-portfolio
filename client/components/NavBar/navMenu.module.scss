@@ -8,16 +8,28 @@
 	width: 100vw;
 	height: 100vh;
 	top: 0;
-	left: 100%;
 	background-color: #040303d3;
 	padding-block: 5rem;
-  transition: 3000ms ease-in-out;
-  // animation: openMenu 0.5s ease-in-out forwards;
+  // transition: 1s ease-in-out;
   
   &.open {
-    left: 0;
+		animation: openMenu 300ms ease-in-out forwards ;
   }
+	
+	&.close {
+		animation: openMenu 300ms ease-in-out reverse forwards;
+	}
 
+  @keyframes openMenu {
+    0% {
+			opacity: 0;
+      transform: translateX(100%);
+    }
+    100% {
+			opacity: 1;
+			transform: translateX(0);
+    }
+  }
   
   @include mdMinBreakPoint {
     display: none;
@@ -42,6 +54,10 @@
 			background: #fff;
 			border-radius: 5px;
 			transition: 0.4s ease-in-out;
+
+			&:nth-child(2) {
+				background-color:rgba(255, 255, 255, 6);
+			}
 		}
 		&.open {
 			span:nth-child(1) {

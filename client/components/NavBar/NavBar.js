@@ -16,15 +16,8 @@ import youtubeMusic from "../../assets/youtube-music.svg";
 
 const NavBar = () => {
 	const [isOpen, setIsOpen] = useState(false);
-	const [mounted, setMounted] = useState(false);
 
 	const nodeRef = useRef(null);
-
-	useEffect(() => {
-		setMounted(true);
-
-		return () => setMounted(false);
-	}, []);
 
 	return (
 		<nav className={classes.body}>
@@ -62,8 +55,7 @@ const NavBar = () => {
 				<span></span>
 				<span></span>
 			</div>
-			{mounted && (
-				<Transition in={isOpen} timeout={3000} nodeRef={nodeRef} mountOnEnter unmountOnExit>
+				<Transition in={isOpen} timeout={300} nodeRef={nodeRef} mountOnEnter unmountOnExit>
 					{(state) =>
 						createPortal(
 							<NavMenu state={state} setIsOpen={setIsOpen} ref={nodeRef}/>,
@@ -71,12 +63,6 @@ const NavBar = () => {
 						)
 					}
 				</Transition>
-			)}
-			{/* {mounted &&
-				createPortal(
-					<NavMenu isOpen={isOpen} setIsOpen={setIsOpen} />,
-					document.querySelector("#__next")
-				)} */}
 		</nav>
 	);
 };

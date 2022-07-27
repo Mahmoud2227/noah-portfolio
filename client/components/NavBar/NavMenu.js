@@ -5,9 +5,9 @@ import CssTransition from "react-transition-group/CSSTransition"
 import classes from "./navMenu.module.scss";
 
 const NavMenu = forwardRef(({state,setIsOpen},ref) => {
-	console.log(state);
+	const classNames = [classes.body, state === "entering" ? classes.open :state === "exiting"? classes.close : null];
 	return (
-		<div ref={ref} className={`${classes["body"]} ${state === "entered" ? classes.open: ""}`}>
+		<div ref={ref} className={classNames.join(" ")}>
 			<div
 				className={`${classes["menuBurger"]} ${state === "entering" ? classes.open :state === 'entered'? classes.open : ""}`}
 				onClick={() => setIsOpen((prevState) => !prevState)}>
