@@ -1,5 +1,6 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {createPortal} from "react-dom";
+import Transition from "react-transition-group/Transition";
 
 import Logo from "./Logo";
 import NavLink from "./NavLink";
@@ -16,6 +17,8 @@ import youtubeMusic from "../../assets/youtube-music.svg";
 const NavBar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [mounted, setMounted] = useState(false);
+
+	const nodeRef = useRef(null);
 
 	useEffect(() => {
 		setMounted(true);
@@ -54,11 +57,26 @@ const NavBar = () => {
 			</div>
 			<div
 				className={`${classes["menuBurger"]} ${isOpen ? classes.open : ""}`}
-				onClick={() => setIsOpen((prevState) => !prevState)}>
+				onClick={() => setIsOpen((prevState) => !prevState)}
+				style={{opacity:isOpen?0:1}}>
 				<span></span>
 				<span></span>
 			</div>
-			{mounted && isOpen && createPortal(<NavMenu isOpen={isOpen} setIsOpen={setIsOpen} />, document.querySelector("#__next"))}
+			{mounted && (
+				<Transition in={isOpen} timeout={3000} nodeRef={nodeRef} mountOnEnter unmountOnExit>
+					{(state) =>
+						createPortal(
+							<NavMenu state={state} setIsOpen={setIsOpen} ref={nodeRef}/>,
+							document.querySelector("#__next")
+						)
+					}
+				</Transition>
+			)}
+			{/* {mounted &&
+				createPortal(
+					<NavMenu isOpen={isOpen} setIsOpen={setIsOpen} />,
+					document.querySelector("#__next")
+				)} */}
 		</nav>
 	);
 };

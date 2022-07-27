@@ -1,12 +1,15 @@
+import {forwardRef} from 'react'
 import NavLink from "./NavLink";
+import CssTransition from "react-transition-group/CSSTransition"
 
 import classes from "./navMenu.module.scss";
 
-const NavMenu = ({isOpen, setIsOpen}) => {
+const NavMenu = forwardRef(({state,setIsOpen},ref) => {
+	console.log(state);
 	return (
-		<div className={`${classes["body"]} ${isOpen ? classes["open"] : ""}`}>
+		<div ref={ref} className={`${classes["body"]} ${state === "entered" ? classes.open: ""}`}>
 			<div
-				className={`${classes["menuBurger"]} ${isOpen ? classes.open : ""}`}
+				className={`${classes["menuBurger"]} ${state === "entering" ? classes.open :state === 'entered'? classes.open : ""}`}
 				onClick={() => setIsOpen((prevState) => !prevState)}>
 				<span></span>
 				<span></span>
@@ -20,6 +23,6 @@ const NavMenu = ({isOpen, setIsOpen}) => {
 			</ul>
 		</div>
 	);
-};
+});
 
 export default NavMenu;
