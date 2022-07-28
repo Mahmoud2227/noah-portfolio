@@ -27,6 +27,10 @@
 		position: relative;
 		padding-left: 20%;
 
+		@include mdMinBreakPoint {
+			padding-left: 0;
+		}
+
 		&::after {
 			left: 20%;
 			border-radius: 0 0 0 5px;
