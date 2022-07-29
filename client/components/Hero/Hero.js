@@ -17,10 +17,10 @@ const Hero = () => {
 				</p>
 				<h1>Music is life itself.</h1>
 				<p>
-					The emotions caused by music, the attitudes of its composers and players, and he venues
+					The emotions caused by music, the attitudes of its composers and players, and the venues
 				</p>
 				<Link href='/about'>
-					<button type='button'> About Me</button>
+					<button type='button'>Learn More</button>
 				</Link>
 			</div>
 		</main>

@@ -10,3 +10,4 @@ $screen-full: 1400px;
 $first-color: #00adb5;
 $second-color: #a91079;
 $third-color: #570530;
+$gradient :linear-gradient(to right, $first-color, $second-color, $third-color);

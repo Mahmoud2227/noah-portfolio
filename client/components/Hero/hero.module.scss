@@ -74,7 +74,7 @@
 				bottom: -1rem;
 				left: 50%;
 				transform: translateX(-50%);
-				background: linear-gradient(to right, $first-color, $second-color, $third-color);
+				background: $gradient;
 				
 				@include smMinBreakPoint {
 					width: 120%;
@@ -94,7 +94,7 @@
 			outline: none;
 			padding: 1rem 2rem;
 			border-radius: 30px;
-			background-image: linear-gradient(to right, $first-color, $second-color, $third-color);
+			background-image: $gradient;
 			background-size: 100% 100%;
 			background-position: right;
 			transition: 0.5s;
