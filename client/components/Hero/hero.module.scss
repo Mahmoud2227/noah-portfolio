@@ -1,5 +1,5 @@
 @use "../../SassStyles/variables" as *;
-
+@use "../../SassStyles/mixins" as *;
 
 .body {
 	width: 100vw;
@@ -18,6 +18,7 @@
 			height: 100%;
 			background-color: rgb(0, 0, 0, 0.75);
 		}
+
 	}
 
 	.content {
@@ -30,14 +31,19 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 		text-align: center;
+		width: 80%;
 
 		p:nth-of-type(1) {
-			font-size: 2rem;
+			font-size: 1.5rem;
 			font-weight: 400;
 			margin-bottom: 1rem;
 			display: flex;
 			align-items: center;
 			justify-content: center;
+
+			@include smMinBreakPoint {
+				font-size: 2rem;
+			}
 
 			span {
 				width: 6px;
@@ -51,20 +57,28 @@
 		h1 {
 			position: relative;
 			font-family: "Lobster", cursive;
-			font-size: 4rem;
+			font-size: 3rem;
 			font-weight: 600;
 			margin-bottom: 2rem;
+
+			@include smMinBreakPoint {
+				font-size: 4rem;
+			}
 
 			&::after {
 				content: "";
 				position: absolute;
-				width: 120%;
+				width: 110%;
 				height: 5px;
 				border-radius: 10px;
 				bottom: -1rem;
 				left: 50%;
 				transform: translateX(-50%);
 				background: linear-gradient(to right, $first-color, $second-color, $third-color);
+				
+				@include smMinBreakPoint {
+					width: 120%;
+				}
 			}
 		}
 
