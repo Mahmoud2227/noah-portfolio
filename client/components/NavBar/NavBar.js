@@ -56,12 +56,7 @@ const NavBar = () => {
 				<span></span>
 			</div>
 				<Transition in={isOpen} timeout={300} nodeRef={nodeRef} mountOnEnter unmountOnExit>
-					{(state) =>
-						createPortal(
-							<NavMenu state={state} setIsOpen={setIsOpen} ref={nodeRef}/>,
-							document.querySelector("#__next")
-						)
-					}
+					{(state) => <NavMenu state={state} setIsOpen={setIsOpen} ref={nodeRef}/>}
 				</Transition>
 		</nav>
 	);

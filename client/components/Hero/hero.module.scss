@@ -1,9 +1,13 @@
 @use "../../SassStyles/variables" as *;
 
+
 .body {
-	position: relative;
+	width: 100vw;
+	height: 100vh;
 	.background {
 		position: relative;
+		width: 100%;
+		height: 100vh;
 
 		&::after {
 			content: "";
@@ -76,28 +80,28 @@
 			outline: none;
 			padding: 1rem 2rem;
 			border-radius: 30px;
-      background-image: linear-gradient(to right, $first-color, $second-color, $third-color);
+			background-image: linear-gradient(to right, $first-color, $second-color, $third-color);
 			background-size: 100% 100%;
 			background-position: right;
-      transition: 0.5s;
-      cursor: pointer;
+			transition: 0.5s;
+			cursor: pointer;
 
-      &:hover {
-        background-size: 200% 200%;
-        animation: gradient-background 2.5s ease-in-out infinite;
-      }
+			&:hover {
+				background-size: 200% 200%;
+				animation: gradient-background 2.5s ease-in-out infinite;
+			}
 		}
 	}
 }
 
-      @keyframes gradient-background {
-        0% {
-          background-position: left;
-        }
-        50% {
-          background-position: right;
-        }
-        100% {
-          background-position: left;
-        }
-      }
+@keyframes gradient-background {
+	0% {
+		background-position: left;
+	}
+	50% {
+		background-position: right;
+	}
+	100% {
+		background-position: left;
+	}
+}

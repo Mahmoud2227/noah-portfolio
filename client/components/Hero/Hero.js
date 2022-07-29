@@ -9,7 +9,7 @@ const Hero = () => {
 	return (
 		<main className={classes.body}>
 			<div className={classes["background"]}>
-				<Image src={background} />
+				<Image src={background} layout='fill' objectFit="cover" />
 			</div>
 			<div className={classes["content"]}>
 				<p>
