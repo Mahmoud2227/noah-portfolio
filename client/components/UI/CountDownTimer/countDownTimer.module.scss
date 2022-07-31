@@ -1,0 +1,28 @@
+.body {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+	display: flex;
+	gap: 1rem;
+  background-color: black;
+  padding: 1rem 1.5rem;
+  z-index: 1;
+
+	div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    span {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+
+      &:nth-child(2) {
+        font-size: 18px;
+        color: #ffffff99;
+      }
+    }
+	}
+}

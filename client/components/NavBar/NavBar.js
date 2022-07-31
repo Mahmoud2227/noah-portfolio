@@ -4,7 +4,7 @@ import Transition from "react-transition-group/Transition";
 
 import Logo from "./Logo";
 import NavLink from "./NavLink";
-import BrandLogo from "../UI/BrandLogo";
+import BrandLogo from "../UI/BrandLogo/BrandLogo";
 import NavMenu from "./NavMenu";
 
 import classes from "./navBar.module.scss";
