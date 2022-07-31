@@ -9,6 +9,7 @@ export default function Home() {
       <NavBar/>
       <Hero/>
       <NewAlbum/>
+      <NextEvent/>
     </>
   )
 }
