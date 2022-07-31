@@ -30,13 +30,12 @@ const NavBar = () => {
 				<NavLink name='Contact' href='/contact' />
 			</ul>
 			<div className={classes["music-brands"]}>
-				<BrandLogo icon={spotify} href='https://open.spotify.com/' title='Spotify' />
 				<BrandLogo
-					icon={deezer}
-					href='https://www.deezer.com/us/artist/14836941'
-					title='Deezer'
-					size='25px'
+					icon={spotify}
+					href='https://open.spotify.com/artist/6eYCzYkGJSKwm73jYZvhCs?si=IAUNY6E2TSqqyf_X8cLOww'
+					title='Spotify'
 				/>
+				<BrandLogo icon={deezer} href='https://deezer.page.link/ZvYd62CnRVn23qrKA' title='Deezer' />
 				<BrandLogo
 					icon={appleMusic}
 					href='https://music.apple.com/us/artist/noah-estrada/1512604152'
@@ -44,20 +43,20 @@ const NavBar = () => {
 				/>
 				<BrandLogo
 					icon={youtubeMusic}
-					href='https://music.youtube.com/channel/UCDn60yx-RdHOWSCPLodFonA'
+					href='https://music.youtube.com/channel/UCDn60yx-RdHOWSCPLodFonA?feature=share'
 					title='YouTube Music'
 				/>
 			</div>
 			<div
 				className={`${classes["menuBurger"]} ${isOpen ? classes.open : ""}`}
 				onClick={() => setIsOpen((prevState) => !prevState)}
-				style={{opacity:isOpen?0:1}}>
+				style={{opacity: isOpen ? 0 : 1}}>
 				<span></span>
 				<span></span>
 			</div>
-				<Transition in={isOpen} timeout={300} nodeRef={nodeRef} mountOnEnter unmountOnExit>
-					{(state) => <NavMenu state={state} setIsOpen={setIsOpen} ref={nodeRef}/>}
-				</Transition>
+			<Transition in={isOpen} timeout={300} nodeRef={nodeRef} mountOnEnter unmountOnExit>
+				{(state) => <NavMenu state={state} setIsOpen={setIsOpen} ref={nodeRef} />}
+			</Transition>
 		</nav>
 	);
 };
