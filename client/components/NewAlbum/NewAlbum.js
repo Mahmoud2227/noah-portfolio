@@ -8,7 +8,7 @@ const NewAlbum = () => {
 	return (
 		<div className={classes.body + " section__padding"}>
 			<div className={classes["image-container"]}>
-				<Image src={newAlbum} />
+				<Image src={newAlbum} alt='new-album' layout="intrinsic" />
 			</div>
 			<div className={classes.content}>
         <h4 className="gradient-text">New Album</h4>

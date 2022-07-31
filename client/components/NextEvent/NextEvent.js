@@ -17,7 +17,6 @@ const NextEvent = () => {
 				<p className={classes.title}>Sounds Like Summer Concert Series</p>
 				<div className={classes.details}>
 					<p className={classes.date}>
-						{" "}
 						<FaRegCalendarAlt />
 						20 Dec 2020, 10:00 p.m
 					</p>
@@ -31,10 +30,10 @@ const NextEvent = () => {
 				<CountDownTimer />
 				<div className={classes["images-container"]}>
 					<div>
-						<Image src={newEvent1} alt='newEvent-1' />
+						<Image src={newEvent1} alt='newEvent-1' layout="responsive" />
 					</div>
 					<div>
-						<Image src={newEvent2} alt='newEvent-2' />
+						<Image src={newEvent2} alt='newEvent-2' layout="responsive"/>
 					</div>
 				</div>
 			</div>

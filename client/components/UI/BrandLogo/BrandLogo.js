@@ -4,9 +4,9 @@ import classes from "./brandLogo.module.scss";
 
 const BrandLogo = ({icon, href, title,size='20px'}) => {
 	return (
-		<div className={classes.icon} style={{width:size}}>
+		<div className={classes.icon} >
 			<a href={href} target='_blank' title={title}>
-				<Image src={icon} />
+				<Image src={icon} alt={title} width={size} />
 			</a>
 		</div>
 	);
