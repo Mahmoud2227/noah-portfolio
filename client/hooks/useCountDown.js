@@ -7,7 +7,10 @@ const useCountDown = (targetDate) => {
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setCountDown(countDownDate - new Date().getTime());
+			if(typeof window !== "undefined") {
+
+				setCountDown(countDownDate - new Date().getTime());
+			}
 		}, 1000);
 
 		return () => clearInterval(interval);
@@ -31,3 +34,5 @@ const getReturnValues = (countDown) => {
 };
 
 export default useCountDown;
+
+
