@@ -25,9 +25,12 @@ const NextEvent = () => {
 						Red Square, Moscow, Russia
 					</p>
 				</div>
+				<button type="button">I'm going</button>
 			</div>
 			<div className={classes["event-cover"]}>
+				<div className={classes['countDown-timer']}>
 				<CountDownTimer />
+				</div>
 				<div className={classes["images-container"]}>
 					<div>
 						<Image src={newEvent1} alt='newEvent-1' layout="responsive" />
