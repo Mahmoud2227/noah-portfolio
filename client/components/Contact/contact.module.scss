@@ -1,0 +1,98 @@
+@use "../../SassStyles/variables" as *;
+@use "../../SassStyles/mixins" as *;
+
+.body {
+	h1 {
+		font-size: 24px;
+		color: transparent;
+		width: fit-content;
+		margin-bottom: 1rem;
+	}
+
+	form {
+		font-family: "Lobster", cursive;
+		font-size: 30px;
+
+    line-height: 70px;
+		@include mdMinBreakPoint {
+			font-size: 55px;
+		}
+		input {
+			display: inline-block;
+			font-family: "Lobster", cursive;
+			font-size: 25px;
+			height: 45px;
+      margin-inline: 10px;
+      padding-left: 5px;
+			transform: translateY(-10px);
+			border: none;
+			outline: none;
+			background: transparent;
+			border-bottom: 3px solid;
+			border-image: linear-gradient(to left, white, white) 1;
+			transition: 0.5s;
+
+			&:focus {
+				border-image: $gradient 1;
+			}
+
+			@include mdMinBreakPoint {
+				font-size: 30px;
+			}
+
+			&.name-field {
+				width: 250px;
+				@include mdMinBreakPoint {
+					width: 300px;
+				}
+			}
+			&.phone-field {
+				width: 150px;
+				@include mdMinBreakPoint {
+					width: 200px;
+				}
+			}
+			&.email-field {
+				width: 280px;
+				@include mdMinBreakPoint {
+					width: 350px;
+				}
+			}
+		}
+
+		textarea {
+			font-family: "Lobster", cursive;
+			font-size: 20px;
+			min-height: 100px;
+			width: 100%;
+			padding: 0.5rem;
+			border: none;
+			outline: none;
+			border-bottom: 3px solid;
+			border-image: linear-gradient(to left, white, white) 1;
+			transition: 0.5s;
+
+			&:focus {
+				border-image: $gradient 1;
+			}
+
+			@include mdMinBreakPoint {
+				font-size: 25px;
+        padding: 1rem;
+			}
+		}
+	}
+
+  button {
+    font-family: "Lobster", cursive;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    background: $gradient;
+    background-size: 200% auto;
+    cursor: pointer;
+  }
+}
