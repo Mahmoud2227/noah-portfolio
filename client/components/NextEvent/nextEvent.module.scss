@@ -59,19 +59,6 @@
 		}
 	}
 
-	button {
-		width: fit-content;
-		border: 0;
-		outline: 0;
-		padding: 1rem 2rem;
-		border-radius: 25px;
-		background: $gradient;
-		background-size: 200%;
-		font-size: 16px;
-		font-weight: 600;
-		cursor: pointer;
-	}
-
 	.event-cover {
 		position: relative;
 		display: flex;

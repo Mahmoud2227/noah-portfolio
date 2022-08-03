@@ -2,6 +2,8 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import {FaMapMarkerAlt, FaRegCalendarAlt} from "react-icons/fa";
 
+import Button from "../UI/Button/Button";
+
 import classes from "./nextEvent.module.scss";
 
 import newEvent1 from "../../assets/newEvent-1.jpg";
@@ -25,7 +27,7 @@ const NextEvent = () => {
 						Red Square, Moscow, Russia
 					</p>
 				</div>
-				<button type="button">I'm going</button>
+				<Button type="button">I'm going</Button>
 			</div>
 			<div className={classes["event-cover"]}>
 				<div className={classes['countDown-timer']}>

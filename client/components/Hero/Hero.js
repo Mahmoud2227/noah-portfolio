@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import Button from "../UI/Button/Button";
+
 import background from "../../assets/background.jpg";
 
 import classes from "./hero.module.scss";
@@ -20,7 +22,7 @@ const Hero = () => {
 					The emotions caused by music, the attitudes of its composers and players, and the venues
 				</p>
 				<Link href='/about'>
-					<button type='button'>Learn More</button>
+					<Button type='button'>Learn More</Button>
 				</Link>
 			</div>
 		</main>

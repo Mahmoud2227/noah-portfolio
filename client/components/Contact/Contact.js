@@ -1,3 +1,5 @@
+import Button from "../UI/Button/Button";
+
 import classes from "./contact.module.scss";
 
 const Contact = () => {
@@ -14,7 +16,7 @@ const Contact = () => {
 				I can’t wait to talk with you! Thank you!
 				<p>P.S. Here are some additional details...</p>
         <textarea placeholder="message" />
-        <button type='submit'>Send</button>
+        <Button type='submit'>Send</Button>
 			</form>
 		</div>
 	);

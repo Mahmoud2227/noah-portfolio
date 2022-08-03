@@ -1,0 +1,32 @@
+@use "../../../SassStyles/variables" as *;
+
+.button {
+	width: fit-content;
+	font-weight: 600;
+	border: none;
+	outline: none;
+	padding: 1rem 2rem;
+	border-radius: 30px;
+	background-image: $gradient;
+	background-size: 100% 100%;
+	background-position: right;
+	transition: 0.5s;
+	cursor: pointer;
+
+	&:hover {
+		background-size: 200% 200%;
+		animation: gradient-background 2.5s ease-in-out infinite;
+	}
+}
+
+@keyframes gradient-background {
+	0% {
+		background-position: left;
+	}
+	50% {
+		background-position: right;
+	}
+	100% {
+		background-position: left;
+	}
+}
