@@ -1,0 +1,30 @@
+@use "../../SassStyles/variables" as *;
+
+.container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1.5rem;
+	background-color: #f8f8ff23;
+	border: 2px solid;
+	border-image: $gradient 1;
+
+	form {
+		display: flex;
+		gap: 1rem;
+
+		input {
+			font-size: 16px;
+			min-width: 300px;
+			padding: 0.5rem;
+			outline: none;
+			border: 2px solid #ffffff33;
+			border-image: linear-gradient(to left, #ffffff33, #ffffff33) 1;
+			transition: 00.5s;
+
+			&:focus {
+				border-image: $gradient 1;
+			}
+		}
+	}
+}
