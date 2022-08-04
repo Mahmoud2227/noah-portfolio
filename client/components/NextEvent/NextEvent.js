@@ -20,7 +20,7 @@ const NextEvent = () => {
 				<div className={classes.details}>
 					<p className={classes.date}>
 						<FaRegCalendarAlt />
-						20 Dec 2020, 10:00 p.m
+						30 Aug 2022, 10:00 p.m
 					</p>
 					<p className={classes.location}>
 						<FaMapMarkerAlt />
