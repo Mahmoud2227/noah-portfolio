@@ -1,0 +1,50 @@
+.body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:black;
+  animation: fade 1.5s 2.5s ease-in-out forwards;
+  z-index: 999999999;
+
+  .logo {
+    animation: animate-svg-stroke-1 4s cubic-bezier(0.55, 0.055, 0.675, 0.19) 0s both,
+      animate-svg-fill-1 2s cubic-bezier(0.47, 0, 0.745, 0.715) 0.8s both;
+  }
+}
+
+
+@keyframes animate-svg-stroke-1 {
+	0% {
+		stroke-dashoffset: 3667.409912109375px;
+		stroke-dasharray: 3667.409912109375px;
+	}
+
+	100% {
+		stroke-dashoffset: 0;
+		stroke-dasharray: 3667.409912109375px;
+	}
+}
+
+@keyframes animate-svg-fill-1 {
+	0% {
+		fill: transparent;
+	}
+
+	100% {
+		fill: rgb(0, 0, 0);
+	}
+}
+
+@keyframes fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

@@ -1,21 +1,33 @@
-import Contact from '../components/Contact/Contact';
-import Footer from '../components/Footer/Footer';
-import Hero from '../components/Hero/Hero';
-import NavBar from '../components/NavBar/NavBar';
-import NewAlbum from '../components/NewAlbum/NewAlbum';
-import NextEvent from '../components/NextEvent/NextEvent';
-import Subscription from '../components/Subscription/Subscription';
+import {useEffect, useState} from "react";
+
+import Contact from "../components/Contact/Contact";
+import Footer from "../components/Footer/Footer";
+import Hero from "../components/Hero/Hero";
+import NavBar from "../components/NavBar/NavBar";
+import NewAlbum from "../components/NewAlbum/NewAlbum";
+import NextEvent from "../components/NextEvent/NextEvent";
+import Subscription from "../components/Subscription/Subscription";
+import PreLoading from "../components/PreLoading/PreLoading";
 
 export default function Home() {
-  return (
-    <>
-      <NavBar/>
-      <Hero/>
-      <NewAlbum/>
-      <NextEvent/>
-      <Subscription/>
-      <Contact/>
-      <Footer/>
-    </>
-  )
+	const [isLoading, setIsLoading] = useState(true);
+
+	useEffect(() => {
+		setTimeout(() => {
+			setIsLoading(false);
+		}, 3500);
+	}, []);
+
+	return (
+		<>
+			{isLoading && <PreLoading />}
+			<NavBar />
+			<Hero />
+			<NewAlbum />
+			<NextEvent />
+			<Subscription />
+			<Contact />
+			<Footer />
+		</>
+	);
 }
