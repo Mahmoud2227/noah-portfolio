@@ -1,0 +1,59 @@
+@use "../../SassStyles/mixins" as *;
+
+.body {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	align-items: center;
+
+  svg {
+    width:150px;
+    @include smMinBreakPoint {
+      width: 80px;
+    }
+  }
+
+	@include smMinBreakPoint {
+		flex-direction: row;
+		align-items: flex-start;
+	}
+
+	.footer-lists {
+		display: flex;
+		justify-content: space-around;
+    width: 100%;
+    margin-top: 1rem;
+
+		@include smMinBreakPoint {
+			justify-content: space-evenly;
+      margin: 0;
+		}
+
+		h1 {
+			color: transparent;
+			font-size: 22px;
+			margin-bottom: 1rem;
+			@include mdMinBreakPoint {
+				font-size: 24px;
+			}
+		}
+
+		ul {
+			list-style: none;
+
+			li {
+				font-size: 14px;
+			}
+
+			* + * {
+				margin-top: 0.5rem;
+			}
+		}
+	}
+
+	.social-links {
+		display: flex;
+		min-width: 100px;
+		justify-content: space-between;
+	}
+}

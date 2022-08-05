@@ -1,4 +1,5 @@
 import Contact from '../components/Contact/Contact';
+import Footer from '../components/Footer/Footer';
 import Hero from '../components/Hero/Hero';
 import NavBar from '../components/NavBar/NavBar';
 import NewAlbum from '../components/NewAlbum/NewAlbum';
@@ -14,6 +15,7 @@ export default function Home() {
       <NextEvent/>
       <Subscription/>
       <Contact/>
+      <Footer/>
     </>
   )
 }
