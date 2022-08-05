@@ -37,6 +37,8 @@ a {
 	background: $gradient;
 	background-clip: text;
 	-webkit-background-clip: text;
+	color: transparent;
+	width: fit-content;
 }
 
 @media (prefers-color-scheme: dark) {
