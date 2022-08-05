@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import {createPortal} from "react-dom";
 import Transition from "react-transition-group/Transition";
 
-import Logo from "./Logo";
+import Logo from "../UI/Logo/Logo";
 import NavLink from "./NavLink";
 import BrandLogo from "../UI/BrandLogo/BrandLogo";
 import NavMenu from "./NavMenu";
