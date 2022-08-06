@@ -1,7 +1,7 @@
 export default {
   name: "song",
   title: "Song",
-  type: "document",
+  type: "object",
   fields: [
     {
       name: "title",
@@ -15,12 +15,6 @@ export default {
       options: {
         accept: 'audio/*',
       }
-    },
-    {
-      name: "album",
-      title: 'Album',
-      type: 'reference',
-      to: [{ type: 'album' }],
     }
   ]
 }
