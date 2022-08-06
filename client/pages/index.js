@@ -13,7 +13,12 @@ export default function Home() {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
+		document.body.style.overflowY = "hidden";
+		document.body.style.height = "100vh";
+		
 		setTimeout(() => {
+			document.body.style.overflowY = "";
+			document.body.style.height = "";
 			setIsLoading(false);
 		}, 3500);
 	}, []);
