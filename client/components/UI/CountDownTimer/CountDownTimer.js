@@ -2,8 +2,8 @@ import useCountdown from "../../../hooks/useCountDown";
 
 import classes from "./countDownTimer.module.scss";
 
-const CountDownTimer = () => {
-	const {countDown} = useCountdown("Aug 30, 2022 22:00:00");
+const CountDownTimer = ({date}) => {
+	const {countDown} = useCountdown(date);
 
 	return (
 		<div className={classes.body}>

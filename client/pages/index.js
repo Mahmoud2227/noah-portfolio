@@ -10,7 +10,7 @@ import NextEvent from "../components/NextEvent/NextEvent";
 import Subscription from "../components/Subscription/Subscription";
 import PreLoading from "../components/PreLoading/PreLoading";
 
-export default function Home({brands}) {
+export default function Home({brands,nextConcert}) {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
@@ -30,7 +30,7 @@ export default function Home({brands}) {
 			<NavBar brands={brands.musicBrands} />
 			<Hero />
 			<NewAlbum />
-			<NextEvent />
+			<NextEvent concertData={nextConcert} />
 			<Subscription />
 			<Contact />
 			<Footer brands={brands.socialBrands} />
@@ -39,22 +39,23 @@ export default function Home({brands}) {
 }
 
 export async function getStaticProps() {
-	const query = `*[_type == "brand"]{
-		title,
-		url,
-		icon,
-		type,
-		"id":_id
+	const brandsQuery = `*[_type == "brand"]{
+		title,url,icon,type,"id":_id
 	}`;
-	const brands = await sanity.fetch(query);
+	const nextConcertsQuery = `*[_type == 'concert'] | order(date desc)[0]{
+		title,images,date,location,"id":_id
+	}`;
+	const brands = await sanity.fetch(brandsQuery);
 	const socialBrands = brands.filter((brand) => brand.type === "social");
 	const musicBrands = brands.filter((brand) => brand.type === "music");
+	const nextConcert = await sanity.fetch(nextConcertsQuery);
 	return {
 		props: {
 			brands: {
 				socialBrands,
 				musicBrands,
 			},
+			nextConcert,
 		},
 	};
 }
