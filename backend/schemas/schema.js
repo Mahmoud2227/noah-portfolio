@@ -7,6 +7,7 @@ import testimonials from './testimonials'
 import albums from './albums'
 import songs from './songs'
 import brands from './brands'
+import concerts from './concerts';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -19,5 +20,6 @@ export default createSchema({
     albums,
     songs,
     brands,
+    concerts
   ]),
 })
