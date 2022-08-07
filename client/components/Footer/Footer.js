@@ -1,15 +1,11 @@
+import imageUrlFor from "../../utils/imageUrlFor";
 import FooterLink from "./FooterLink";
-
 import Logo from "../UI/Logo/Logo";
 import BrandLogo from "../UI/BrandLogo/BrandLogo";
 
 import classes from "./footer.module.scss";
 
-import facebook from "../../assets/facebook.svg";
-import instagram from "../../assets/instagram.svg";
-import youtube from "../../assets/youtube.svg";
-
-const Footer = () => {
+const Footer = ({brands}) => {
 	return (
 		<div className={classes.body + " section__padding"}>
 			<Logo />
@@ -33,21 +29,14 @@ const Footer = () => {
 				</div>
 			</div>
 			<div className={classes["social-links"]}>
-				<BrandLogo
-					icon={facebook}
-					href='https://www.facebook.com/noah.estrada.5'
-					title='FaceBook'
-				/>
-				<BrandLogo
-					icon={instagram}
-					href='https://www.instagram.com/noahestrada_n.e.buddys/'
-					title='Instagram'
-				/>
-				<BrandLogo
-					icon={youtube}
-					href='https://www.youtube.com/channel/UCq9lP30tXhWlipANznz2WkQ'
-					title='Youtube'
-				/>
+				{brands.map((brand) => (
+					<BrandLogo
+						icon={imageUrlFor(brand.icon).toString()}
+						href={brand.url}
+						title={brand.title}
+						key={brand.id}
+					/>
+				))}
 			</div>
 		</div>
 	);

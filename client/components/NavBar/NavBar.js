@@ -1,6 +1,6 @@
-import {useEffect, useRef, useState} from "react";
-import {createPortal} from "react-dom";
+import {useRef, useState} from "react";
 import Transition from "react-transition-group/Transition";
+import imageUrlFor from "../../utils/imageUrlFor";
 
 import Logo from "../UI/Logo/Logo";
 import NavLink from "./NavLink";
@@ -9,12 +9,7 @@ import NavMenu from "./NavMenu";
 
 import classes from "./navBar.module.scss";
 
-import spotify from "../../assets/spotify.svg";
-import deezer from "../../assets/deezer.svg";
-import appleMusic from "../../assets/apple-music.svg";
-import youtubeMusic from "../../assets/youtube-music.svg";
-
-const NavBar = () => {
+const NavBar = ({brands}) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const nodeRef = useRef(null);
@@ -30,22 +25,14 @@ const NavBar = () => {
 				<NavLink name='Contact' href='/contact' />
 			</ul>
 			<div className={classes["music-brands"]}>
-				<BrandLogo
-					icon={spotify}
-					href='https://open.spotify.com/artist/6eYCzYkGJSKwm73jYZvhCs?si=IAUNY6E2TSqqyf_X8cLOww'
-					title='Spotify'
-				/>
-				<BrandLogo icon={deezer} href='https://deezer.page.link/ZvYd62CnRVn23qrKA' title='Deezer' />
-				<BrandLogo
-					icon={appleMusic}
-					href='https://music.apple.com/us/artist/noah-estrada/1512604152'
-					title='Apple Music'
-				/>
-				<BrandLogo
-					icon={youtubeMusic}
-					href='https://music.youtube.com/channel/UCDn60yx-RdHOWSCPLodFonA?feature=share'
-					title='YouTube Music'
-				/>
+				{brands.map((brand) => (
+					<BrandLogo
+						icon={imageUrlFor(brand.icon).toString()}
+						href={brand.url}
+						title={brand.title}
+						key={brand.id}
+					/>
+				))}
 			</div>
 			<div
 				className={`${classes["menuBurger"]} ${isOpen ? classes.open : ""}`}
