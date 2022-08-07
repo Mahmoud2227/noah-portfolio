@@ -34,7 +34,6 @@ export default {
       title: 'Attendees Count',
       type: "number",
       initialValue: 0,
-      readOnly: true
     },
     {
       name: 'images',
