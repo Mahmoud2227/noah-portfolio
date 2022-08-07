@@ -2,10 +2,10 @@ import React from 'react';
 
 import classes from "./button.module.scss"
 
-const Button = React.forwardRef(({type,onClick,children},ref) => {
+const Button = React.forwardRef((props,ref) => {
   return (
-    <button className={classes.button} type={type} onClick={onClick?onClick:null}>
-      {children}
+    <button className={classes.button} {...props} >
+      {props.children}
     </button>
   );
 })

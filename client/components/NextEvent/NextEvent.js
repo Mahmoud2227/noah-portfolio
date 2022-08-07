@@ -1,20 +1,32 @@
+import { useState,useEffect } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import {FaMapMarkerAlt, FaRegCalendarAlt} from "react-icons/fa";
+import sanity from "../../lib/sanity";
 import imageUrlFor from "../../utils/imageUrlFor";
 
 import Button from "../UI/Button/Button";
 
 import classes from "./nextEvent.module.scss";
 
-import newEvent1 from "../../assets/newEvent-1.jpg";
-import newEvent2 from "../../assets/newEvent-2.jpg";
-
 const CountDownTimer = dynamic(() => import("../UI/CountDownTimer/CountDownTimer"), {ssr: false});
 
 const NextEvent = ({concertData}) => {
+	const [isDisabled , setIsDisabled] = useState(false);
 	const concertDate = new Date(concertData.date);
-	console.log(concertData);
+
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			setIsDisabled(localStorage.getItem(concertData.id) === "true"? true : false);
+		}
+	},[])
+
+	const attendButtonHandler = ()=> {
+		sanity.patch(concertData.id).inc({attendeesCount: 1}).commit();
+		localStorage.setItem(concertData.id, true);
+		setIsDisabled(true);
+	}
+
 	return (
 		<div className={classes.body + " section__padding"}>
 			<div className={classes.info}>
@@ -32,7 +44,7 @@ const NextEvent = ({concertData}) => {
 						{concertData.location}
 					</p>
 				</div>
-				<Button type='button'>I'm going</Button>
+				<Button type='button' onClick={attendButtonHandler} disabled={isDisabled} >{isDisabled?"Waiting for you!":"I'm going"}</Button>
 			</div>
 			<div className={classes["event-cover"]}>
 					<div className={classes["countDown-timer"]}>

@@ -30,6 +30,13 @@ export default {
       type: 'text',
     },
     {
+      name: 'attendeesCount',
+      title: 'Attendees Count',
+      type: "number",
+      initialValue: 0,
+      readOnly: true
+    },
+    {
       name: 'images',
       title: 'Images',
       type: 'array',

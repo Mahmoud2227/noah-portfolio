@@ -17,6 +17,11 @@
 		background-size: 200% 200%;
 		animation: gradient-background 2.5s ease-in-out infinite;
 	}
+
+	&:disabled {
+		color: white;
+		cursor: not-allowed;
+	}
 }
 
 @keyframes gradient-background {
