@@ -13,7 +13,6 @@ const CountDownTimer = dynamic(() => import("../UI/CountDownTimer/CountDownTimer
 
 const NextEvent = ({concertData}) => {
 	const [isDisabled , setIsDisabled] = useState(false);
-	const concertDate = new Date(concertData.date);
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {
@@ -35,9 +34,7 @@ const NextEvent = ({concertData}) => {
 				<div className={classes.details}>
 					<p className={classes.date}>
 						<FaRegCalendarAlt />
-						{concertDate.toDateString("en-US") +
-							" " +
-							concertDate.toLocaleTimeString("en-US", {timeStyle: "short"})}
+						{concertData.date}
 					</p>
 					<p className={classes.location}>
 						<FaMapMarkerAlt />
@@ -48,7 +45,7 @@ const NextEvent = ({concertData}) => {
 			</div>
 			<div className={classes["event-cover"]}>
 					<div className={classes["countDown-timer"]}>
-						<CountDownTimer date={concertDate} />
+						<CountDownTimer date={concertData.date} />
 					</div>
 				<div className={classes["images-container"]}>
 					<div className={classes.image} >

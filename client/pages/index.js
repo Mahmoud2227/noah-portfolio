@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import sanity from "../lib/sanity";
+import formatDate from "../utils/formatDate";
 
 import Contact from "../components/Contact/Contact";
 import Footer from "../components/Footer/Footer";
@@ -10,7 +11,7 @@ import NextEvent from "../components/NextEvent/NextEvent";
 import Subscription from "../components/Subscription/Subscription";
 import PreLoading from "../components/PreLoading/PreLoading";
 
-export default function Home({brands,nextConcert}) {
+export default function Home({brands, nextConcert}) {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
@@ -48,10 +49,11 @@ export async function getStaticProps() {
 	}`;
 	const brands = await sanity.fetch(brandsQuery);
 	const nextConcert = await sanity.fetch(nextConcertsQuery);
+	console.log(formatDate(nextConcert.date));
 	return {
 		props: {
 			brands,
-			nextConcert,
+			nextConcert: {...nextConcert, date: formatDate(nextConcert.date)},
 		},
 	};
 }

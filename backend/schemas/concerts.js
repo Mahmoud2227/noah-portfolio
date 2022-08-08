@@ -15,7 +15,7 @@ export default {
       type: 'datetime',
       options: {
         dateFormat: 'YYYY-MM-DD',
-        timeFormat: 'h:mm a',
+        timeFormat: 'hh:mm a',
         timeStep:15
       }
     },
