@@ -35,6 +35,10 @@
 				border-image: $gradient 1;
 			}
 
+			&.error {
+				border-image: linear-gradient(to left, red, red) 1;
+			}
+
 			@include mdMinBreakPoint {
 				font-size: 30px;
 			}
@@ -87,5 +91,25 @@
     font-size: 20px;
     font-weight: 500;
     padding: 1rem 1.5rem;
+
+		.spinner {
+			display: block;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			background: transparent;
+			border: 2px solid ;
+			border-color: transparent #fff ;
+			animation: spinner 1s infinite ease-in-out;
+		}
   }
+}
+
+@keyframes spinner {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
