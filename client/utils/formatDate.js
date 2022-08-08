@@ -1,8 +1,15 @@
 const formatDate = (date) => {
-	const dateMilliseconds = new Date(date).getTime();
-	const dateObj = new Date(dateMilliseconds);
+	const dateObj = new Date(date);
 	return (
-		dateObj.toDateString("en-US") + " " + dateObj.toLocaleTimeString("en-US", {timeStyle: "short"})
+		dateObj.toLocaleDateString("en-US", {
+			weekday: "short",
+			month: "short",
+			day: "numeric",
+			year: "numeric",
+			timeZone: "America/Chicago",
+		}) +
+		" " +
+		dateObj.toLocaleTimeString("en-US", {timeStyle: "short", timeZone: "America/Chicago"})
 	);
 };
 export default formatDate;

@@ -34,7 +34,7 @@ const NextEvent = ({concertData}) => {
 				<div className={classes.details}>
 					<p className={classes.date}>
 						<FaRegCalendarAlt />
-						{concertData.date}
+						{concertData.formattedDate}
 					</p>
 					<p className={classes.location}>
 						<FaMapMarkerAlt />

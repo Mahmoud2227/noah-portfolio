@@ -49,11 +49,10 @@ export async function getStaticProps() {
 	}`;
 	const brands = await sanity.fetch(brandsQuery);
 	const nextConcert = await sanity.fetch(nextConcertsQuery);
-	console.log(formatDate(nextConcert.date));
 	return {
 		props: {
 			brands,
-			nextConcert: {...nextConcert, date: formatDate(nextConcert.date)},
+			nextConcert: {...nextConcert, formattedDate: formatDate(nextConcert.date)},
 		},
 	};
 }
