@@ -84,6 +84,10 @@
 			width: 70%;
 			background-color: #f8f8ff23;
 			
+			@include mdMinBreakPoint {
+				width: 60%;
+			}
+
 			&::after {
 				content: "";
 				display: block;

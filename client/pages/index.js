@@ -27,34 +27,30 @@ export default function Home({brands,nextConcert}) {
 	return (
 		<>
 			{isLoading && <PreLoading />}
-			<NavBar brands={brands.musicBrands} />
+			<NavBar brands={brands.music} />
 			<Hero />
 			<NewAlbum />
 			<NextEvent concertData={nextConcert} />
 			<Subscription />
 			<Contact />
-			<Footer brands={brands.socialBrands} />
+			<Footer brands={brands.social} />
 		</>
 	);
 }
 
 export async function getStaticProps() {
-	const brandsQuery = `*[_type == "brand"]{
-		title,url,icon,type,"id":_id
+	const brandsQuery = `{
+		"music":*[_type == 'brand' && type == 'music']{title,url,icon,"id":_id},
+		"social":*[_type == 'brand' && type == 'social']{title,url,icon,"id":_id}
 	}`;
 	const nextConcertsQuery = `*[_type == 'concert'] | order(date desc)[0]{
 		title,images,date,location,"id":_id
 	}`;
 	const brands = await sanity.fetch(brandsQuery);
-	const socialBrands = brands.filter((brand) => brand.type === "social");
-	const musicBrands = brands.filter((brand) => brand.type === "music");
 	const nextConcert = await sanity.fetch(nextConcertsQuery);
 	return {
 		props: {
-			brands: {
-				socialBrands,
-				musicBrands,
-			},
+			brands,
 			nextConcert,
 		},
 	};
