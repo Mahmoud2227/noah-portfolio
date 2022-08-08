@@ -3,25 +3,25 @@ import useCountdown from "../../../hooks/useCountDown";
 import classes from "./countDownTimer.module.scss";
 
 const CountDownTimer = ({date}) => {
-	const {countDown} = useCountdown(date);
+	const {countDown} = useCountdown(new Date(date).getTime());
 
 	return (
 		<div className={classes.body}>
 			<div>
 				<span>{countDown.days}</span>
-        <span>Day</span>
+				<span>Day</span>
 			</div>
 			<div>
 				<span>{countDown.hours}</span>
-        <span>Hr</span>
+				<span>Hr</span>
 			</div>
 			<div>
 				<span>{countDown.minutes}</span>
-        <span>Min</span>
+				<span>Min</span>
 			</div>
 			<div>
 				<span>{countDown.seconds}</span>
-        <span>Sec</span>
+				<span>Sec</span>
 			</div>
 		</div>
 	);
