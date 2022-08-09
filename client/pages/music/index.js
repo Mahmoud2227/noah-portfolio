@@ -9,17 +9,13 @@ const Music = ({brands}) => {
 		<>
 			<div className={classes.body}>
 				<div className={classes.albums}>
-					<Link href='/albums'>
-						<a href='/albums' title='albums'>
-							Albums
-						</a>
+					<Link href='music/albums' title='Albums'>
+						Albums
 					</Link>
 				</div>
 				<div className={classes.singles}>
-					<Link href='singles'>
-						<a href='singles' title='singles'>
-							Singles
-						</a>
+					<Link href='music/singles' title='Singles'>
+						Singles
 					</Link>
 				</div>
 			</div>
