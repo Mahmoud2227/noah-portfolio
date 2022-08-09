@@ -54,6 +54,6 @@ export async function getStaticProps() {
 			brands,
 			nextConcert: {...nextConcert, formattedDate: formatDate(nextConcert.date)},
 		},
-		revalidate:3600,
+		revalidate:1,
 	};
 }
