@@ -25,14 +25,15 @@ const NavBar = ({brands}) => {
 				<NavLink name='Contact' href='/contact' />
 			</ul>
 			<div className={classes["music-brands"]}>
-				{brands.map((brand) => (
-					<BrandLogo
-						icon={imageUrlFor(brand.icon).toString()}
-						href={brand.url}
-						title={brand.title}
-						key={brand.id}
-					/>
-				))}
+				{brands &&
+					brands.map((brand) => (
+						<BrandLogo
+							icon={imageUrlFor(brand.icon).toString()}
+							href={brand.url}
+							title={brand.title}
+							key={brand.id}
+						/>
+					))}
 			</div>
 			<div
 				className={`${classes["menuBurger"]} ${isOpen ? classes.open : ""}`}

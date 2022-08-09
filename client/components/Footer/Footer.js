@@ -7,7 +7,7 @@ import classes from "./footer.module.scss";
 
 const Footer = ({brands}) => {
 	return (
-		<div className={classes.body + " section__padding"}>
+		<footer className={classes.body + " section__padding"}>
 			<Logo />
 			<div className={classes["footer-lists"]}>
 				<div>
@@ -29,7 +29,7 @@ const Footer = ({brands}) => {
 				</div>
 			</div>
 			<div className={classes["social-links"]}>
-				{brands.map((brand) => (
+				{brands && brands.map((brand) => (
 					<BrandLogo
 						icon={imageUrlFor(brand.icon).toString()}
 						href={brand.url}
@@ -38,7 +38,7 @@ const Footer = ({brands}) => {
 					/>
 				))}
 			</div>
-		</div>
+		</footer>
 	);
 };
 
