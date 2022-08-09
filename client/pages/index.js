@@ -9,6 +9,7 @@ import NewAlbum from "../components/NewAlbum/NewAlbum";
 import NextEvent from "../components/NextEvent/NextEvent";
 import Subscription from "../components/Subscription/Subscription";
 import PreLoading from "../components/PreLoading/PreLoading";
+import formatDate from "../utils/formatDate";
 
 export default function Home({brands, nextConcert}) {
 	const [isLoading, setIsLoading] = useState(true);
@@ -51,7 +52,7 @@ export async function getStaticProps() {
 	return {
 		props: {
 			brands,
-			nextConcert,
+			nextConcert:{...nextConcert,formattedDate: formatDate(nextConcert.date)}
 		},
 		revalidate:3600,
 	};

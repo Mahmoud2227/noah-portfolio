@@ -14,7 +14,7 @@ const CountDownTimer = dynamic(() => import("../UI/CountDownTimer/CountDownTimer
 
 const NextEvent = ({concertData}) => {
 	const [isDisabled , setIsDisabled] = useState(false);
-	const [date, setDate] = useState(undefined);
+	const [date, setDate] = useState(concertData.formattedDate);
 
 	useEffect(() => {
 		setDate(formatDate(concertData.date));
@@ -33,11 +33,11 @@ const NextEvent = ({concertData}) => {
 				<h4 className='gradient-text'>Next Event</h4>
 				<p className={classes.title}>{concertData.title}</p>
 				<div className={classes.details}>
-					<p className={classes.date}>
+					<p>
 						<FaRegCalendarAlt />
 						{date}
 					</p>
-					<p className={classes.location}>
+					<p>
 						<FaMapMarkerAlt />
 						{concertData.location}
 					</p>
