@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import {FaMapMarkerAlt, FaRegCalendarAlt} from "react-icons/fa";
 import sanity from "../../lib/sanity";
 import imageUrlFor from "../../utils/imageUrlFor";
+import formatDate from "../../utils/formatDate";
 
 import Button from "../UI/Button/Button";
 
@@ -13,12 +14,12 @@ const CountDownTimer = dynamic(() => import("../UI/CountDownTimer/CountDownTimer
 
 const NextEvent = ({concertData}) => {
 	const [isDisabled , setIsDisabled] = useState(false);
+	const [date, setDate] = useState(undefined);
 
 	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			setIsDisabled(localStorage.getItem(concertData.id) === "true"? true : false);
-		}
-	},[])
+		setDate(formatDate(concertData.date));
+		setIsDisabled(localStorage.getItem(concertData.id) === "true"? true : false);
+	},[]);
 
 	const attendButtonHandler = ()=> {
 		sanity.patch(concertData.id).inc({attendeesCount: 1}).commit();
@@ -34,7 +35,7 @@ const NextEvent = ({concertData}) => {
 				<div className={classes.details}>
 					<p className={classes.date}>
 						<FaRegCalendarAlt />
-						{concertData.formattedDate}
+						{date}
 					</p>
 					<p className={classes.location}>
 						<FaMapMarkerAlt />

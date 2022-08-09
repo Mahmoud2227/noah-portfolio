@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import sanity from "../lib/sanity";
-import formatDate from "../utils/formatDate";
 
 import Contact from "../components/Contact/Contact";
 import Footer from "../components/Footer/Footer";
@@ -52,8 +51,8 @@ export async function getStaticProps() {
 	return {
 		props: {
 			brands,
-			nextConcert: {...nextConcert, formattedDate: formatDate(nextConcert.date)},
+			nextConcert,
 		},
-		revalidate:1,
+		revalidate:3600,
 	};
 }

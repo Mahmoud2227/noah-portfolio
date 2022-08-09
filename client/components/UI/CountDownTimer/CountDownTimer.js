@@ -3,7 +3,7 @@ import useCountdown from "../../../hooks/useCountDown";
 import classes from "./countDownTimer.module.scss";
 
 const CountDownTimer = ({date}) => {
-	const {countDown} = useCountdown(new Date(date).toLocaleString({timeZone: "America/Chicago"}));
+	const {countDown} = useCountdown(date);
 
 	return (
 		<div className={classes.body}>
