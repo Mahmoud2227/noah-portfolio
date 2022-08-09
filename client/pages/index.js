@@ -7,25 +7,10 @@ import Hero from "../components/Hero/Hero";
 import NewAlbum from "../components/NewAlbum/NewAlbum";
 import NextEvent from "../components/NextEvent/NextEvent";
 import Subscription from "../components/Subscription/Subscription";
-import PreLoading from "../components/PreLoading/PreLoading";
 
-export default function Home({brands, nextConcert}) {
-	const [isLoading, setIsLoading] = useState(true);
-
-	useEffect(() => {
-		document.body.style.overflowY = "hidden";
-		document.body.style.height = "100vh";
-
-		setTimeout(() => {
-			document.body.style.overflowY = "";
-			document.body.style.height = "";
-			setIsLoading(false);
-		}, 3500);
-	}, []);
-
+export default function Home({nextConcert}) {
 	return (
 		<>
-			{isLoading && <PreLoading />}
 			<Hero />
 			<NewAlbum />
 			<NextEvent concertData={nextConcert} />
@@ -42,8 +27,8 @@ export async function getStaticProps() {
 	const nextConcert = await sanity.fetch(nextConcertsQuery);
 	return {
 		props: {
-			nextConcert:{...nextConcert,formattedDate: formatDate(nextConcert.date)}
+			nextConcert: {...nextConcert, formattedDate: formatDate(nextConcert.date)},
 		},
-		revalidate:3600,
+		revalidate: 3600,
 	};
 }

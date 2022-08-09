@@ -37,13 +37,14 @@
 
 	.menuBurger {
     position: absolute;
-    top: 2.5rem;
-    right: 2rem;
+    top: 2rem;
+    right: 3rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		width: 25px;
+		height: 26px;
 		gap: 5px;
 		cursor: pointer;
 
