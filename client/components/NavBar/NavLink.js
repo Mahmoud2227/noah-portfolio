@@ -1,7 +1,7 @@
-import {useRouter} from 'next/router';
+import {useRouter} from "next/router";
 import Link from "next/link";
 
-import classes from "./navLink.module.scss"
+import classes from "./navLink.module.scss";
 
 const NavLink = ({name, href}) => {
   const router = useRouter();

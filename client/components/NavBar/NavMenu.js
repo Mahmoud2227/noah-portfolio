@@ -1,15 +1,31 @@
-import {forwardRef} from 'react'
+import {forwardRef, useEffect} from "react";
 import NavLink from "./NavLink";
-import CssTransition from "react-transition-group/CSSTransition"
+import {useRouter} from "next/router";
 
 import classes from "./navMenu.module.scss";
 
-const NavMenu = forwardRef(({state,setIsOpen},ref) => {
-	const classNames = [classes.body, state === "entering" ? classes.open :state === "exiting"? classes.close : null];
+const NavMenu = forwardRef(({state, setIsOpen}, ref) => {
+	const classNames = [
+		classes.body,
+		state === "entering" ? classes.open : state === "exiting" ? classes.close : null,
+	];
+
+	const router = useRouter();
+
+	useEffect(() => {
+		if (state === "entered") {
+			router.events.on("routeChangeStart", () => {
+				setIsOpen(false);
+			});
+		}
+	}, [router]);
+
 	return (
 		<div ref={ref} className={classNames.join(" ")}>
 			<div
-				className={`${classes["menuBurger"]} ${state === "entering" ? classes.open :state === 'entered'? classes.open : ""}`}
+				className={`${classes["menuBurger"]} ${
+					state === "entering" ? classes.open : state === "entered" ? classes.open : ""
+				}`}
 				onClick={() => setIsOpen((prevState) => !prevState)}>
 				<span></span>
 				<span></span>
