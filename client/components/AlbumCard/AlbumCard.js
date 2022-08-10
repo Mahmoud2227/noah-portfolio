@@ -14,7 +14,7 @@ const AlbumCard = ({imageSrc, title, slug, brands}) => {
 			<div className={classes["image-container"]}>
 				<div className={classes["brands-container"]}>
 					{brands.map((brand) => (
-						<BrandLogo icon={imageUrlFor(brand.icon).toString()} href={brand.url} size='35px' title={brand.title} />
+						<BrandLogo key={brand._key} icon={imageUrlFor(brand.icon).toString()} href={brand.url} size='35px' title={brand.title} />
 					))}
 				</div>
 				<div className={classes.cd}>

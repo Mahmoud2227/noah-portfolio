@@ -5,7 +5,6 @@ import AlbumCard from "../../../components/AlbumCard/AlbumCard";
 import classes from "../../../styles/Albums.module.scss";
 
 const Albums = ({albums}) => {
-	console.log(albums);
 	return (
 		<div className={classes.body + " section__padding"}>
 			<h1 className='gradient-text'>Albums</h1>
