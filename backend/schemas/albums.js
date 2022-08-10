@@ -30,17 +30,28 @@ export default {
 			},
 		},
 		{
-			name: "description",
-			title: "Description",
-			type: "text",
-		},
-		{
 			name: "cover",
 			title: "Cover",
 			type: "image",
 			options: {
 				hotspot: true,
 			},
+		},
+		{
+			name: "musicBrands",
+			title: "Music Brands",
+			type: "array",
+			of: [
+				{
+					type: "object",
+					title: "Brand",
+					fields: [
+						{name: "title", title: "Title", type: "string"},
+						{name: "url", title: "URL", type: "url"},
+						{name: "icon", title: "Icon", type: "image"},
+					],
+				},
+			],
 		},
 		{
 			title: "Songs",
