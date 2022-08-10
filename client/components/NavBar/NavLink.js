@@ -5,7 +5,7 @@ import classes from "./navLink.module.scss"
 
 const NavLink = ({name, href}) => {
   const router = useRouter();
-  const isActive = router.pathname === href;
+  const isActive = "/" + router.pathname.split("/")[1] === href;
 	return (
 		<Link href={href}>
 			<li  className={`${classes.body} ${isActive?classes.active:""}`}>

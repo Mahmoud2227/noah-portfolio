@@ -1,7 +1,6 @@
 @use "../SassStyles/mixins" as *;
 
 .body {
-	// margin-top: 90px;
 	flex: 1;
 	display: flex;
   min-height: 100vh;
@@ -50,6 +49,7 @@
 		}
 
 		a {
+			font-family: "Lobster", cursive;
       position: relative;
       flex: 1;
 			display: flex;
