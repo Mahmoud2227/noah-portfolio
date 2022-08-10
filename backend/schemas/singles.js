@@ -1,7 +1,7 @@
 export default {
-	name: "song",
-	title: "Song",
-	type: "object",
+	name: "single",
+	title: "Single",
+	type: "document",
 	fields: [
 		{
 			name: "title",
@@ -12,6 +12,14 @@ export default {
 			name: "duration",
 			title: "Duration",
 			type: "string",
+		},
+		{
+			name: "cover",
+			title: "Cover",
+			type: "image",
+			options: {
+				hotspot: true,
+			},
 		},
 		{
 			name: "audio",

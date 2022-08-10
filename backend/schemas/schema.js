@@ -4,8 +4,9 @@ import createSchema from 'part:@sanity/base/schema-creator'
 // Then import schema types from any plugins that might expose them
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 import testimonials from './testimonials'
-import albums from './albums'
 import songs from './songs'
+import albums from './albums'
+import singles from './singles';
 import brands from './brands'
 import concerts from './concerts';
 
@@ -20,6 +21,7 @@ export default createSchema({
     albums,
     songs,
     brands,
-    concerts
+    concerts,
+    singles
   ]),
 })

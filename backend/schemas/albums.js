@@ -9,6 +9,27 @@ export default {
 			type: "string",
 		},
 		{
+			name: "slug",
+			title: "Slug",
+			type: "slug",
+			options: {
+				source: "title",
+				maxLength: 96,
+			},
+		},
+		{
+			name: "releaseDate",
+			title: "Release Date",
+			type: "date",
+			options: {
+				dateFormat: "YYYY",
+				altFormat: "YYYY",
+				fromNow: true,
+				toNow: true,
+				display: "input",
+			},
+		},
+		{
 			name: "description",
 			title: "Description",
 			type: "text",
