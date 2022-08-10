@@ -1,15 +1,22 @@
 import Link from "next/link";
 import Image from "next/image";
 import {AiFillEye} from "react-icons/ai";
+import BrandLogo from "../UI/BrandLogo/BrandLogo";
+import imageUrlFor from "../../utils/imageUrlFor";
 
 import classes from "./albumCard.module.scss";
 
 import cd from "../../assets/cd.png";
 
-const AlbumCard = ({imageSrc, title,slug}) => {
+const AlbumCard = ({imageSrc, title, slug, brands}) => {
 	return (
 		<div className={classes.body}>
 			<div className={classes["image-container"]}>
+				<div className={classes["brands-container"]}>
+					{brands.map((brand) => (
+						<BrandLogo icon={imageUrlFor(brand.icon).toString()} href={brand.url} size='35px' title={brand.title} />
+					))}
+				</div>
 				<div className={classes.cd}>
 					<Image src={cd} alt='cd' width={250} height={250} className={classes.cd} />
 				</div>
@@ -17,12 +24,12 @@ const AlbumCard = ({imageSrc, title,slug}) => {
 					<Image src={imageSrc} alt={title + " cover"} width={250} height={250} />
 				</div>
 				<Link href={"/music/albums/" + slug} className={classes["album-link"]}>
-          <a className={classes["album-link"]} title={title}>
+					<a className={classes["album-link"]} title={title}>
 						<AiFillEye />
 					</a>
 				</Link>
 			</div>
-      <h2>{title}</h2>
+			<h2>{title}</h2>
 		</div>
 	);
 };
