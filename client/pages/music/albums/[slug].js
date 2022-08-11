@@ -1,19 +1,16 @@
-import {useRouter} from "next/router";
 import Image from "next/image";
 import BrandLogo from "../../../components/UI/BrandLogo/BrandLogo";
 import sanity from "../../../lib/sanity";
 import imageUrlFor from "../../../utils/imageUrlFor";
 import {IoPlay} from "react-icons/io5";
 
+import SongsList from "../../../components/SongsList/SongsList";
+
 import classes from "../../../styles/AlbumPage.module.scss";
 
 import cd from "../../../assets/cd.png";
-import SongsList from "../../../components/SongsList/SongsList";
 
 const AlbumPage = ({album}) => {
-	const router = useRouter();
-	// console.log(router.query)
-	// console.log(album)
 	return (
 		<div className={classes.body + " section__padding"}>
 			<div className={classes.title}>
@@ -103,6 +100,6 @@ export const getStaticProps = async (context) => {
 		props: {
 			album,
 		},
-    revalidate: 3600,
+		revalidate: 3600,
 	};
 };
