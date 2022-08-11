@@ -1,5 +1,4 @@
 import sanity from "../../../lib/sanity";
-import imageUrlFor from "../../../utils/imageUrlFor";
 import AlbumCard from "../../../components/AlbumCard/AlbumCard";
 
 import classes from "../../../styles/Albums.module.scss";
@@ -13,7 +12,7 @@ const Albums = ({albums}) => {
 					<AlbumCard
 						key={album.id}
 						title={album.title}
-						imageSrc={imageUrlFor(album.cover).toString()}
+						imageSrc={album.cover}
             slug={album.slug.current}
 						brands={album.musicBrands}
 					/>

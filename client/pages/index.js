@@ -14,7 +14,7 @@ export default function Home({nextConcert}) {
 			<Hero />
 			<NewAlbum />
 			<NextEvent concertData={nextConcert} />
-			<Subscription />
+			{/* <Subscription /> */}
 			<Contact />
 		</>
 	);

@@ -62,8 +62,8 @@
 		background-size: 200% 200%;
 		font-weight: 500;
 		animation: gradient-text 2s ease-in-out infinite;
-		background-clip: text;
 		-webkit-background-clip: text;
+		background-clip: text;
 		transition: 0.2s ease-in-out;
 
 		&:hover,

@@ -5,12 +5,9 @@
   width: fit-content;
   transition: 0.2s;
   cursor: pointer;
+  width: 80px;
 
   &:hover {
     transform: scale(1.1);
-  }
-
-  svg {
-    width: 80px;
   }
 }

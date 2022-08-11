@@ -1,19 +1,27 @@
 import Link from "next/link";
+import Image from "next/image";
 
-import NavBar from "../../components/NavBar/NavBar";
-import sanity from "../../lib/sanity";
 import classes from "../../styles/Music.module.scss";
 
-const Music = ({brands}) => {
+import albums from "../../assets/albums.jpg";
+import singles from "../../assets/singles.jpg";
+
+const Music = () => {
 	return (
 		<>
 			<div className={classes.body}>
-				<div className={classes.albums}>
+				<div >
+					<div className={classes.background}>
+						<Image src={albums} alt='albums' objectFit="cover" />
+					</div>
 					<Link href='music/albums' title='Albums'>
 						Albums
 					</Link>
 				</div>
-				<div className={classes.singles}>
+				<div>
+					<div className={classes.background}>
+						<Image src={singles} alt='singles' objectFit="cover" />
+					</div>
 					<Link href='music/singles' title='Singles'>
 						Singles
 					</Link>

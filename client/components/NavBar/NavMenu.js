@@ -13,7 +13,7 @@ const NavMenu = forwardRef(({state, setIsOpen}, ref) => {
 	const router = useRouter();
 
 	useEffect(() => {
-		if (state === "entered") {
+		if (state) {
 			router.events.on("routeChangeStart", () => {
 				setIsOpen(false);
 			});
