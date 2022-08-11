@@ -20,7 +20,7 @@ export default function Home({nextConcert}) {
 	);
 }
 
-export async function getStaticProps() {
+export const getStaticProps = async () => {
 	const nextConcertsQuery = `*[_type == 'concert'] | order(date desc)[0]{
 		title,images,date,location,"id":_id
 	}`;
