@@ -9,6 +9,7 @@ import SongsList from "../../../components/SongsList/SongsList";
 import classes from "../../../styles/AlbumPage.module.scss";
 
 import cd from "../../../assets/cd.png";
+import AudioPlayer from "../../../components/audioPlayer/audioPlayer";
 
 const AlbumPage = ({album}) => {
 	return (
@@ -72,6 +73,7 @@ const AlbumPage = ({album}) => {
 					</div>
 				</div>
 				<div className={classes["container-right"]}>
+					<AudioPlayer trackList={album.songs} />
 					<SongsList songs={album.songs} />
 				</div>
 			</div>
@@ -93,7 +95,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
 	const query = `*[_type == "album" && slug.current == "${context.params.slug}"][0]{
-    title,releaseDate,cover,songs,musicBrands
+    title,releaseDate,cover,songs,musicBrands,songs[]{'url':audio.asset->url,title,duration,_key}
   }`;
 	const album = await sanity.fetch(query);
 	return {

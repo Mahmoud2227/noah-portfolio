@@ -1,0 +1,26 @@
+.body {
+  display: flex;
+  max-width: 300px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+
+  svg {
+    font-size: 40px;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:nth-child(3){
+      font-size: 45px;
+    }
+
+    &:nth-child(1),&:nth-child(5){
+      font-size: 30px;
+      color: rgba(255, 255, 255, 0.4);
+
+      &.active {
+        color: white;
+      }
+    }
+  }
+}
