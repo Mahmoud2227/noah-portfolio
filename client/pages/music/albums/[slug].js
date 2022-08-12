@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import Image from "next/image";
 import BrandLogo from "../../../components/UI/BrandLogo/BrandLogo";
 import sanity from "../../../lib/sanity";
@@ -12,6 +14,12 @@ import cd from "../../../assets/cd.png";
 import AudioPlayer from "../../../components/audioPlayer/audioPlayer";
 
 const AlbumPage = ({album}) => {
+	const [activeTrack, setActiveTrack] = useState(0);
+	const [curTrack, setCurTrack] = useState(album.songs[0]);
+	const getActiveTrack = (trackIndex) => {
+		setActiveTrack(trackIndex);
+	}
+
 	return (
 		<div className={classes.body + " section__padding"}>
 			<div className={classes.title}>
@@ -73,8 +81,8 @@ const AlbumPage = ({album}) => {
 					</div>
 				</div>
 				<div className={classes["container-right"]}>
-					<AudioPlayer trackList={album.songs} />
-					<SongsList songs={album.songs} />
+					<AudioPlayer trackList={album.songs} getActiveTrack={getActiveTrack} curTrack={curTrack} setCurTrack={setCurTrack} />
+					<SongsList songs={album.songs} activeTrack={activeTrack} setCurTrack={setCurTrack} />
 				</div>
 			</div>
 		</div>

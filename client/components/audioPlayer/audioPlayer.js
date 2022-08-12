@@ -12,7 +12,7 @@ const shufflePlaylist = (arr) => {
 	return [arr[rand], ...shufflePlaylist(arr.filter((_, i) => i !== rand))];
 };
 
-const AudioPlayer = ({trackList}) => {
+const AudioPlayer = ({trackList, getActiveTrack,curTrack,setCurTrack}) => {
 	const [audio, setAudio] = useState(null);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [hasEnded, setHasEnded] = useState(false);
@@ -26,7 +26,7 @@ const AudioPlayer = ({trackList}) => {
 	const [looped, setLooped] = useState(false);
 
 	let playlist = trackList;
-	const [curTrack, setCurTrack] = useState(trackList[0]);
+	// const [curTrack, setCurTrack] = useState(trackList[0]);
 
 	useEffect(() => {
 		const audio = new Audio(curTrack.url);
@@ -63,6 +63,8 @@ const AudioPlayer = ({trackList}) => {
 		if (audio != null) {
 			audio.src = curTrack.url;
 			setTitle(curTrack.title);
+      const index = trackList.findIndex(track => track._key === curTrack._key);
+      getActiveTrack(index);
 			onPlayHandler();
 		}
 	}, [curTrack]);
