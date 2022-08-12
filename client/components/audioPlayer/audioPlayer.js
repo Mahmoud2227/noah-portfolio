@@ -44,7 +44,7 @@ const AudioPlayer = ({trackList}) => {
 
 		const setAudioVolume = () => setVolume(audio.volume);
 
-		const setAudioEnd = () => setHasEnded(!hasEnded);
+		const setAudioEnd = () => setHasEnded(true);
 
 		audio.addEventListener("loadeddata", setAudioData);
 		audio.addEventListener("timeupdate", setAudioTime);
@@ -61,7 +61,6 @@ const AudioPlayer = ({trackList}) => {
 
 	useEffect(() => {
 		if (audio != null) {
-			console.log(curTrack);
 			audio.src = curTrack.url;
 			setTitle(curTrack.title);
 			onPlayHandler();
@@ -69,18 +68,11 @@ const AudioPlayer = ({trackList}) => {
 	}, [curTrack]);
 
 	useEffect(() => {
-		if (audio != null) {
+		if (audio != null && hasEnded) {
 			if (shuffled) {
 				playlist = shufflePlaylist(playlist);
 			}
-      if(looped) {
-        console.log("looped");
-        onPlayHandler();
-      } else {
-        console.log("not looped");
-        onNextHandler();
-      }
-			// !looped ? onNextHandler() : onPlayHandler();
+			looped ? onPlayHandler() : onNextHandler();
 		}
 	}, [hasEnded]);
 
@@ -106,6 +98,7 @@ const AudioPlayer = ({trackList}) => {
 
 	const onPlayHandler = () => {
 		setIsPlaying(true);
+		setHasEnded(false);
 		audio.play();
 	};
 
@@ -139,9 +132,8 @@ const AudioPlayer = ({trackList}) => {
 				<input
 					type='range'
 					min='1'
-					max= '100'
-          // step='1'
-					step={audio ? (audio.duration / 100).toString() : "1"}
+					max='100'
+					step={audio ? (100 / audio.duration).toString() : "1"}
 					value={slider}
 					className={classes.slider}
 					id='myRange'
@@ -151,9 +143,6 @@ const AudioPlayer = ({trackList}) => {
 					}}
 					onMouseUp={onPlayHandler}
 					onTouchEnd={onPlayHandler}
-					// onChange={onChange}
-					// onMouseUp={onMouseUp}
-					// onTouchEnd={onTouchEnd}
 					style={{
 						background: `linear-gradient(90deg, #ffffff ${Math.floor(
 							slider
