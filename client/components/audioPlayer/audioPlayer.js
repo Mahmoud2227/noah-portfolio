@@ -145,7 +145,6 @@ const AudioPlayer = ({trackList, getActiveTrack, curTrack, setCurTrack}) => {
 					step={audio ? (100 / audio.duration).toString() : "1"}
 					value={slider}
 					className={classes.slider}
-					id='myRange'
 					onChange={(e) => {
 						setSlider(e.target.value);
 						setDrag(e.target.value);

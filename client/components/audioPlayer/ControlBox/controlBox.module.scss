@@ -16,6 +16,7 @@
 
     &:nth-child(3){
       font-size: 3em;
+      animation: scaleIn 0.2s ease-in-out forwards;
     }
 
     &:nth-child(1),&:nth-child(5){
@@ -26,5 +27,17 @@
         color: white;
       }
     }
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.5);
+  }
+  70% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
   }
 }
