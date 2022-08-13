@@ -9,6 +9,7 @@ import albums from './albums'
 import singles from './singles';
 import brands from './brands'
 import concerts from './concerts';
+import post from './post';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -22,6 +23,7 @@ export default createSchema({
     songs,
     brands,
     concerts,
-    singles
+    singles,
+    post
   ]),
 })
