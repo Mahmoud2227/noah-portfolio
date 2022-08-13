@@ -1,17 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import {PortableText} from "@portabletext/react";
+import { PortableText } from "@portabletext/react";
 import ImageUrlFor from "../../utils/imageUrlFor";
 import {FcCalendar, FcClock} from "react-icons/fc";
 import getTimeDiff from "../../utils/getTimeDiff";
 
 import classes from "./post.module.scss";
-
-// const myPortableTextComponents = {
-// 	types: {
-// 		image: ({value}) => <Image src={ImageUrlFor(value.asset).url()} width={400} height={400} />,
-// 	},
-// };
 
 const Post = ({post}) => {
 	const PublishedDate = getTimeDiff(new Date(post._createdAt));

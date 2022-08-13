@@ -59,5 +59,6 @@ export const getStaticProps = async () => {
 			posts: result.posts,
 			postsLength: result.postsLength,
 		},
+		revalidate: 3600,
 	};
 };

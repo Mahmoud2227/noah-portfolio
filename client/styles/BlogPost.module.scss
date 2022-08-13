@@ -1,0 +1,81 @@
+@use "../SassStyles/mixins" as *;
+
+.body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	max-width: 1100px;
+	margin: 90px auto 0;
+
+	h1 {
+		text-align: center;
+		padding-inline: 0;
+
+		@include smMinBreakPoint {
+			padding-inline: 4rem;
+		}
+	}
+
+	.meta {
+		display: flex;
+		font-size: 1.2em;
+		gap: 1rem;
+
+		div {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+		}
+	}
+
+	.cover-container {
+		width: 100%;
+
+		img {
+			border-radius: 10px;
+		}
+	}
+
+	.content {
+		padding: 0;
+		line-height: 1.5;
+		font-size: 14px;
+
+		@include smMinBreakPoint {
+			padding: 1rem 2rem;
+			font-size: 16px;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			margin-block: 1rem;
+		}
+
+		p {
+			margin-block: 1rem;
+			font-size: 1em;
+		}
+
+		ol,
+		ul {
+			margin-left: 2rem;
+		}
+
+		li {
+			margin-bottom: 0.5rem;
+			font-size: 1em;
+		}
+
+		.image-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-block: 1rem;
+		}
+	}
+}

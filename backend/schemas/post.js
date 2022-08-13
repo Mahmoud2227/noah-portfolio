@@ -38,7 +38,7 @@ export default {
 						{title: "Quote", value: "blockquote"},
 					],
 				},
-				{type: "image"},
+				{type: "image", options: {hotspot: true}},
 			],
 		},
 	],
