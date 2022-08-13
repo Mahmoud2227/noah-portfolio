@@ -1,16 +1,21 @@
 import {useState, useEffect} from "react";
+import {useRouter} from "next/router";
 import Head from "next/head";
 import sanity from "../lib/sanity";
 
 import NavBar from "../components/NavBar/NavBar";
 import Footer from "../components/Footer/Footer";
+import PreLoading from "../components/PreLoading/PreLoading";
+import Spinner from "../components/UI/Spinner/Spinner";
 
 import "../styles/globals.scss";
-import PreLoading from "../components/PreLoading/PreLoading";
 
 function MyApp({Component, pageProps}) {
 	const [brands, setBrands] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [pageIsLoading, setPageIsLoading] = useState(false);
+
+	const router = useRouter();
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -30,6 +35,15 @@ function MyApp({Component, pageProps}) {
 		fetchBrands();
 	}, []);
 
+	useEffect(() => {
+		router.events.on("routeChangeStart", () => {
+			setPageIsLoading(true);
+		});
+		router.events.on("routeChangeComplete", () => {
+			setPageIsLoading(false);
+		});
+	}, [router]);
+
 	return (
 		<>
 			<Head>
@@ -37,7 +51,8 @@ function MyApp({Component, pageProps}) {
 			</Head>
 			{isLoading && <PreLoading />}
 			{brands && <NavBar brands={brands.music} />}
-			<Component {...pageProps} />
+			{!pageIsLoading && <Component {...pageProps} />}
+			{pageIsLoading && <Spinner/>}
 			<Footer brands={brands.social} />
 		</>
 	);
