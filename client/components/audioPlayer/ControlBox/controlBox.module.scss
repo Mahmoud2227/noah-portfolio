@@ -1,21 +1,25 @@
+@use "../../../SassStyles/mixins" as *;
+
 .body {
   display: flex;
-  max-width: 300px;
+  max-width: 350px;
+  min-width: 200px;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
 
   svg {
-    font-size: 40px;
+    font-size: 2.5em;
     cursor: pointer;
     transition: 0.2s;
 
     &:nth-child(3){
-      font-size: 45px;
+      font-size: 3em;
     }
 
     &:nth-child(1),&:nth-child(5){
-      font-size: 30px;
+      font-size: 2em;
       color: rgba(255, 255, 255, 0.4);
 
       &.active {

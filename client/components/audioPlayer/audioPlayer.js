@@ -1,6 +1,8 @@
 import {useState, useEffect} from "react";
-import classes from "./audioPlayer.module.scss";
 import ControlBox from "./ControlBox/ControlBox";
+import VolumeBar from "./VolumeBar/VolumeBar";
+
+import classes from "./audioPlayer.module.scss";
 
 const formatLength = (length) => {
 	return new Date(1000 * length).toISOString().substring(15, 19);
@@ -12,7 +14,7 @@ const shufflePlaylist = (arr) => {
 	return [arr[rand], ...shufflePlaylist(arr.filter((_, i) => i !== rand))];
 };
 
-const AudioPlayer = ({trackList, getActiveTrack,curTrack,setCurTrack}) => {
+const AudioPlayer = ({trackList, getActiveTrack, curTrack, setCurTrack}) => {
 	const [audio, setAudio] = useState(null);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [hasEnded, setHasEnded] = useState(false);
@@ -26,7 +28,6 @@ const AudioPlayer = ({trackList, getActiveTrack,curTrack,setCurTrack}) => {
 	const [looped, setLooped] = useState(false);
 
 	let playlist = trackList;
-	// const [curTrack, setCurTrack] = useState(trackList[0]);
 
 	useEffect(() => {
 		const audio = new Audio(curTrack.url);
@@ -63,8 +64,8 @@ const AudioPlayer = ({trackList, getActiveTrack,curTrack,setCurTrack}) => {
 		if (audio != null) {
 			audio.src = curTrack.url;
 			setTitle(curTrack.title);
-      const index = trackList.findIndex(track => track._key === curTrack._key);
-      getActiveTrack(index);
+			const index = trackList.findIndex((track) => track._key === curTrack._key);
+			getActiveTrack(index);
 			onPlayHandler();
 		}
 	}, [curTrack]);
@@ -77,6 +78,12 @@ const AudioPlayer = ({trackList, getActiveTrack,curTrack,setCurTrack}) => {
 			looped ? onPlayHandler() : onNextHandler();
 		}
 	}, [hasEnded]);
+
+	useEffect(() => {
+		if (audio != null) {
+			audio.volume = volume;
+		}
+	}, [volume]);
 
 	useEffect(() => {
 		if (audio != null) {
@@ -152,17 +159,25 @@ const AudioPlayer = ({trackList, getActiveTrack,curTrack,setCurTrack}) => {
 					}}
 				/>
 			</div>
-			<ControlBox
-				onLoop={onLoopHandler}
-				onPrevious={onPreviousHandler}
-				onPlay={onPlayHandler}
-				onPause={onPauseHandler}
-				onNext={onNextHandler}
-				onShuffle={onShuffleHandler}
-				isPlaying={isPlaying}
-				looped={looped}
-				shuffled={shuffled}
-			/>
+			<div className={classes.controls}>
+				<ControlBox
+					onLoop={onLoopHandler}
+					onPrevious={onPreviousHandler}
+					onPlay={onPlayHandler}
+					onPause={onPauseHandler}
+					onNext={onNextHandler}
+					onShuffle={onShuffleHandler}
+					isPlaying={isPlaying}
+					looped={looped}
+					shuffled={shuffled}
+				/>
+				<VolumeBar
+					value={volume}
+					onChange={(e) => {
+						setVolume(e.target.value / 100);
+					}}
+				/>
+			</div>
 		</div>
 	);
 };
