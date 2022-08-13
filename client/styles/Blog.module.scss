@@ -1,0 +1,23 @@
+@use "../SassStyles/mixins" as *;
+
+.body {
+	margin-top: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+	h1 {
+		font-size: 56px;
+		margin: 0 auto 4rem;
+	}
+
+	.posts {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
+
+  button {
+    margin-top: 2rem;
+  }
+}

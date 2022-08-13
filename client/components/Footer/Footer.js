@@ -17,6 +17,7 @@ const Footer = ({brands}) => {
 						<FooterLink name='About' href='/about' type='menu' />
 						<FooterLink name='Music' href='/music' type='menu' />
 						<FooterLink name='Concerts' href='/concerts' type='menu' />
+						<FooterLink name='Blog' href='/blog' type='menu' />
 						<FooterLink name='Contact' href='/contact' type='menu' />
 					</ul>
 				</div>

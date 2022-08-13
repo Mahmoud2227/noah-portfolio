@@ -35,6 +35,7 @@ const NavMenu = forwardRef(({state, setIsOpen}, ref) => {
 				<NavLink name='About' href='/about' />
 				<NavLink name='Music' href='/music' />
 				<NavLink name='Concerts' href='/concerts' />
+				<NavLink name='Blog' href='/blog' />
 				<NavLink name='Contact' href='/contact' />
 			</ul>
 		</div>

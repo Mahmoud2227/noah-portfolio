@@ -1,0 +1,53 @@
+@use "../../SassStyles/mixins" as *;
+
+.body {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	@include mdMinBreakPoint {
+		flex-direction: row;
+	}
+
+	.cover-container {
+		position: relative;
+		min-width: 45%;
+		min-height: 250px;
+
+		img {
+			border-radius: 10px;
+		}
+
+		@include mdMinBreakPoint {
+			min-height: 200px;
+		}
+
+		@include lgMinBreakPoint {
+			min-width: 30%;
+		}
+	}
+	.content {
+		padding: 1rem;
+
+		.meta {
+			display: flex;
+			font-size: 1.2rem;
+			gap: 1rem;
+			margin-block: 1rem;
+
+			div {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+		}
+
+		p {
+			display: -webkit-box;
+			-webkit-line-clamp: 3;
+			-webkit-box-orient: vertical;
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+	}
+}
