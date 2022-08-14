@@ -3,20 +3,21 @@
 .body {
 	border-radius: 10px 10px 0 0;
 	padding: 1rem;
-	background-color: rgb(255, 255, 255, 0.5);
+	background-color: rgba(248, 248, 255, 0.2);
 	max-width: 600px;
-	min-width: 300px;
-	margin: 0 auto;
-  font-size: 12px;
+	min-width: 280px;
+	width: 100%;
+	font-size: 12px;
 
-  @include smMinBreakPoint {
-    font-size: 16px;
-  }
+	@include smMinBreakPoint {
+		font-size: 16px;
+	}
 
 	.info {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		color: #eee;
 
 		.title {
 			font-size: 1.8em;
@@ -54,8 +55,8 @@
 		}
 	}
 
-  .controls {
-    display:flex;
-    gap: 1rem;
-  }
+	.controls {
+		display: flex;
+		gap: 1rem;
+	}
 }

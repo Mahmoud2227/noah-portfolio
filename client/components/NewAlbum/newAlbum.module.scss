@@ -2,42 +2,49 @@
 
 .body {
 	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: center;
 	gap: 2rem;
 
-	@include mdMinBreakPoint {
-		flex-direction: row;
-		gap: 6rem;
+	@include lgMinBreakPoint {
+		justify-content: space-between;
+		gap: 4rem;
 	}
-	@include smMinBreakPoint {
-		flex-direction: row;
-		gap: 2rem;
-	}
+
 
 	> div {
 		flex: 1;
 	}
 
 	.image-container {
-		align-self: center;
-		padding: 3rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 2rem;
 		background-color: rgba(248, 248, 255, 0.136);
-		max-width: 500px;
-
+		max-width: 450px;
+		min-width: 250px;
+		
 		@include smMinBreakPoint {
-			padding: 2rem;
+			min-width: 350px;
+			padding: 1rem;
 		}
 		@include mdMinBreakPoint {
-			padding: 4rem;
+			padding: 3rem;
 		}
 	}
 
 	.content {
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		gap: 1rem;
 		padding-block: 2rem;
+
+		@include lgMinBreakPoint {
+			align-items: flex-start;
+		}
 		h4 {
 			text-transform: uppercase;
 			letter-spacing: 3px;

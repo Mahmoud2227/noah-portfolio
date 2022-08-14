@@ -64,8 +64,10 @@ const AudioPlayer = ({trackList, getActiveTrack, curTrack, setCurTrack, type}) =
 		if (audio != null) {
 			audio.src = curTrack.url;
 			setTitle(curTrack.title);
-			const index = trackList.findIndex((track) => track._key === curTrack._key);
-			getActiveTrack(index);
+			if (getActiveTrack) {
+				const index = trackList.findIndex((track) => track._key === curTrack._key);
+				getActiveTrack(index);
+			}
 			onPlayHandler();
 		}
 	}, [curTrack]);
