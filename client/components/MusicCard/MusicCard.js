@@ -8,7 +8,7 @@ import classes from "./musicCard.module.scss";
 
 import cd from "../../assets/cd.png";
 
-const MusicCard = ({imageSrc, title, slug, brands}) => {
+const MusicCard = ({imageSrc, title, slug, brands, type}) => {
 	return (
 		<div className={classes.body}>
 			<div className={classes["image-container"]}>
@@ -37,7 +37,9 @@ const MusicCard = ({imageSrc, title, slug, brands}) => {
 						priority
 					/>
 				</div>
-				<Link href={"/music/albums/" + slug} className={classes["album-link"]}>
+				<Link
+					href={`/music/${type === "album" ? "albums" : "singles"}/${slug}`}
+					className={classes["album-link"]}>
 					<a className={classes["album-link"]} title={title}>
 						<AiFillEye />
 					</a>

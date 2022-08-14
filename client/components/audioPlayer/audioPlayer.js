@@ -14,7 +14,7 @@ const shufflePlaylist = (arr) => {
 	return [arr[rand], ...shufflePlaylist(arr.filter((_, i) => i !== rand))];
 };
 
-const AudioPlayer = ({trackList, getActiveTrack, curTrack, setCurTrack}) => {
+const AudioPlayer = ({trackList, getActiveTrack, curTrack, setCurTrack, type}) => {
 	const [audio, setAudio] = useState(null);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [hasEnded, setHasEnded] = useState(false);
@@ -25,7 +25,7 @@ const AudioPlayer = ({trackList, getActiveTrack, curTrack, setCurTrack}) => {
 	const [drag, setDrag] = useState(0);
 	const [volume, setVolume] = useState(0.8);
 	const [shuffled, setShuffled] = useState(false);
-	const [looped, setLooped] = useState(false);
+	const [looped, setLooped] = useState(type === "single");
 
 	let playlist = trackList;
 
@@ -169,6 +169,7 @@ const AudioPlayer = ({trackList, getActiveTrack, curTrack, setCurTrack}) => {
 					isPlaying={isPlaying}
 					looped={looped}
 					shuffled={shuffled}
+					type={type}
 				/>
 				<VolumeBar
 					value={volume}

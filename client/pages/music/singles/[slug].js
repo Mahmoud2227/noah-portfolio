@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState} from "react";
 
 import Image from "next/image";
 import BrandLogo from "../../../components/UI/BrandLogo/BrandLogo";
@@ -6,24 +6,17 @@ import sanity from "../../../lib/sanity";
 import imageUrlFor from "../../../utils/imageUrlFor";
 import {IoPlay} from "react-icons/io5";
 
-import SongsList from "../../../components/SongsList/SongsList";
-
-import classes from "../../../styles/AlbumPage.module.scss";
+import classes from "../../../styles/SinglePage.module.scss";
 
 import cd from "../../../assets/cd.png";
 import AudioPlayer from "../../../components/audioPlayer/audioPlayer";
 
-const AlbumPage = ({album}) => {
-	const [activeTrack, setActiveTrack] = useState(0);
-	const [curTrack, setCurTrack] = useState(album.songs[0]);
-	const getActiveTrack = (trackIndex) => {
-		setActiveTrack(trackIndex);
-	}
-
+const SinglePage = ({single}) => {
+	const [curTrack, setCurTrack] = useState(single);
 	return (
 		<div className={classes.body + " section__padding"}>
 			<div className={classes.title}>
-				<h1>{album.title}</h1>
+				<h1>{single.title}</h1>
 				<div className={classes.line}>
 					<span></span>
 					<span></span>
@@ -40,9 +33,9 @@ const AlbumPage = ({album}) => {
 						</div>
 						<div className={classes.cover}>
 							<Image
-								src={imageUrlFor(album.cover).url()}
-								alt={album.title + " cover"}
-								blurDataURL={imageUrlFor(album.cover)
+								src={imageUrlFor(single.cover).url()}
+								alt={single.title + " cover"}
+								blurDataURL={imageUrlFor(single.cover)
 									.width(300)
 									.height(300)
 									.quality(5)
@@ -58,17 +51,17 @@ const AlbumPage = ({album}) => {
 							</span>
 						</div>
 					</div>
-					<div className={classes["album-info"]}>
-						<h2>{album.title}</h2>
+					<div className={classes["single-info"]}>
+						<h2>{single.title}</h2>
 						<p>
-							Released: <span>{album.releaseDate}</span>
+							Released: <span>{single.releaseDate}</span>
 						</p>
 						<p>
 							Publisher: <span>Unknown</span>
 						</p>
 					</div>
 					<div className={classes["brands-container"]}>
-						{album.musicBrands.map((brand) => (
+						{single.musicBrands.map((brand) => (
 							<BrandLogo
 								key={brand._key}
 								icon={imageUrlFor(brand.icon).url()}
@@ -81,19 +74,23 @@ const AlbumPage = ({album}) => {
 					</div>
 				</div>
 				<div className={classes["container-right"]}>
-					<AudioPlayer trackList={album.songs} getActiveTrack={getActiveTrack} curTrack={curTrack} setCurTrack={setCurTrack} type='album' />
-					<SongsList songs={album.songs} activeTrack={activeTrack} setCurTrack={setCurTrack} />
+					<AudioPlayer
+						trackList={[single]}
+						curTrack={curTrack}
+						setCurTrack={setCurTrack}
+            type='single'
+					/>
 				</div>
 			</div>
 		</div>
 	);
 };
 
-export default AlbumPage;
+export default SinglePage;
 
 export const getStaticPaths = async () => {
-	const albums = await sanity.fetch(`*[_type == "album"]`);
-	const paths = albums.map((album) => ({params: {slug: album.slug.current}}));
+	const singles = await sanity.fetch(`*[_type == "single"]`);
+	const paths = singles.map((single) => ({params: {slug: single.slug.current}}));
 
 	return {
 		paths: paths,
@@ -102,13 +99,14 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context) => {
-	const query = `*[_type == "album" && slug.current == "${context.params.slug}"][0]{
-    title,releaseDate,cover,songs,musicBrands,songs[]{'url':audio.asset->url,title,duration,_key}
+	const query = `*[_type=='single' && slug.current == '${context.params.slug}'][0]{
+  title,cover,releaseDate,musicBrands,
+  "url": audio.asset -> url
   }`;
-	const album = await sanity.fetch(query);
+	const single = await sanity.fetch(query);
 	return {
 		props: {
-			album,
+			single,
 		},
 		revalidate: 3600,
 	};

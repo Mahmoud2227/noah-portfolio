@@ -15,6 +15,7 @@ const Albums = ({albums}) => {
 						imageSrc={album.cover}
             slug={album.slug.current}
 						brands={album.musicBrands}
+						type="album"
 					/>
 				))}
 			</div>

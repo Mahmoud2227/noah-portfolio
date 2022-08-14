@@ -16,6 +16,7 @@ const Singles = ({singles}) => {
 						imageSrc={single.cover}
 						slug={single.slug.current}
 						brands={single.musicBrands}
+            type="single"
 					/>
 				))}
 			</div>

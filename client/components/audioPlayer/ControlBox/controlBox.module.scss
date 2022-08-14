@@ -14,12 +14,12 @@
     cursor: pointer;
     transition: 0.2s;
 
-    &:nth-child(3){
+    .play, .pause {
       font-size: 3em;
       animation: scaleIn 0.2s ease-in-out forwards;
     }
 
-    &:nth-child(1),&:nth-child(5){
+    .loop,.shuffle{
       font-size: 2em;
       color: rgba(255, 255, 255, 0.4);
 

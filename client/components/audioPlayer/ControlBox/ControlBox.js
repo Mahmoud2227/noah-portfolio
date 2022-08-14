@@ -13,14 +13,15 @@ const ControlBox = ({
 	onLoop,
 	onNext,
 	onShuffle,
+	type
 }) => {
 	return (
 		<div className={classes.body}>
-			<TiArrowLoop onClick={onLoop} className={looped ? classes.active : ""} />
-			<FaStepBackward onClick={onPrevious} />
-			{isPlaying ? <FaPause onClick={onPause} /> : <FaPlay onClick={onPlay} />}
-			<FaStepForward onClick={onNext} />
-			<TiArrowShuffle onClick={onShuffle} className={shuffled ? classes.active : ""} />
+			{type === 'album' && <TiArrowLoop onClick={onLoop} className={ `${classes.loop} ${looped ? classes.active : ""}`} />}
+			<FaStepBackward className={classes.backward}  onClick={onPrevious} />
+			{isPlaying ? <FaPause onClick={onPause} className={classes.pause} /> : <FaPlay className={classes.play} onClick={onPlay} />}
+			<FaStepForward onClick={onNext} className={classes.forward} />
+			{type === 'album' && <TiArrowShuffle onClick={onShuffle} className={`${classes.shuffle} ${shuffled ? classes.active : ""}`} />}
 		</div>
 	);
 };
