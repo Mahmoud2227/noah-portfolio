@@ -9,9 +9,21 @@ export default {
 			type: "string",
 		},
 		{
-			name: "duration",
-			title: "Duration",
-			type: "string",
+			name: "slug",
+			title: "Slug",
+			type: "slug",
+			options: {
+				source: "title",
+				maxLength: 96,
+			},
+		},
+		{
+			name: "releaseDate",
+			title: "Release Date",
+			type: "date",
+			options: {
+				dateFormat: "MMMM Do, YYYY",
+			},
 		},
 		{
 			name: "cover",
@@ -20,6 +32,22 @@ export default {
 			options: {
 				hotspot: true,
 			},
+		},
+		{
+			name: "musicBrands",
+			title: "Music Brands",
+			type: "array",
+			of: [
+				{
+					type: "object",
+					title: "Brand",
+					fields: [
+						{name: "title", title: "Title", type: "string"},
+						{name: "url", title: "URL", type: "url"},
+						{name: "icon", title: "Icon", type: "image"},
+					],
+				},
+			],
 		},
 		{
 			name: "audio",

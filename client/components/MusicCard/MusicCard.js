@@ -4,11 +4,11 @@ import {AiFillEye} from "react-icons/ai";
 import BrandLogo from "../UI/BrandLogo/BrandLogo";
 import imageUrlFor from "../../utils/imageUrlFor";
 
-import classes from "./albumCard.module.scss";
+import classes from "./musicCard.module.scss";
 
 import cd from "../../assets/cd.png";
 
-const AlbumCard = ({imageSrc, title, slug, brands}) => {
+const MusicCard = ({imageSrc, title, slug, brands}) => {
 	return (
 		<div className={classes.body}>
 			<div className={classes["image-container"]}>
@@ -48,4 +48,4 @@ const AlbumCard = ({imageSrc, title, slug, brands}) => {
 	);
 };
 
-export default AlbumCard;
+export default MusicCard;

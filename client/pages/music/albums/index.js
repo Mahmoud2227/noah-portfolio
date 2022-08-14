@@ -1,5 +1,5 @@
 import sanity from "../../../lib/sanity";
-import AlbumCard from "../../../components/AlbumCard/AlbumCard";
+import MusicCard from "../../../components/MusicCard/MusicCard";
 
 import classes from "../../../styles/Albums.module.scss";
 
@@ -9,7 +9,7 @@ const Albums = ({albums}) => {
 			<h1 className='gradient-text'>Albums</h1>
 			<div className={classes["albums-container"]}>
 				{albums.map((album) => (
-					<AlbumCard
+					<MusicCard
 						key={album.id}
 						title={album.title}
 						imageSrc={album.cover}
