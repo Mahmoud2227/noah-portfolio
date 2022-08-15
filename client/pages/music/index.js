@@ -8,26 +8,24 @@ import singles from "../../assets/singles.jpg";
 
 const Music = () => {
 	return (
-		<>
-			<div className={classes.body}>
-				<div >
+			<main className={classes.body}>
+				<section >
 					<div className={classes.background}>
 						<Image src={albums} alt='albums' objectFit="cover" />
 					</div>
 					<Link href='music/albums' title='Albums'>
 						Albums
 					</Link>
-				</div>
-				<div>
+				</section>
+				<section>
 					<div className={classes.background}>
 						<Image src={singles} alt='singles' objectFit="cover" />
 					</div>
 					<Link href='music/singles' title='Singles'>
 						Singles
 					</Link>
-				</div>
-			</div>
-		</>
+				</section>
+			</main>
 	);
 };
 

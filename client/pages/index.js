@@ -7,15 +7,21 @@ import NewAlbum from "../components/NewAlbum/NewAlbum";
 import NextEvent from "../components/NextEvent/NextEvent";
 import Subscription from "../components/Subscription/Subscription";
 
-export default function Home({nextConcert,newAlbum}) {
+export default function Home({nextConcert, newAlbum}) {
 	return (
-		<>
+		<main>
 			<Hero />
-			<NewAlbum albumData={newAlbum} />
-			<NextEvent concertData={nextConcert} />
+			<section className='section__padding'>
+				<NewAlbum albumData={newAlbum} />
+			</section>
+			<section className='section__padding'>
+				<NextEvent concertData={nextConcert} />
+			</section>
 			{/* <Subscription /> */}
-			<Contact />
-		</>
+			<section className='section__padding'>
+				<Contact />
+			</section>
+		</main>
 	);
 }
 
@@ -36,4 +42,4 @@ export const getStaticProps = async () => {
 		},
 		revalidate: 3600,
 	};
-}
+};

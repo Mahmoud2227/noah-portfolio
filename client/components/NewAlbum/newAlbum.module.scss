@@ -45,7 +45,8 @@
 		@include lgMinBreakPoint {
 			align-items: flex-start;
 		}
-		h4 {
+		h2 {
+			font-size: 20px;
 			text-transform: uppercase;
 			letter-spacing: 3px;
 		}

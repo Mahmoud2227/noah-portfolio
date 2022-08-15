@@ -14,7 +14,7 @@ import AudioPlayer from "../../../components/audioPlayer/audioPlayer";
 const SinglePage = ({single}) => {
 	const [curTrack, setCurTrack] = useState(single);
 	return (
-		<div className={classes.body + " section__padding"}>
+		<main className={classes.body + " section__padding"}>
 			<div className={classes.title}>
 				<h1>{single.title}</h1>
 				<div className={classes.line}>
@@ -82,7 +82,7 @@ const SinglePage = ({single}) => {
 					/>
 				</div>
 			</div>
-		</div>
+		</main>
 	);
 };
 

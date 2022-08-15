@@ -35,8 +35,8 @@ const Contact = () => {
 	};
 
 	return (
-		<div className={classes.body + " section__padding"}>
-			<h1 className='gradient-text'>Contact Noah</h1>
+		<div className={classes.body}>
+			<h2 className='gradient-text'>Contact Noah</h2>
 			<form onSubmit={handleSubmit(onSubmitHandler)}>
 				Hi Noah! My Name is
 				<input

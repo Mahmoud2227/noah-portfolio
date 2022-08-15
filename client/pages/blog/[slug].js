@@ -20,7 +20,7 @@ const myPortableTextComponents = {
 const BlogPost = ({post}) => {
 	const PublishedDate = getTimeDiff(new Date(post._createdAt));
 	return (
-		<div className={classes.body + " section__padding"}>
+		<main className={classes.body + " section__padding"}>
 			<h1>{post.title}</h1>
 			<div className={classes.meta}>
 				<div>
@@ -52,7 +52,7 @@ const BlogPost = ({post}) => {
 			<div className={classes.content}>
 				<PortableText value={post.body} components={myPortableTextComponents} />
 			</div>
-		</div>
+		</main>
 	);
 };
 export default BlogPost;

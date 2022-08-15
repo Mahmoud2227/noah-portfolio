@@ -28,9 +28,9 @@ const NextEvent = ({concertData}) => {
 	};
 
 	return (
-		<div className={classes.body + " section__padding"}>
+		<div className={classes.body}>
 			<div className={classes.info}>
-				<h4 className='gradient-text'>Next Event</h4>
+				<h2 className='gradient-text'>Next Event</h2>
 				<p className={classes.title}>{concertData.title}</p>
 				<div className={classes.details}>
 					<p>

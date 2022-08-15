@@ -11,7 +11,7 @@ const Post = ({post}) => {
 	const PublishedDate = getTimeDiff(new Date(post._createdAt));
 
 	return (
-		<div className={classes.body}>
+		<article className={classes.body}>
 			<Link href={`/blog/${post.slug.current}`}>
 				<a className={classes["cover-container"]} title={post.title}>
 					<Image src={ImageUrlFor(post.coverImage).url()} layout='fill' objectFit='cover' />
@@ -41,7 +41,7 @@ const Post = ({post}) => {
 				</div>
 				<PortableText value={post.body[0]} />
 			</div>
-		</div>
+		</article>
 	);
 };
 

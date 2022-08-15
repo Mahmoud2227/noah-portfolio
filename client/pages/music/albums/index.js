@@ -5,7 +5,7 @@ import classes from "../../../styles/Albums.module.scss";
 
 const Albums = ({albums}) => {
 	return (
-		<div className={classes.body + " section__padding"}>
+		<main className={classes.body + " section__padding"}>
 			<h1 className='gradient-text'>Albums</h1>
 			<div className={classes["albums-container"]}>
 				{albums.map((album) => (
@@ -19,7 +19,7 @@ const Albums = ({albums}) => {
 					/>
 				))}
 			</div>
-		</div>
+		</main>
 	);
 };
 

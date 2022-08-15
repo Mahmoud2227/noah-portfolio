@@ -9,7 +9,7 @@ import AudioPlayer from "../audioPlayer/audioPlayer";
 const NewAlbum = ({albumData}) => {
 	const [curTrack, setCurTrack] = useState(albumData.songs[0]);
 	return (
-		<div className={classes.body + " section__padding"}>
+		<div className={classes.body}>
 			<div className={classes["image-container"]}>
 				<Image
 					src={ImageUrlFor(albumData.cover).url()}
@@ -21,7 +21,7 @@ const NewAlbum = ({albumData}) => {
 				/>
 			</div>
 			<div className={classes.content}>
-				<h4 className='gradient-text'>New Album</h4>
+				<h2 className='gradient-text'>New Album</h2>
 				<p className={classes.title}>{albumData.title}</p>
 				<p className={classes.lyrics}>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae magna at elit porta

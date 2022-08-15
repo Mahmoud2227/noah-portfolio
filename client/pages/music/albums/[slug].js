@@ -21,7 +21,7 @@ const AlbumPage = ({album}) => {
 	}
 
 	return (
-		<div className={classes.body + " section__padding"}>
+		<main className={classes.body + " section__padding"}>
 			<div className={classes.title}>
 				<h1>{album.title}</h1>
 				<div className={classes.line}>
@@ -75,7 +75,6 @@ const AlbumPage = ({album}) => {
 								href={brand.url}
 								size='45px'
 								title={brand.title}
-								priority
 							/>
 						))}
 					</div>
@@ -85,7 +84,7 @@ const AlbumPage = ({album}) => {
 					<SongsList songs={album.songs} activeTrack={activeTrack} setCurTrack={setCurTrack} />
 				</div>
 			</div>
-		</div>
+		</main>
 	);
 };
 

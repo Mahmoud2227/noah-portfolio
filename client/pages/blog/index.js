@@ -27,7 +27,7 @@ const index = ({posts, postsLength}) => {
 	}, [pagination]);
 
 	return (
-		<div className={classes.body + " section__padding"}>
+		<main className={classes.body + " section__padding"}>
 			<h1 className='gradient-text'>Blog</h1>
 			<div className={classes.posts}>
 				{postsList.map((post) => (
@@ -39,7 +39,7 @@ const index = ({posts, postsLength}) => {
 					{loading ? "Loading..." : "Load More"}
 				</Button>
 			)}
-		</div>
+		</main>
 	);
 };
 
