@@ -42,5 +42,6 @@ export const getStaticProps = async () => {
 		props: {
 			concerts: updateConcerts,
 		},
+		revalidate: 3600,
 	};
 };
