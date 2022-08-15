@@ -20,7 +20,7 @@ const ContactPage = ({brands}) => {
 				<div className={classes["brands-container"]}>
 					{brands.map((brand) => (
 						<BrandLogo
-							key={brand._key}
+							key={brand.id}
 							icon={imageUrlFor(brand.icon).url()}
 							href={brand.url}
 							size='35px'
