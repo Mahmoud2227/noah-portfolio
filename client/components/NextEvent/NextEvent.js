@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react";
 import Image from "next/image";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import {FaMapMarkerAlt, FaRegCalendarAlt} from "react-icons/fa";
 import sanity from "../../lib/sanity";
@@ -31,7 +32,11 @@ const NextEvent = ({concertData}) => {
 		<div className={classes.body}>
 			<div className={classes.info}>
 				<h2 className='gradient-text'>Next Event</h2>
-				<p className={classes.title}>{concertData.title}</p>
+				<Link href={`/concerts/${concertData.slug}`}>
+					<a className={classes.title} title={concertData.title}>
+						<p>{concertData.title}</p>
+					</a>
+				</Link>
 				<div className={classes.details}>
 					<p>
 						<FaRegCalendarAlt />
@@ -53,10 +58,10 @@ const NextEvent = ({concertData}) => {
 				<div className={classes["images-container"]}>
 					<div className={classes.image}>
 						<Image
-							src={imageUrlFor(concertData.images[0]).url()}
+							src={imageUrlFor(concertData.images[1]).url()}
 							alt='nextEvent-1'
-							objectFit='cover'
-							blurDataURL={imageUrlFor(concertData.images[0]).quality(5).blur(5).url()}
+							objectFit='fill'
+							blurDataURL={imageUrlFor(concertData.images[1]).quality(5).blur(5).url()}
 							placeholder='blur'
 							width={400}
 							height={400}
@@ -64,10 +69,10 @@ const NextEvent = ({concertData}) => {
 					</div>
 					<div className={classes.image}>
 						<Image
-							src={imageUrlFor(concertData.images[1]).auto("format").url()}
+							src={imageUrlFor(concertData.images[0]).url()}
 							alt='nextEvent-2'
-							objectFit='cover'
-							blurDataURL={imageUrlFor(concertData.images[1]).blur(5).quality(5).url()}
+							objectFit='fill'
+							blurDataURL={imageUrlFor(concertData.images[0]).blur(5).quality(5).url()}
 							placeholder='blur'
 							width={400}
 							height={400}

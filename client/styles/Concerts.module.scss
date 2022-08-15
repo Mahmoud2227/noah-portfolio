@@ -1,0 +1,34 @@
+@use "../SassStyles/mixins" as *;
+
+.body {
+	margin-top: 90px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6rem;
+
+  @include smMinBreakPoint {
+    gap: 2rem;
+  }
+
+  @include lgMinBreakPoint {
+    gap: 6rem;
+  }
+
+	h1 {
+		font-size: 54px;
+	}
+
+	section {
+		width: 100%;
+	}
+
+	.concerts {
+		display: flex;
+		// flex-direction: column;
+		align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+		gap: 2rem;
+	}
+}

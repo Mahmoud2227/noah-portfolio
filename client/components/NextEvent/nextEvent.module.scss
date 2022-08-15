@@ -4,12 +4,13 @@
 .body {
 	display: flex;
 	justify-content: space-between;
-	flex-direction: column;
+	flex-direction: column-reverse;
 	min-height: 400px;
-	overflow: hidden;
+	gap: 5rem;
 
 	@include smMinBreakPoint {
 		flex-direction: row;
+		gap: 0;
 	}
 
 	> div {
@@ -37,6 +38,12 @@
 			font-size: 32px;
 			font-weight: 600;
 			text-transform: uppercase;
+			color: white;
+			transition: 0.2s;
+
+			&:hover{
+				color: rgba(255, 255, 255, 0.7);
+			}
 
 			@include mdMinBreakPoint {
 				font-size: 48px;
@@ -84,7 +91,7 @@
 			position: relative;
 			width: 70%;
 			background-color: #f8f8ff23;
-			
+
 			@include mdMinBreakPoint {
 				width: 60%;
 			}
@@ -95,7 +102,6 @@
 				padding-top: 100%;
 			}
 
-			
 			.image {
 				position: absolute;
 				width: 100%;

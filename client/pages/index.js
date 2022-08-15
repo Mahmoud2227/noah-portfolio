@@ -27,7 +27,7 @@ export default function Home({nextConcert, newAlbum}) {
 
 export const getStaticProps = async () => {
 	const nextConcertsQuery = `*[_type == 'concert'] | order(date desc)[0]{
-		title,images,date,location,"id":_id
+		title,images,date,location,"slug":slug.current,"id":_id
 	}`;
 	const newAlbumQuery = `*[_type == 'album'] | order(releaseDate desc)[0]{
 		title,cover,songs[]{'url':audio.asset->url,title,_key}
