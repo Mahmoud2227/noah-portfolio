@@ -1,8 +1,10 @@
 import {useState, useEffect} from "react";
+import {createPortal} from "react-dom";
 import ControlBox from "./ControlBox/ControlBox";
 import VolumeBar from "./VolumeBar/VolumeBar";
 
 import classes from "./audioPlayer.module.scss";
+import Visualizer from "./Visualizer/Visualizer";
 
 const formatLength = (length) => {
 	return new Date(1000 * length).toISOString().substring(15, 19);
@@ -31,6 +33,7 @@ const AudioPlayer = ({trackList, getActiveTrack, curTrack, setCurTrack, type}) =
 
 	useEffect(() => {
 		const audio = new Audio(curTrack.url);
+		audio.crossOrigin = "anonymous";
 
 		const setAudioData = () => {
 			setLength(audio.duration);
@@ -132,55 +135,58 @@ const AudioPlayer = ({trackList, getActiveTrack, curTrack, setCurTrack, type}) =
 	};
 
 	return (
-		<div className={classes.body}>
-			<div className={classes.info}>
-				<h3 className={classes.title}>{title}</h3>
-				<span className={classes.duration}>
-					{`${!time ? "0:00" : formatLength(time)}/${!length ? "0:00" : formatLength(length)}`}
-				</span>
+		<>
+			<div className={classes.body}>
+				<div className={classes.info}>
+					<h3 className={classes.title}>{title}</h3>
+					<span className={classes.duration}>
+						{`${!time ? "0:00" : formatLength(time)}/${!length ? "0:00" : formatLength(length)}`}
+					</span>
+				</div>
+				<div className={classes["progress-bar"]}>
+					<input
+						type='range'
+						min='1'
+						max='100'
+						step={audio ? (100 / audio.duration).toString() : "1"}
+						value={slider}
+						className={classes.slider}
+						onChange={(e) => {
+							setSlider(e.target.value);
+							setDrag(e.target.value);
+						}}
+						onMouseUp={onPlayHandler}
+						onTouchEnd={onPlayHandler}
+						style={{
+							background: `linear-gradient(90deg, #ffffff ${Math.floor(
+								slider
+							)}%, #151616 ${Math.floor(slider)}%)`,
+						}}
+					/>
+				</div>
+				<div className={classes.controls}>
+					<ControlBox
+						onLoop={onLoopHandler}
+						onPrevious={onPreviousHandler}
+						onPlay={onPlayHandler}
+						onPause={onPauseHandler}
+						onNext={onNextHandler}
+						onShuffle={onShuffleHandler}
+						isPlaying={isPlaying}
+						looped={looped}
+						shuffled={shuffled}
+						type={type}
+					/>
+					<VolumeBar
+						value={volume}
+						onChange={(e) => {
+							setVolume(e.target.value / 100);
+						}}
+					/>
+				</div>
 			</div>
-			<div className={classes["progress-bar"]}>
-				<input
-					type='range'
-					min='1'
-					max='100'
-					step={audio ? (100 / audio.duration).toString() : "1"}
-					value={slider}
-					className={classes.slider}
-					onChange={(e) => {
-						setSlider(e.target.value);
-						setDrag(e.target.value);
-					}}
-					onMouseUp={onPlayHandler}
-					onTouchEnd={onPlayHandler}
-					style={{
-						background: `linear-gradient(90deg, #ffffff ${Math.floor(
-							slider
-						)}%, #151616 ${Math.floor(slider)}%)`,
-					}}
-				/>
-			</div>
-			<div className={classes.controls}>
-				<ControlBox
-					onLoop={onLoopHandler}
-					onPrevious={onPreviousHandler}
-					onPlay={onPlayHandler}
-					onPause={onPauseHandler}
-					onNext={onNextHandler}
-					onShuffle={onShuffleHandler}
-					isPlaying={isPlaying}
-					looped={looped}
-					shuffled={shuffled}
-					type={type}
-				/>
-				<VolumeBar
-					value={volume}
-					onChange={(e) => {
-						setVolume(e.target.value / 100);
-					}}
-				/>
-			</div>
-		</div>
+			{<Visualizer audio={audio} curTrack={curTrack} isPlaying={isPlaying} />}
+		</>
 	);
 };
 

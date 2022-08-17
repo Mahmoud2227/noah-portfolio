@@ -9,9 +9,9 @@ import classes from "./hero.module.scss";
 
 const Hero = () => {
 	return (
-		<main className={classes.body}>
+		<section className={classes.body}>
 			<div className={classes["background"]}>
-				<Image src={background} alt='background' layout='fill' objectFit="cover" />
+				<Image src={background} alt='background' layout='fill' objectFit='cover' />
 			</div>
 			<div className={classes["content"]}>
 				<p>
@@ -25,7 +25,7 @@ const Hero = () => {
 					<Button type='button'>Learn More</Button>
 				</Link>
 			</div>
-		</main>
+		</section>
 	);
 };
 
