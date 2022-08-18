@@ -19,8 +19,6 @@ function MyApp({Component, pageProps}) {
 
 	useEffect(() => {
 		setTimeout(() => {
-			document.body.style.overflowY = "unset";
-			document.body.style.height = "unset";
 			setIsLoading(false);
 		}, 3500);
 
@@ -49,11 +47,11 @@ function MyApp({Component, pageProps}) {
 			<Head>
 				<title>Noah Portfolio</title>
 			</Head>
-			{/* {isLoading && <PreLoading />} */}
+			{isLoading && <PreLoading />}
 			{brands && <NavBar brands={brands.music} />}
 			{!pageIsLoading && <Component {...pageProps} />}
 			{pageIsLoading && <Spinner/>}
-			{/* <Footer brands={brands.social} /> */}
+			<Footer brands={brands.social} />
 		</>
 	);
 }

@@ -1,38 +1,63 @@
 @use "../../../SassStyles/variables" as *;
 
 .button {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 150px;
+	min-height: 60px;
 	width: fit-content;
 	font-weight: 600;
 	border: none;
 	outline: none;
 	color: white;
-	padding: 1rem 2rem;
 	border-radius: 30px;
-	background-image: $gradient;
-	background-size: 100% 100%;
-	background-position: right;
+	background-image: linear-gradient(
+		to right,
+		$first-color,
+		$second-color,
+		$third-color,
+		$first-color
+	);
+	background-size: 300%;
 	transition: 0.5s;
 	cursor: pointer;
 
 	&:hover {
-		background-size: 200% 200%;
-		animation: gradient-background 2.5s ease-in-out infinite;
+		animation: gradient-background 6s linear infinite;
+		
+		&::after {
+			filter: blur(20px);
+			opacity: 1;
+			animation: gradient-background 6s linear infinite;
+		}
 	}
 
 	&:disabled {
 		color: white;
 		cursor: not-allowed;
 	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		inset: -5px;
+		z-index: -1;
+		background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+		background-size: 300%;
+		border-radius: 40px;
+		opacity: 0;
+		transition: inherit;
+		
+	}
 }
 
 @keyframes gradient-background {
 	0% {
-		background-position: left;
-	}
-	50% {
-		background-position: right;
+		background-position: 0%;
 	}
 	100% {
-		background-position: left;
+		background-position: 300%;
 	}
 }
