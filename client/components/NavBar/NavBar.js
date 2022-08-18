@@ -1,5 +1,3 @@
-import {useRef, useState} from "react";
-import Transition from "react-transition-group/Transition";
 import imageUrlFor from "../../utils/imageUrlFor";
 
 import Logo from "../UI/Logo/Logo";
@@ -10,10 +8,6 @@ import NavMenu from "./NavMenu";
 import classes from "./navBar.module.scss";
 
 const NavBar = ({brands}) => {
-	const [isOpen, setIsOpen] = useState(false);
-
-	const nodeRef = useRef(null);
-
 	return (
 		<nav className={classes.body}>
 			<Logo />
@@ -36,16 +30,9 @@ const NavBar = ({brands}) => {
 						/>
 					))}
 			</div>
-			<div
-				className={`${classes["menuBurger"]} ${isOpen ? classes.open : ""}`}
-				onClick={() => setIsOpen((prevState) => !prevState)}
-				style={{opacity: isOpen ? 0 : 1}}>
-				<span></span>
-				<span></span>
+			<div className={classes["mobile-menu"]}>
+				<NavMenu />
 			</div>
-			<Transition in={isOpen} timeout={300} nodeRef={nodeRef} mountOnEnter unmountOnExit>
-				{(state) => <NavMenu state={state} setIsOpen={setIsOpen} ref={nodeRef} />}
-			</Transition>
 		</nav>
 	);
 };

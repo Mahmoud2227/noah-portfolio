@@ -11,7 +11,6 @@ export default function Document() {
 			</Head>
 			<body>
 				<Main />
-				<div id='canvas'></div>
 				<NextScript />
 			</body>
 		</Html>

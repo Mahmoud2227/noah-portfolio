@@ -1,16 +1,31 @@
 import {useRouter} from "next/router";
 import Link from "next/link";
+import {motion} from "framer-motion";
 
 import classes from "./navLink.module.scss";
 
-const NavLink = ({name, href}) => {
-  const router = useRouter();
-  const isActive = "/" + router.pathname.split("/")[1] === href;
+const NavLink = ({name, href, count}) => {
+	const linkVariants = {
+		open: {
+			x: 0,
+			opacity: 1,
+		},
+		closed: {
+			x: count === "odd" ? "-100%" : "100%",
+			opacity: 0,
+		},
+	};
+
+	const router = useRouter();
+	const isActive = "/" + router.pathname.split("/")[1] === href;
+
 	return (
 		<Link href={href}>
-			<li  className={`${classes.body} ${isActive?classes.active:""}`}>
+			<motion.li
+				className={`${classes.body} ${isActive ? classes.active : ""}`}
+				variants={linkVariants}>
 				<p>{name}</p>
-			</li>
+			</motion.li>
 		</Link>
 	);
 };
