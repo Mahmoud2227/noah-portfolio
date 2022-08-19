@@ -1,16 +1,22 @@
-import { useState } from "react";
+import {useState} from "react";
 import Image from "next/image";
+import {motion} from "framer-motion";
 import ImageUrlFor from "../../utils/imageUrlFor";
+import AudioPlayer from "../audioPlayer/audioPlayer";
 
 import classes from "./newAlbum.module.scss";
 
-import AudioPlayer from "../audioPlayer/audioPlayer";
+import getContainerVariants from "../ContainerVariants";
 
 const NewAlbum = ({albumData}) => {
 	const [curTrack, setCurTrack] = useState(albumData.songs[0]);
 	return (
-		<div className={classes.body}>
-			<div className={classes["image-container"]}>
+		<motion.div
+			className={classes.body}
+			initial='offScreen'
+			whileInView='onScreen'
+			viewport={{once: true, amount: 0.3}}>
+			<motion.div className={classes["image-container"]} variants={getContainerVariants("left")}>
 				<Image
 					src={ImageUrlFor(albumData.cover).url()}
 					alt='new-album'
@@ -19,17 +25,22 @@ const NewAlbum = ({albumData}) => {
 					blurDataURL={ImageUrlFor(albumData.cover).width(400).height(400).quality(5).blur(3).url()}
 					placeholder='blur'
 				/>
-			</div>
-			<div className={classes.content}>
+			</motion.div>
+			<motion.div className={classes.content} variants={getContainerVariants("right")}>
 				<h2 className='gradient-text'>New Album</h2>
 				<p className={classes.title}>{albumData.title}</p>
 				<p className={classes.lyrics}>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae magna at elit porta
 					aliquam.
 				</p>
-				<AudioPlayer trackList={albumData.songs} type='album' curTrack={curTrack} setCurTrack={setCurTrack} />
-			</div>
-		</div>
+				<AudioPlayer
+					trackList={albumData.songs}
+					type='album'
+					curTrack={curTrack}
+					setCurTrack={setCurTrack}
+				/>
+			</motion.div>
+		</motion.div>
 	);
 };
 

@@ -1,14 +1,31 @@
-import sanity from "../../../lib/sanity";
+import {motion} from "framer-motion";
 
+import sanity from "../../../lib/sanity";
 import MusicCard from "../../../components/MusicCard/MusicCard";
 
 import classes from "../../../styles/Singles.module.scss";
+
+const singlesContainerVariants = {
+	hidden: {
+		opacity: 0,
+	},
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.2,
+		},
+	},
+};
 
 const Singles = ({singles}) => {
 	return (
 		<main className={classes.body + " section__padding"}>
 			<h1 className='gradient-text'>Singles</h1>
-			<div className={classes["singles-container"]}>
+			<motion.div
+				className={classes["singles-container"]}
+				initial='hidden'
+				animate='visible'
+				variants={singlesContainerVariants}>
 				{singles.map((single) => (
 					<MusicCard
 						key={single.id}
@@ -16,10 +33,10 @@ const Singles = ({singles}) => {
 						imageSrc={single.cover}
 						slug={single.slug.current}
 						brands={single.musicBrands}
-            type="single"
+						type='single'
 					/>
 				))}
-			</div>
+			</motion.div>
 		</main>
 	);
 };

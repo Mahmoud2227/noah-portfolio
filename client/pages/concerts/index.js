@@ -1,9 +1,23 @@
+import {motion} from "framer-motion";
+
 import NextEvent from "../../components/NextEvent/NextEvent";
 import ConcertCard from "../../components/ConcertCard/ConcertCard";
 import sanity from "../../lib/sanity";
 import formatDate from "../../utils/formatDate";
 
 import classes from "../../styles/Concerts.module.scss";
+
+const concertsVariants = {
+	hidden: {
+		opacity: 0,
+	},
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.2,
+		}
+	}
+}
 
 const index = ({concerts}) => {
 	return (
@@ -12,11 +26,16 @@ const index = ({concerts}) => {
 			<section>
 				<NextEvent concertData={concerts[0]} />
 			</section>
-			<div className={classes.concerts}>
+			<motion.div
+				className={classes.concerts}
+				initial='hidden'
+				whileInView='visible'
+				viewport={{once: true, amount: 0.3}}
+				variants={concertsVariants}>
 				{concerts.map((concert) => (
 					<ConcertCard concert={concert} key={concert.id} />
 				))}
-			</div>
+			</motion.div>
 		</main>
 	);
 };

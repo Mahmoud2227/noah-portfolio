@@ -1,24 +1,25 @@
-import { useState } from "react";
-
+import {useState} from "react";
 import Image from "next/image";
+import {IoPlay} from "react-icons/io5";
+import {motion} from "framer-motion";
+
 import BrandLogo from "../../../components/UI/BrandLogo/BrandLogo";
+import AudioPlayer from "../../../components/audioPlayer/audioPlayer";
+import SongsList from "../../../components/SongsList/SongsList";
 import sanity from "../../../lib/sanity";
 import imageUrlFor from "../../../utils/imageUrlFor";
-import {IoPlay} from "react-icons/io5";
-
-import SongsList from "../../../components/SongsList/SongsList";
+import getContainerVariants from "../../../components/ContainerVariants";
 
 import classes from "../../../styles/AlbumPage.module.scss";
 
 import cd from "../../../assets/cd.png";
-import AudioPlayer from "../../../components/audioPlayer/audioPlayer";
 
 const AlbumPage = ({album}) => {
 	const [activeTrack, setActiveTrack] = useState(0);
 	const [curTrack, setCurTrack] = useState(album.songs[0]);
 	const getActiveTrack = (trackIndex) => {
 		setActiveTrack(trackIndex);
-	}
+	};
 
 	return (
 		<main className={classes.body + " section__padding"}>
@@ -32,8 +33,13 @@ const AlbumPage = ({album}) => {
 					<span></span>
 				</div>
 			</div>
-			<div className={classes.container}>
-				<div className={classes["container-left"]}>
+			<motion.div className={classes.container}>
+				<motion.div
+					className={classes["container-left"]}
+					initial='offScreen'
+					whileInView='onScreen'
+					viewport={{once: true}}
+					variants={getContainerVariants("left")}>
 					<div className={classes["image-container"]}>
 						<div className={classes.cd}>
 							<Image src={cd} alt='cd' width={300} height={300} className={classes.cd} />
@@ -78,12 +84,23 @@ const AlbumPage = ({album}) => {
 							/>
 						))}
 					</div>
-				</div>
-				<div className={classes["container-right"]}>
-					<AudioPlayer trackList={album.songs} getActiveTrack={getActiveTrack} curTrack={curTrack} setCurTrack={setCurTrack} type='album' />
+				</motion.div>
+				<motion.div
+					className={classes["container-right"]}
+					initial='offScreen'
+					whileInView='onScreen'
+					viewport={{once: true}}
+					variants={getContainerVariants("right")}>
+					<AudioPlayer
+						trackList={album.songs}
+						getActiveTrack={getActiveTrack}
+						curTrack={curTrack}
+						setCurTrack={setCurTrack}
+						type='album'
+					/>
 					<SongsList songs={album.songs} activeTrack={activeTrack} setCurTrack={setCurTrack} />
-				</div>
-			</div>
+				</motion.div>
+			</motion.div>
 		</main>
 	);
 };

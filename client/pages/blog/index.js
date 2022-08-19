@@ -1,10 +1,23 @@
 import {useState, useEffect} from "react";
-import Button from "../../components/UI/Button/Button";
+import {motion} from "framer-motion";
 
+import Button from "../../components/UI/Button/Button";
 import Post from "../../components/Post/Post";
 import sanity from "../../lib/sanity";
 
 import classes from "../../styles/Blog.module.scss";
+
+const containerVariants = {
+	hidden: {
+		opacity: 0,
+	},
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.1,
+		},
+	},
+};
 
 const index = ({posts, postsLength}) => {
 	const [postsList, setPostsList] = useState(posts);
@@ -29,11 +42,11 @@ const index = ({posts, postsLength}) => {
 	return (
 		<main className={classes.body + " section__padding"}>
 			<h1 className='gradient-text'>Blog</h1>
-			<div className={classes.posts}>
+			<motion.div className={classes.posts} initial='hidden' animate='visible' variants={containerVariants}>
 				{postsList.map((post) => (
 					<Post post={post} key={post._id} />
 				))}
-			</div>
+			</motion.div>
 			{pagination * 5 < postsLength && (
 				<Button onClick={() => setPagination((prevState) => prevState + 1)}>
 					{loading ? "Loading..." : "Load More"}

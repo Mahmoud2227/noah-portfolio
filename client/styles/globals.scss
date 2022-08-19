@@ -13,6 +13,10 @@ body {
 	min-height: 100vh;
 }
 
+body {
+	overflow: hidden;
+}
+
 #__next {
 	position: relative;
 	min-height: 100vh;
@@ -58,14 +62,14 @@ a {
 }
 
 .section__padding {
-	padding: 4rem 1rem;
+	padding: 2rem 1rem;
 
 	@include smMinBreakPoint {
-		padding: 4rem;
+		padding: 2rem;
 	}
 
 	@include mdMinBreakPoint {
-		padding: 4rem 6rem;
+		padding: 2rem 6rem;
 	}
 }
 

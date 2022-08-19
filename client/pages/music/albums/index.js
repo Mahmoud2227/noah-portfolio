@@ -1,13 +1,27 @@
+import {motion} from "framer-motion";
+
 import sanity from "../../../lib/sanity";
 import MusicCard from "../../../components/MusicCard/MusicCard";
 
 import classes from "../../../styles/Albums.module.scss";
 
+const albumContainerVariants = {
+	hidden: {
+		opacity: 0,
+	},
+	visible: {
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.2,
+		}
+	}
+}
+
 const Albums = ({albums}) => {
 	return (
 		<main className={classes.body + " section__padding"}>
 			<h1 className='gradient-text'>Albums</h1>
-			<div className={classes["albums-container"]}>
+			<motion.div className={classes["albums-container"]} initial='hidden' animate='visible' variants={albumContainerVariants} >
 				{albums.map((album) => (
 					<MusicCard
 						key={album.id}
@@ -18,7 +32,7 @@ const Albums = ({albums}) => {
 						type="album"
 					/>
 				))}
-			</div>
+			</motion.div>
 		</main>
 	);
 };

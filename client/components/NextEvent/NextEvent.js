@@ -3,9 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import {FaMapMarkerAlt, FaRegCalendarAlt} from "react-icons/fa";
+import {motion} from "framer-motion";
 import sanity from "../../lib/sanity";
 import imageUrlFor from "../../utils/imageUrlFor";
 import formatDate from "../../utils/formatDate";
+import getContainerVariants from "../ContainerVariants";
 
 import Button from "../UI/Button/Button";
 
@@ -29,8 +31,12 @@ const NextEvent = ({concertData}) => {
 	};
 
 	return (
-		<div className={classes.body}>
-			<div className={classes.info}>
+		<motion.div
+			className={classes.body}
+			initial='offScreen'
+			whileInView='onScreen'
+			viewport={{once: true, amount: 0.3}}>
+			<motion.div className={classes.info} variants={getContainerVariants("left")}>
 				<h2 className='gradient-text'>Next Event</h2>
 				<Link href={`/concerts/${concertData.slug}`}>
 					<a className={classes.title} title={concertData.title}>
@@ -50,8 +56,8 @@ const NextEvent = ({concertData}) => {
 				<Button type='button' onClick={attendButtonHandler} disabled={isDisabled}>
 					{isDisabled ? "Waiting for you!" : "I'm going"}
 				</Button>
-			</div>
-			<div className={classes["event-cover"]}>
+			</motion.div>
+			<motion.div className={classes["event-cover"]} variants={getContainerVariants("right")}>
 				<div className={classes["countDown-timer"]}>
 					<CountDownTimer date={concertData.date} />
 				</div>
@@ -79,8 +85,8 @@ const NextEvent = ({concertData}) => {
 						/>
 					</div>
 				</div>
-			</div>
-		</div>
+			</motion.div>
+		</motion.div>
 	);
 };
 

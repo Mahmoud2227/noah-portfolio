@@ -1,13 +1,26 @@
 import {useState, useEffect} from "react";
 import Image from "next/image";
 import Link from "next/link";
+import {motion} from "framer-motion";
+
 import imageUrlFor from "../../utils/imageUrlFor";
 
 import classes from "./concertCard.module.scss";
 
+const concertCardVariants = {
+	hidden: {
+		opacity: 0,
+		y: "-50%",
+	},
+	visible: {
+		opacity: 1,
+		y: 0,
+	},
+};
+
 const ConcertCard = ({concert}) => {
 	const [slicedDate, setSlicedDate] = useState(concert.slicedDate);
-  
+
 	useEffect(() => {
 		const date = {
 			day: new Date(concert.date).getDate(),
@@ -17,7 +30,7 @@ const ConcertCard = ({concert}) => {
 	}, []);
 
 	return (
-		<article className={classes.body}>
+		<motion.article className={classes.body} variants={concertCardVariants}>
 			<Link href={`/concerts/${concert.slug}`}>
 				<a title={concert.title}>
 					<div className={classes.date}>
@@ -32,7 +45,7 @@ const ConcertCard = ({concert}) => {
 					</div>
 				</a>
 			</Link>
-		</article>
+		</motion.article>
 	);
 };
 

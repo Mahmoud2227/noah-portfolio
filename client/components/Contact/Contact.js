@@ -2,10 +2,26 @@ import {useState} from "react";
 import {useForm} from "react-hook-form";
 import emailjs from "@emailjs/browser";
 import {MdError} from "react-icons/md";
+import {motion} from "framer-motion";
 
 import Button from "../UI/Button/Button";
 
 import classes from "./contact.module.scss";
+
+const FormVariants = {
+	onScreen: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			duration: 0.5,
+			type: 'spring'
+		}
+	},
+	offScreen: {
+		opacity: 0,
+		y: "50%",
+	},
+};
 
 const Contact = () => {
 	const {register, handleSubmit, formState} = useForm({mode: "onSubmit", defaultValues: ""});
@@ -35,7 +51,12 @@ const Contact = () => {
 	};
 
 	return (
-		<div className={classes.body}>
+		<motion.div
+			className={classes.body}
+			initial='offScreen'
+			whileInView='onScreen'
+			variants={FormVariants}
+			viewport={{once: true}}>
 			<h2 className='gradient-text'>Contact Noah</h2>
 			<form onSubmit={handleSubmit(onSubmitHandler)}>
 				Hi Noah! My Name is
@@ -75,10 +96,12 @@ const Contact = () => {
 					{emailState.sent === false && !emailState.error && <span className={classes.spinner} />}
 					{!emailState.error &&
 						(emailState.sent === true ? "Sent!" : emailState.sent === null ? "Send" : "")}
-					{emailState.error && <MdError className={classes.errorIcon} style={{color:"red",fontSize:"40px"}} />}
+					{emailState.error && (
+						<MdError className={classes.errorIcon} style={{color: "red", fontSize: "40px"}} />
+					)}
 				</Button>
 			</form>
-		</div>
+		</motion.div>
 	);
 };
 

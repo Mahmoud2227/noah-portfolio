@@ -1,17 +1,29 @@
 import Link from "next/link";
 import Image from "next/image";
-import { PortableText } from "@portabletext/react";
-import ImageUrlFor from "../../utils/imageUrlFor";
+import {PortableText} from "@portabletext/react";
 import {FcCalendar, FcClock} from "react-icons/fc";
+import {motion} from "framer-motion";
+import ImageUrlFor from "../../utils/imageUrlFor";
 import getTimeDiff from "../../utils/getTimeDiff";
 
 import classes from "./post.module.scss";
+
+const postVariants = {
+	hidden: {
+		opacity: 0,
+		y: "50%",
+	},
+	visible: {
+		opacity: 1,
+		y: 0,
+	},
+};
 
 const Post = ({post}) => {
 	const PublishedDate = getTimeDiff(new Date(post._createdAt));
 
 	return (
-		<article className={classes.body}>
+		<motion.article className={classes.body} variants={postVariants} >
 			<Link href={`/blog/${post.slug.current}`}>
 				<a className={classes["cover-container"]} title={post.title}>
 					<Image src={ImageUrlFor(post.coverImage).url()} layout='fill' objectFit='cover' />
@@ -41,7 +53,7 @@ const Post = ({post}) => {
 				</div>
 				<PortableText value={post.body[0]} />
 			</div>
-		</article>
+		</motion.article>
 	);
 };
 

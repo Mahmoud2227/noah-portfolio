@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import {AiFillEye} from "react-icons/ai";
+import {motion} from "framer-motion";
+
 import BrandLogo from "../UI/BrandLogo/BrandLogo";
 import imageUrlFor from "../../utils/imageUrlFor";
 
@@ -8,9 +10,20 @@ import classes from "./musicCard.module.scss";
 
 import cd from "../../assets/cd.png";
 
+const musicCardVariants = {
+	hidden: {
+		opacity: 0,
+		y: "-50%",
+	},
+	visible: {
+		opacity: 1,
+		y: 0,
+	},
+};
+
 const MusicCard = ({imageSrc, title, slug, brands, type}) => {
 	return (
-		<div className={classes.body}>
+		<motion.div className={classes.body} variants={musicCardVariants}>
 			<div className={classes["image-container"]}>
 				<div className={classes["brands-container"]}>
 					{brands.map((brand) => (
@@ -46,7 +59,7 @@ const MusicCard = ({imageSrc, title, slug, brands, type}) => {
 				</Link>
 			</div>
 			<h2>{title}</h2>
-		</div>
+		</motion.div>
 	);
 };
 
