@@ -1,15 +1,18 @@
 import {useState} from "react";
+import {motion} from "framer-motion";
 
 import Image from "next/image";
 import BrandLogo from "../../../components/UI/BrandLogo/BrandLogo";
 import sanity from "../../../lib/sanity";
 import imageUrlFor from "../../../utils/imageUrlFor";
 import {IoPlay} from "react-icons/io5";
+import AudioPlayer from "../../../components/audioPlayer/audioPlayer";
+
+import getContainerVariants from "../../../ContainerVariants";
 
 import classes from "../../../styles/SinglePage.module.scss";
 
 import cd from "../../../assets/cd.png";
-import AudioPlayer from "../../../components/audioPlayer/audioPlayer";
 
 const SinglePage = ({single}) => {
 	const [curTrack, setCurTrack] = useState(single);
@@ -26,7 +29,7 @@ const SinglePage = ({single}) => {
 				</div>
 			</div>
 			<div className={classes.container}>
-				<div
+				<motion.div
 					className={classes["container-left"]}
 					initial='offScreen'
 					whileInView='onScreen'
@@ -77,8 +80,8 @@ const SinglePage = ({single}) => {
 							/>
 						))}
 					</div>
-				</div>
-				<div
+				</motion.div>
+				<motion.div
 					className={classes["container-right"]}
 					initial='offScreen'
 					whileInView='onScreen'
@@ -90,7 +93,7 @@ const SinglePage = ({single}) => {
 						setCurTrack={setCurTrack}
 						type='single'
 					/>
-				</div>
+				</motion.div>
 			</div>
 		</main>
 	);

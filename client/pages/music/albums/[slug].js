@@ -8,7 +8,7 @@ import AudioPlayer from "../../../components/audioPlayer/audioPlayer";
 import SongsList from "../../../components/SongsList/SongsList";
 import sanity from "../../../lib/sanity";
 import imageUrlFor from "../../../utils/imageUrlFor";
-import getContainerVariants from "../../../components/ContainerVariants";
+import getContainerVariants from "../../../ContainerVariants";
 
 import classes from "../../../styles/AlbumPage.module.scss";
 

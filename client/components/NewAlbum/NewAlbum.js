@@ -6,7 +6,7 @@ import AudioPlayer from "../audioPlayer/audioPlayer";
 
 import classes from "./newAlbum.module.scss";
 
-import getContainerVariants from "../ContainerVariants";
+import getContainerVariants from "../../ContainerVariants";
 
 const NewAlbum = ({albumData}) => {
 	const [curTrack, setCurTrack] = useState(albumData.songs[0]);
