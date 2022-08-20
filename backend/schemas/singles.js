@@ -1,7 +1,10 @@
+import {BsFillFileEarmarkMusicFill} from 'react-icons/bs'
+
 export default {
 	name: "single",
 	title: "Single",
 	type: "document",
+	icon:BsFillFileEarmarkMusicFill,
 	fields: [
 		{
 			name: "title",

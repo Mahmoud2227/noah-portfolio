@@ -1,7 +1,10 @@
+import {GiPartyPopper} from 'react-icons/gi';
+
 export default {
 	name: "concert",
 	title: "Concert",
 	type: "document",
+	icon:GiPartyPopper,
 	fields: [
 		{
 			name: "title",

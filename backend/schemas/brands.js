@@ -1,7 +1,10 @@
+import {IoShareSocial} from "react-icons/io5";
+
 export default {
 	name: "brand",
 	title: "Brand",
 	type: "document",
+	icon:IoShareSocial,
 	fields: [
 		{
 			name: "title",
