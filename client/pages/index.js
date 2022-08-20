@@ -7,10 +7,10 @@ import NewAlbum from "../components/NewAlbum/NewAlbum";
 import NextEvent from "../components/NextEvent/NextEvent";
 import Subscription from "../components/Subscription/Subscription";
 
-export default function Home({nextConcert, newAlbum}) {
+export default function Home({nextConcert, newAlbum,homeData}) {
 	return (
 		<main>
-			<Hero />
+			<Hero data={homeData} />
 			<section className='section__padding'>
 				<NewAlbum albumData={newAlbum} />
 			</section>
@@ -26,19 +26,25 @@ export default function Home({nextConcert, newAlbum}) {
 }
 
 export const getStaticProps = async () => {
-	const nextConcertsQuery = `*[_type == 'concert'] | order(date desc)[0]{
+	const query = `{
+		"nextConcert":*[_type == 'concert'] | order(date desc)[0]{
 		title,images,date,location,"slug":slug.current,"id":_id
+		},
+		"newAlbum":*[_type == 'album'] | order(releaseDate desc)[0]{
+		title,cover,songs[]{'url':audio.asset->url,title,duration,_key}
+		},
+		"homeData": *[_type == 'siteSettings'][0] {
+			homeBackground,saying1,saying2
+		}
 	}`;
-	const newAlbumQuery = `*[_type == 'album'] | order(releaseDate desc)[0]{
-		title,cover,songs[]{'url':audio.asset->url,title,_key}
-	}`;
-	const nextConcert = await sanity.fetch(nextConcertsQuery);
-	const newAlbum = await sanity.fetch(newAlbumQuery);
+
+	const {nextConcert, newAlbum, homeData} = await sanity.fetch(query);
 
 	return {
 		props: {
 			nextConcert: {...nextConcert, formattedDate: formatDate(nextConcert.date)},
 			newAlbum,
+			homeData,
 		},
 		revalidate: 3600,
 	};

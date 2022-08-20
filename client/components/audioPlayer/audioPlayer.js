@@ -34,7 +34,7 @@ const AudioPlayer = ({trackList, getActiveTrack, curTrack, setCurTrack, type}) =
 	useEffect(() => {
 		const audio = new Audio(curTrack.url);
 		audio.crossOrigin = "anonymous";
-		audio.preload = "metadata";
+		audio.preload = "none";
 
 		const setAudioData = () => {
 			setLength(audio.duration);
@@ -141,7 +141,7 @@ const AudioPlayer = ({trackList, getActiveTrack, curTrack, setCurTrack, type}) =
 				<div className={classes.info}>
 					<h3 className={classes.title}>{title}</h3>
 					<span className={classes.duration}>
-						{`${!time ? "0:00" : formatLength(time)}/${!length ? "0:00" : formatLength(length)}`}
+						{`${!time ? "0:00" : formatLength(time)}/${!length ? curTrack.duration : formatLength(length)}`}
 					</span>
 				</div>
 				<div className={classes["progress-bar"]}>

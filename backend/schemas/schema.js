@@ -10,6 +10,7 @@ import singles from './singles';
 import brands from './brands'
 import concerts from './concerts';
 import post from './post';
+import siteSettings from './siteSettings';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -18,12 +19,13 @@ export default createSchema({
   // Then proceed to concatenate our document type
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
+    siteSettings,
     testimonials,
     albums,
-    songs,
-    brands,
-    concerts,
     singles,
-    post
+    songs,
+    concerts,
+    post,
+    brands,
   ]),
 })

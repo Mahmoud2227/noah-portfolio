@@ -1,5 +1,3 @@
-@use "../../../SassStyles/variables" as *;
-
 .button {
 	position: relative;
 	display: flex;
@@ -15,10 +13,10 @@
 	border-radius: 30px;
 	background-image: linear-gradient(
 		to right,
-		$first-color,
-		$second-color,
-		$third-color,
-		$first-color
+		var(--first-color),
+		var(--second-color),
+		var(--third-color),
+		var(--first-color)
 	);
 	background-size: 300%;
 	transition: 0.5s;
@@ -26,7 +24,7 @@
 
 	&:hover {
 		animation: gradient-background 6s linear infinite;
-		
+
 		&::after {
 			filter: blur(20px);
 			opacity: 1;
@@ -44,12 +42,17 @@
 		position: absolute;
 		inset: -5px;
 		z-index: -1;
-		background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+		background: linear-gradient(
+			to right,
+			var(--first-color),
+			var(--second-color),
+			var(--third-color),
+			var(--first-color)
+		);
 		background-size: 300%;
 		border-radius: 40px;
 		opacity: 0;
 		transition: inherit;
-		
 	}
 }
 

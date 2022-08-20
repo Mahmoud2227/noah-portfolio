@@ -31,6 +31,17 @@ function MyApp({Component, pageProps}) {
 			setBrands(brands);
 		};
 		fetchBrands();
+
+		const setColors = async () => {
+			const colorsQuery = `*[_type == 'siteSettings'][0]{
+				"first-color":color1.hex,"second-color":color2.hex,"third-color":color3.hex
+			}`;
+			const colors = await sanity.fetch(colorsQuery);
+			Object.keys(colors).forEach((key) => {
+				document.documentElement.style.setProperty(`--${key}`, colors[key]);
+			});
+		};
+		setColors();
 	}, []);
 
 	useEffect(() => {
@@ -50,7 +61,7 @@ function MyApp({Component, pageProps}) {
 			{isLoading && <PreLoading />}
 			{brands && <NavBar brands={brands.music} />}
 			{!pageIsLoading && <Component {...pageProps} />}
-			{pageIsLoading && <Spinner/>}
+			{pageIsLoading && <Spinner />}
 			<Footer brands={brands.social} />
 		</>
 	);

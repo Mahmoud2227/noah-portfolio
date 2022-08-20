@@ -1,11 +1,9 @@
-@use "../../SassStyles/variables" as *;
-
 .body {
 	cursor: pointer;
 
 	a,
 	&.active {
-		background: $gradient;
+		background: var(--gradient);
 		background-size: 200% 200%;
 		animation: gradient-text 2s ease-in-out infinite;
 		-webkit-background-clip: text;

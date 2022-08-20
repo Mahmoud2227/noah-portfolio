@@ -1,5 +1,4 @@
 @use "../../SassStyles/mixins" as *;
-@use "../../SassStyles//variables" as *;
 
 .body {
 	cursor: pointer;
@@ -50,7 +49,7 @@
 
 	&:hover a::after,
 	&.active a::after {
-		background: $gradient;
+		background: var(--gradient);
 		background-size: 200% 200%;
 		animation: gradient-text 2s ease-in-out infinite;
 		transition: 0.2s ease-in-out;
@@ -59,7 +58,7 @@
 	a,
 	&.active {
 		display: block;
-		background: $gradient;
+		background: var(--gradient);
 		background-size: 200% 200%;
 		font-weight: 500;
 		animation: gradient-text 2s ease-in-out infinite;

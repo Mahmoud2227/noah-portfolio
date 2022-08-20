@@ -2,25 +2,28 @@ import Image from "next/image";
 import Link from "next/link";
 
 import Button from "../UI/Button/Button";
-
-import background from "../../assets/background.jpg";
+import imageUrlFor from "../../utils/imageUrlFor";
 
 import classes from "./hero.module.scss";
 
-const Hero = () => {
+const Hero = ({data}) => {
 	return (
 		<section className={classes.body}>
 			<div className={classes["background"]}>
-				<Image src={background} alt='background' layout='fill' objectFit='cover' />
+				<Image
+					src={imageUrlFor(data.homeBackground).url()}
+					alt='background'
+					layout='fill'
+					objectFit='cover'
+					priority
+				/>
 			</div>
 			<div className={classes["content"]}>
 				<p>
-					Star <span /> Excellence{" "}
+					Star <span /> Excellence
 				</p>
-				<h1>Music is life itself.</h1>
-				<p>
-					The emotions caused by music, the attitudes of its composers and players, and the venues
-				</p>
+				<h1>{data.saying1}</h1>
+				<p>{data.saying2}</p>
 				<Link href='/about'>
 					<Button type='button'>Learn More</Button>
 				</Link>
