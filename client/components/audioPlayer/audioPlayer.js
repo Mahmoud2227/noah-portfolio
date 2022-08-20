@@ -34,6 +34,7 @@ const AudioPlayer = ({trackList, getActiveTrack, curTrack, setCurTrack, type}) =
 	useEffect(() => {
 		const audio = new Audio(curTrack.url);
 		audio.crossOrigin = "anonymous";
+		audio.preload = "metadata";
 
 		const setAudioData = () => {
 			setLength(audio.duration);

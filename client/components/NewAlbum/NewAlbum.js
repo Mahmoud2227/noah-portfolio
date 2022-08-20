@@ -20,8 +20,8 @@ const NewAlbum = ({albumData}) => {
 				<Image
 					src={ImageUrlFor(albumData.cover).url()}
 					alt='new-album'
-					width={400}
-					height={400}
+					width={500}
+					height={500}
 					blurDataURL={ImageUrlFor(albumData.cover).width(400).height(400).quality(5).blur(3).url()}
 					placeholder='blur'
 				/>
