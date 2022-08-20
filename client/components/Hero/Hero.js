@@ -15,7 +15,7 @@ const Hero = () => {
 			</div>
 			<div className={classes["content"]}>
 				<p>
-					Etoile <span /> Excellence{" "}
+					Star <span /> Excellence{" "}
 				</p>
 				<h1>Music is life itself.</h1>
 				<p>
