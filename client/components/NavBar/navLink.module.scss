@@ -58,6 +58,7 @@
 
 	a,
 	&.active {
+		display: block;
 		background: $gradient;
 		background-size: 200% 200%;
 		font-weight: 500;
