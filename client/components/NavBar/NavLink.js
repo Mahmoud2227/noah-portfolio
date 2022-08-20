@@ -20,13 +20,13 @@ const NavLink = ({name, href, count}) => {
 	const isActive = "/" + router.pathname.split("/")[1] === href;
 
 	return (
-		<Link href={href}>
-			<motion.li
-				className={`${classes.body} ${isActive ? classes.active : ""}`}
-				variants={linkVariants}>
-				<p>{name}</p>
-			</motion.li>
-		</Link>
+		<motion.li
+			className={`${classes.body} ${isActive ? classes.active : ""}`}
+			variants={linkVariants}>
+			<Link href={href}>
+				<a title={name}>{name}</a>
+			</Link>
+		</motion.li>
 	);
 };
 

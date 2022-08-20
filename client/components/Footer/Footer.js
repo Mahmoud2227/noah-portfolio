@@ -1,3 +1,6 @@
+import { useEffect,useState } from "react";
+
+import sanity from "../../lib/sanity";
 import imageUrlFor from "../../utils/imageUrlFor";
 import FooterLink from "./FooterLink";
 import Logo from "../UI/Logo/Logo";
@@ -6,6 +9,19 @@ import BrandLogo from "../UI/BrandLogo/BrandLogo";
 import classes from "./footer.module.scss";
 
 const Footer = ({brands}) => {
+	const [albums, setAlbums] = useState([]);
+	useEffect(() => {
+		const fetchAlbums = async () => {
+			const query = `*[_type == "album"][0...5]{
+				title,
+				slug,
+				_id
+			}`;
+			const albums = await sanity.fetch(query);
+			setAlbums(albums);
+		}
+		fetchAlbums();
+	},[])
 	return (
 		<footer className={classes.body + " section__padding"}>
 			<Logo />
@@ -24,20 +40,22 @@ const Footer = ({brands}) => {
 				<div>
 					<h1 className='gradient-text'>LATEST ALBUMS</h1>
 					<ul>
-						<FooterLink name='Through My Eyes' href='/' />
-						<FooterLink name='To Whom It May Concern' href='/' />
+						{albums.map((album) => (
+							<FooterLink key={album._id} name={album.title} href={`/music/albums/${album.slug.current}`} />
+						))}
 					</ul>
 				</div>
 			</div>
 			<div className={classes["social-links"]}>
-				{brands && brands.map((brand) => (
-					<BrandLogo
-						icon={imageUrlFor(brand.icon).toString()}
-						href={brand.url}
-						title={brand.title}
-						key={brand.id}
-					/>
-				))}
+				{brands &&
+					brands.map((brand) => (
+						<BrandLogo
+							icon={imageUrlFor(brand.icon).toString()}
+							href={brand.url}
+							title={brand.title}
+							key={brand.id}
+						/>
+					))}
 			</div>
 		</footer>
 	);

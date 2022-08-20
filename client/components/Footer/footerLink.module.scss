@@ -3,7 +3,7 @@
 .body {
 	cursor: pointer;
 
-	p,
+	a,
 	&.active {
 		background: $gradient;
 		background-size: 200% 200%;

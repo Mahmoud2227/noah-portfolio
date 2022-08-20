@@ -14,7 +14,7 @@
 		}
 	}
 
-	p::after {
+	a::after {
 		content: "";
 		position: absolute;
 		width: 80%;
@@ -23,7 +23,7 @@
 		transition: 0.2s ease-in-out;
 	}
 
-	&:nth-child(even) p {
+	&:nth-child(even) a {
 		position: relative;
 		padding-left: 20%;
 
@@ -37,7 +37,7 @@
 		}
 	}
 
-	&:nth-child(odd) p {
+	&:nth-child(odd) a {
 		text-align: right;
 		position: relative;
 		padding-right: 20%;
@@ -48,15 +48,15 @@
 		}
 	}
 
-	&:hover p::after,
-	&.active p::after {
+	&:hover a::after,
+	&.active a::after {
 		background: $gradient;
 		background-size: 200% 200%;
 		animation: gradient-text 2s ease-in-out infinite;
 		transition: 0.2s ease-in-out;
 	}
 
-	p,
+	a,
 	&.active {
 		background: $gradient;
 		background-size: 200% 200%;

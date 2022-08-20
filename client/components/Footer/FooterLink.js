@@ -10,11 +10,11 @@ const FooterLink = ({name, href, type}) => {
 		isActive = "/" + router.pathname.split("/")[1] === href;
 	}
 	return (
-		<Link href={href}>
-			<li className={`${classes.body} ${isActive ? classes.active : ""}`}>
-				<p>{name}</p>
-			</li>
-		</Link>
+		<li className={`${classes.body} ${isActive ? classes.active : ""}`}>
+			<Link href={href}>
+				<a title={name}>{name}</a>
+			</Link>
+		</li>
 	);
 };
 
