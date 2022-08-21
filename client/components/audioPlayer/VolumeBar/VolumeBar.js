@@ -15,11 +15,13 @@ const VolumeBar = ({value,onChange}) => {
 	return (
 		<div className={classes.body}>
 			{volumeIcon}
+			{/* <label title='Audio Player Volume Bar' /> */}
 			<input
 				type='range'
+				title='Audio Player Volume Bar'
 				min='1'
 				max='100'
-        step='1'
+				step='1'
 				defaultValue='80'
 				className={classes.slider}
 				onChange={onChange}

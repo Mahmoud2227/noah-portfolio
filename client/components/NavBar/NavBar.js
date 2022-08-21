@@ -23,7 +23,7 @@ const NavBar = ({brands}) => {
 				{brands &&
 					brands.map((brand) => (
 						<BrandLogo
-							icon={imageUrlFor(brand.icon).toString()}
+							icon={brand.icon}
 							href={brand.url}
 							title={brand.title}
 							key={brand.id}

@@ -18,18 +18,19 @@ const about = ({testimonials, aboutData}) => {
 							width={300}
 							height={450}
 							objectFit='contain'
+							alt='About Me Image'
 						/>
 					</div>
 				</div>
 				<div className={classes.content}>
-					<h2 className="gradient-text">Biography</h2>
+					<h2 className='gradient-text'>Biography</h2>
 					<p>{aboutData.biography}</p>
 				</div>
 			</div>
-      <div className={classes.testimonials}>
-        <h2 className="gradient-text">Testimonials</h2>
-			<Testimonials testimonials={testimonials} />
-      </div>
+			<div className={classes.testimonials}>
+				<h2 className='gradient-text'>Testimonials</h2>
+				<Testimonials testimonials={testimonials} />
+			</div>
 		</main>
 	);
 };

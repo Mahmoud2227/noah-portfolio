@@ -30,7 +30,7 @@ const variants = {
 	},
 };
 
-const CardItem = ({direction, name, image, feedback,paginate}) => {
+const CardItem = ({direction, name, image, feedback, paginate}) => {
 	return (
 		<motion.div
 			className={classes.body}
@@ -43,7 +43,7 @@ const CardItem = ({direction, name, image, feedback,paginate}) => {
 				x: {type: "spring", stiffness: 300, damping: 30},
 				opacity: {duration: 0.2},
 			}}
-      whileTap={{cursor: "grabbing"}}
+			whileTap={{cursor: "grabbing"}}
 			drag='x'
 			dragConstraints={{left: 0, right: 0}}
 			dragElastic={1}
@@ -58,13 +58,13 @@ const CardItem = ({direction, name, image, feedback,paginate}) => {
 			}}>
 			<div className={classes.gradient}>
 				<div className={classes.image}>
-					<Image src={imageUrlFor(image).url()} layout='fixed' width={90} height={90} />
+					<Image src={imageUrlFor(image).url()} alt={name} layout='fixed' width={90} height={90} />
 				</div>
 			</div>
-      <div className={classes.content}>
-        <h2>{name}</h2>
-        <q>{feedback}</q>
-      </div>
+			<div className={classes.content}>
+				<h2>{name}</h2>
+				<q>{feedback}</q>
+			</div>
 		</motion.div>
 	);
 };
