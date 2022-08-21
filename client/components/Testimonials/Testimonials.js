@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState,useEffect} from "react";
 import {AnimatePresence} from "framer-motion";
 import {wrap} from "popmotion";
 import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai";
@@ -14,6 +14,13 @@ const Testimonials = ({testimonials}) => {
 	const paginate = (newDirection) => {
 		setPage([page + newDirection, newDirection]);
 	};
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			paginate(1);
+		}, 10000);
+		return () => clearTimeout(timer);
+	},[cardIndex])
 
 	return (
 		<div className={classes.body}>

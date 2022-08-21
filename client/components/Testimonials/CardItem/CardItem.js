@@ -43,6 +43,7 @@ const CardItem = ({direction, name, image, feedback,paginate}) => {
 				x: {type: "spring", stiffness: 300, damping: 30},
 				opacity: {duration: 0.2},
 			}}
+      whileTap={{cursor: "grabbing"}}
 			drag='x'
 			dragConstraints={{left: 0, right: 0}}
 			dragElastic={1}
