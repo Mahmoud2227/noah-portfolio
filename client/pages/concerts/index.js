@@ -1,3 +1,4 @@
+import Head from "next/head";
 import {motion} from "framer-motion";
 
 import NextEvent from "../../components/NextEvent/NextEvent";
@@ -15,28 +16,33 @@ const concertsVariants = {
 		opacity: 1,
 		transition: {
 			staggerChildren: 0.2,
-		}
-	}
-}
+		},
+	},
+};
 
 const index = ({concerts}) => {
 	return (
-		<main className={classes.body + " section__padding"}>
-			<h1>Concerts</h1>
-			<section>
-				<NextEvent concertData={concerts[0]} />
-			</section>
-			<motion.div
-				className={classes.concerts}
-				initial='hidden'
-				whileInView='visible'
-				viewport={{once: true, amount: 0.3}}
-				variants={concertsVariants}>
-				{concerts.map((concert) => (
-					<ConcertCard concert={concert} key={concert.id} />
-				))}
-			</motion.div>
-		</main>
+		<>
+			<Head>
+				<title>Concerts | Noah Estrada</title>
+			</Head>
+			<main className={classes.body + " section__padding"}>
+				<h1>Concerts</h1>
+				<section>
+					<NextEvent concertData={concerts[0]} />
+				</section>
+				<motion.div
+					className={classes.concerts}
+					initial='hidden'
+					whileInView='visible'
+					viewport={{once: true, amount: 0.3}}
+					variants={concertsVariants}>
+					{concerts.map((concert) => (
+						<ConcertCard concert={concert} key={concert.id} />
+					))}
+				</motion.div>
+			</main>
+		</>
 	);
 };
 

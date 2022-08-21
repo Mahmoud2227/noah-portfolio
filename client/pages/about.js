@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Image from "next/image";
 import imageUrlFor from "../utils/imageUrlFor";
 
@@ -8,30 +9,35 @@ import classes from "../styles/About.module.scss";
 
 const about = ({testimonials, aboutData}) => {
 	return (
-		<main className={classes.body + " section__padding"}>
-			<h1>About Me</h1>
-			<div className={classes.biography}>
-				<div className={classes["image-container"]}>
-					<div className={classes.image}>
-						<Image
-							src={imageUrlFor(aboutData.aboutImage).url()}
-							width={300}
-							height={450}
-							objectFit='contain'
-							alt='About Me Image'
-						/>
+		<>
+			<Head>
+				<title>About | Noah Estrada</title>
+			</Head>
+			<main className={classes.body + " section__padding"}>
+				<h1>About Me</h1>
+				<div className={classes.biography}>
+					<div className={classes["image-container"]}>
+						<div className={classes.image}>
+							<Image
+								src={imageUrlFor(aboutData.aboutImage).url()}
+								width={300}
+								height={450}
+								objectFit='contain'
+								alt='About Me Image'
+							/>
+						</div>
+					</div>
+					<div className={classes.content}>
+						<h2 className='gradient-text'>Biography</h2>
+						<p>{aboutData.biography}</p>
 					</div>
 				</div>
-				<div className={classes.content}>
-					<h2 className='gradient-text'>Biography</h2>
-					<p>{aboutData.biography}</p>
+				<div className={classes.testimonials}>
+					<h2 className='gradient-text'>Testimonials</h2>
+					<Testimonials testimonials={testimonials} />
 				</div>
-			</div>
-			<div className={classes.testimonials}>
-				<h2 className='gradient-text'>Testimonials</h2>
-				<Testimonials testimonials={testimonials} />
-			</div>
-		</main>
+			</main>
+		</>
 	);
 };
 

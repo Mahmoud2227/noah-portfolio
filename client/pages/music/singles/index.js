@@ -1,3 +1,4 @@
+import Head from "next/head";
 import {motion} from "framer-motion";
 
 import sanity from "../../../lib/sanity";
@@ -19,25 +20,30 @@ const singlesContainerVariants = {
 
 const Singles = ({singles}) => {
 	return (
-		<main className={classes.body + " section__padding"}>
-			<h1 className='gradient-text'>Singles</h1>
-			<motion.div
-				className={classes["singles-container"]}
-				initial='hidden'
-				animate='visible'
-				variants={singlesContainerVariants}>
-				{singles.map((single) => (
-					<MusicCard
-						key={single.id}
-						title={single.title}
-						imageSrc={single.cover}
-						slug={single.slug.current}
-						brands={single.musicBrands}
-						type='single'
-					/>
-				))}
-			</motion.div>
-		</main>
+		<>
+			<Head>
+				<title>Singles | Noah Estrada</title>
+			</Head>
+			<main className={classes.body + " section__padding"}>
+				<h1 className='gradient-text'>Singles</h1>
+				<motion.div
+					className={classes["singles-container"]}
+					initial='hidden'
+					animate='visible'
+					variants={singlesContainerVariants}>
+					{singles.map((single) => (
+						<MusicCard
+							key={single.id}
+							title={single.title}
+							imageSrc={single.cover}
+							slug={single.slug.current}
+							brands={single.musicBrands}
+							type='single'
+						/>
+					))}
+				</motion.div>
+			</main>
+		</>
 	);
 };
 

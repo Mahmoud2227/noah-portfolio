@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -8,36 +9,41 @@ import classes from "../../styles/Music.module.scss";
 
 const Music = ({images}) => {
 	return (
-		<main className={classes.body}>
-			<section>
-				<div className={classes.background}>
-					<Image
-						src={imageUrlFor(images.albumsBackground).url()}
-						alt='albums'
-						layout='fill'
-						objectFit='cover'
-						priority
-					/>
-				</div>
-				<Link href='music/albums' title='Albums'>
-					Albums
-				</Link>
-			</section>
-			<section>
-				<div className={classes.background}>
-					<Image
-						src={imageUrlFor(images.singlesBackground).url()}
-						alt='singles'
-						layout='fill'
-						objectFit='cover'
-						priority
-					/>
-				</div>
-				<Link href='music/singles' title='Singles'>
-					Singles
-				</Link>
-			</section>
-		</main>
+		<>
+			<Head>
+				<title>Music | Noah Estrada</title>
+			</Head>
+			<main className={classes.body}>
+				<section>
+					<div className={classes.background}>
+						<Image
+							src={imageUrlFor(images.albumsBackground).url()}
+							alt='albums'
+							layout='fill'
+							objectFit='cover'
+							priority
+						/>
+					</div>
+					<Link href='music/albums' title='Albums'>
+						Albums
+					</Link>
+				</section>
+				<section>
+					<div className={classes.background}>
+						<Image
+							src={imageUrlFor(images.singlesBackground).url()}
+							alt='singles'
+							layout='fill'
+							objectFit='cover'
+							priority
+						/>
+					</div>
+					<Link href='music/singles' title='Singles'>
+						Singles
+					</Link>
+				</section>
+			</main>
+		</>
 	);
 };
 

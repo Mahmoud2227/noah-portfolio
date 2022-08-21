@@ -1,4 +1,5 @@
 import {useState, useEffect} from "react";
+import Head from "next/head";
 import {motion} from "framer-motion";
 
 import Button from "../../components/UI/Button/Button";
@@ -40,19 +41,28 @@ const index = ({posts, postsLength}) => {
 	}, [pagination]);
 
 	return (
-		<main className={classes.body + " section__padding"}>
-			<h1 className='gradient-text'>Blog</h1>
-			<motion.div className={classes.posts} initial='hidden' animate='visible' variants={containerVariants}>
-				{postsList.map((post) => (
-					<Post post={post} key={post._id} />
-				))}
-			</motion.div>
-			{pagination * 5 < postsLength && (
-				<Button onClick={() => setPagination((prevState) => prevState + 1)}>
-					{loading ? "Loading..." : "Load More"}
-				</Button>
-			)}
-		</main>
+		<>
+			<Head>
+				<title>Blog | Noah Estrada</title>
+			</Head>
+			<main className={classes.body + " section__padding"}>
+				<h1 className='gradient-text'>Blog</h1>
+				<motion.div
+					className={classes.posts}
+					initial='hidden'
+					animate='visible'
+					variants={containerVariants}>
+					{postsList.map((post) => (
+						<Post post={post} key={post._id} />
+					))}
+				</motion.div>
+				{pagination * 5 < postsLength && (
+					<Button onClick={() => setPagination((prevState) => prevState + 1)}>
+						{loading ? "Loading..." : "Load More"}
+					</Button>
+				)}
+			</main>
+		</>
 	);
 };
 

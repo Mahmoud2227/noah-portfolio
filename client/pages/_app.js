@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import {useRouter} from "next/router";
 import Head from "next/head";
-import Script from "next/script"
+import Script from "next/script";
 
 import sanity from "../lib/sanity";
 
@@ -57,6 +57,9 @@ function MyApp({Component, pageProps}) {
 
 	return (
 		<>
+			<Head>
+				<title>Noah Estrada</title>
+			</Head>
 			<Script
 				strategy='lazyOnload'
 				src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
@@ -72,9 +75,6 @@ function MyApp({Component, pageProps}) {
 					});
 				`}
 			</Script>
-			<Head>
-				<title>Noah Portfolio</title>
-			</Head>
 			{isLoading && <PreLoading />}
 			{brands && <NavBar brands={brands.music} />}
 			{!pageIsLoading && <Component {...pageProps} />}

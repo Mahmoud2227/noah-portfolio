@@ -1,3 +1,5 @@
+import Head from "next/head";
+
 import sanity from "../lib/sanity";
 import formatDate from "../utils/formatDate";
 
@@ -7,21 +9,26 @@ import NewAlbum from "../components/NewAlbum/NewAlbum";
 import NextEvent from "../components/NextEvent/NextEvent";
 import Subscription from "../components/Subscription/Subscription";
 
-export default function Home({nextConcert, newAlbum,homeData}) {
+export default function Home({nextConcert, newAlbum, homeData}) {
 	return (
-		<main>
-			<Hero data={homeData} />
-			<section className='section__padding'>
-				<NewAlbum albumData={newAlbum} />
-			</section>
-			<section className='section__padding'>
-				<NextEvent concertData={nextConcert} />
-			</section>
-			{/* <Subscription /> */}
-			<section className='section__padding'>
-				<Contact />
-			</section>
-		</main>
+		<>
+			<Head>
+				<title>Noah Estrada</title>
+			</Head>
+			<main>
+				<Hero data={homeData} />
+				<section className='section__padding'>
+					<NewAlbum albumData={newAlbum} />
+				</section>
+				<section className='section__padding'>
+					<NextEvent concertData={nextConcert} />
+				</section>
+				{/* <Subscription /> */}
+				<section className='section__padding'>
+					<Contact />
+				</section>
+			</main>
+		</>
 	);
 }
 

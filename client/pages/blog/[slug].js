@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Image from "next/image";
 import {PortableText} from "@portabletext/react";
 import sanity from "../../lib/sanity";
@@ -11,7 +12,12 @@ const myPortableTextComponents = {
 	types: {
 		image: ({value}) => (
 			<div className={classes["image-container"]}>
-				<Image src={ImageUrlFor(value.asset).url()} width={850} height={600} objectFit='scale-down' />
+				<Image
+					src={ImageUrlFor(value.asset).url()}
+					width={850}
+					height={600}
+					objectFit='scale-down'
+				/>
 			</div>
 		),
 	},
@@ -20,39 +26,44 @@ const myPortableTextComponents = {
 const BlogPost = ({post}) => {
 	const PublishedDate = getTimeDiff(new Date(post._createdAt));
 	return (
-		<main className={classes.body + " section__padding"}>
-			<h1>{post.title}</h1>
-			<div className={classes.meta}>
-				<div>
-					<FcCalendar />
-					{PublishedDate.year > 0
-						? `${PublishedDate.year} years ago`
-						: PublishedDate.month > 0
-						? `${PublishedDate.month} months ago`
-						: PublishedDate.days === 0
-						? "Today"
-						: `${PublishedDate.days} days ago`}
+		<>
+			<Head>
+				<title>{post.title} | Noah Estrada</title>
+			</Head>
+			<main className={classes.body + " section__padding"}>
+				<h1>{post.title}</h1>
+				<div className={classes.meta}>
+					<div>
+						<FcCalendar />
+						{PublishedDate.year > 0
+							? `${PublishedDate.year} years ago`
+							: PublishedDate.month > 0
+							? `${PublishedDate.month} months ago`
+							: PublishedDate.days === 0
+							? "Today"
+							: `${PublishedDate.days} days ago`}
+					</div>
+					<div>
+						<FcClock />
+						{post.estimatedReadingTime + " min read"}
+					</div>
+					<div>
+						<FcBusinessman /> By Noah
+					</div>
 				</div>
-				<div>
-					<FcClock />
-					{post.estimatedReadingTime + " min read"}
+				<div className={classes["cover-container"]}>
+					<Image
+						src={ImageUrlFor(post.coverImage).url()}
+						width={1100}
+						height={500}
+						objectFit='cover'
+					/>
 				</div>
-				<div>
-					<FcBusinessman /> By Noah
+				<div className={classes.content}>
+					<PortableText value={post.body} components={myPortableTextComponents} />
 				</div>
-			</div>
-			<div className={classes["cover-container"]}>
-				<Image
-					src={ImageUrlFor(post.coverImage).url()}
-					width={1100}
-					height={500}
-					objectFit='cover'
-				/>
-			</div>
-			<div className={classes.content}>
-				<PortableText value={post.body} components={myPortableTextComponents} />
-			</div>
-		</main>
+			</main>
+		</>
 	);
 };
 export default BlogPost;
