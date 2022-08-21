@@ -81,6 +81,9 @@ a {
 	}
 
 	@include mdMinBreakPoint {
+		padding: 3rem 4rem;
+	}
+	@include lgMinBreakPoint {
 		padding: 3rem 6rem;
 	}
 }

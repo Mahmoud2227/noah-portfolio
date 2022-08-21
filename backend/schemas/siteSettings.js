@@ -10,6 +10,10 @@ export default {
 			default: true,
 		},
 		{
+			name: "about",
+			title: "About",
+		},
+		{
 			name: "music",
 			title: "Music",
 		},
@@ -39,6 +43,18 @@ export default {
 			title: "Saying 2",
 			type: "string",
 			group: "home",
+		},
+		{
+			name: "aboutImage",
+			title: "About Image",
+			type: "image",
+			group: "about",
+		},
+		{
+			name: "biography",
+			title: "Biography",
+			type: "text",
+			group: "about",
 		},
 		{
 			name: "albumsBackground",
