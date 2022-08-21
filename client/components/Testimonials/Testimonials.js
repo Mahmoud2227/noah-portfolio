@@ -2,9 +2,9 @@ import {useState,useEffect} from "react";
 import {AnimatePresence} from "framer-motion";
 import {wrap} from "popmotion";
 import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai";
-
-import classes from "./Testimonials.module.scss";
 import CardItem from "./CardItem/CardItem";
+
+import classes from "./testimonials.module.scss";
 
 const Testimonials = ({testimonials}) => {
 	const [[page, direction], setPage] = useState([0, 0]);
