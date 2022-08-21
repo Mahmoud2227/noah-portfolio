@@ -1,0 +1,52 @@
+@use "../../SassStyles/mixins" as *;
+
+.body {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	max-width: 500px;
+	min-height: 320px;
+
+	@include smMinBreakPoint {
+		min-height: 270px;
+	}
+
+	.next,
+	.prev {
+		top: calc(50% - 20px);
+		position: absolute;
+		background: rgba(0, 0, 0, 0.1);
+		color: black;
+		border-radius: 30px;
+		width: 40px;
+		height: 40px;
+		display: none;
+		justify-content: center;
+		align-items: center;
+		user-select: none;
+		cursor: pointer;
+		font-weight: bold;
+		font-size: 18px;
+		z-index: 2;
+		transition: 0.2s;
+
+		&:hover {
+			background: rgba(0, 0, 0, 0.6);
+			color: white;
+		}
+
+		@include mdMinBreakPoint {
+			display: flex;
+		}
+	}
+
+	.next {
+		right: 10px;
+	}
+
+	.prev {
+		left: 10px;
+	}
+}

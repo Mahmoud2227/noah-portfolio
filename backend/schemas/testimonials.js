@@ -12,11 +12,6 @@ export default {
 			type: "string",
 		},
 		{
-			name: "company",
-			title: "Company",
-			type: "string",
-		},
-		{
 			name: "imageurl",
 			title: "ImgURL",
 			type: "image",
@@ -27,7 +22,7 @@ export default {
 		{
 			name: "feedback",
 			title: "Feedback",
-			type: "string",
+			type: "text",
 		},
 	],
 };
