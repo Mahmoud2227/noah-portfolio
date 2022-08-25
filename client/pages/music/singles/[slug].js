@@ -20,7 +20,7 @@ const SinglePage = ({single}) => {
 	return (
 		<>
 			<Head>
-				<title>{single.title} | Noah Estrada</title>
+				<title>{`${single.title} | Noah Estrada`}</title>
 			</Head>
 			<main className={classes.body + " section__padding"}>
 				<div className={classes.title}>

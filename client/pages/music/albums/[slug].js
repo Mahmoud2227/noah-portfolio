@@ -25,7 +25,7 @@ const AlbumPage = ({album}) => {
 	return (
 		<>
 			<Head>
-				<title>{album.title} | Noah Estrada</title>
+				<title>{`${album.title} | Noah Estrada`}</title>
 			</Head>
 			<main className={classes.body + " section__padding"}>
 				<div className={classes.title}>

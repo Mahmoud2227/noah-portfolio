@@ -12,7 +12,7 @@ const ContactPage = ({brands}) => {
 	return (
 		<>
 			<Head>
-				<title>Contact | Noah Estrada</title>
+				<title>{"Contact | Noah Estrada"}</title>
 			</Head>
 			<main className={classes.body + " section__padding"}>
 				<div className={classes.info}>

@@ -17,7 +17,7 @@ const ConcertPage = ({concert}) => {
 	return (
 		<>
 			<Head>
-				<title>{concert.title} | Noah Estrada</title>
+				<title>{`${concert.title} | Noah Estrada`}</title>
 			</Head>
 			<main className={classes.body + " section__padding"}>
 				<h1>{concert.title}</h1>

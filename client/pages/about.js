@@ -11,7 +11,7 @@ const about = ({testimonials, aboutData}) => {
 	return (
 		<>
 			<Head>
-				<title>About | Noah Estrada</title>
+				<title>{"About | Noah Estrada"}</title>
 			</Head>
 			<main className={classes.body + " section__padding"}>
 				<h1>About Me</h1>

@@ -11,7 +11,7 @@ const Music = ({images}) => {
 	return (
 		<>
 			<Head>
-				<title>Music | Noah Estrada</title>
+				<title>{"Music | Noah Estrada"}</title>
 			</Head>
 			<main className={classes.body}>
 				<section>

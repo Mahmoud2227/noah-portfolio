@@ -22,7 +22,7 @@ const Singles = ({singles}) => {
 	return (
 		<>
 			<Head>
-				<title>Singles | Noah Estrada</title>
+				<title>{"Singles | Noah Estrada"}</title>
 			</Head>
 			<main className={classes.body + " section__padding"}>
 				<h1 className='gradient-text'>Singles</h1>

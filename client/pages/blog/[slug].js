@@ -28,7 +28,7 @@ const BlogPost = ({post}) => {
 	return (
 		<>
 			<Head>
-				<title>{post.title} | Noah Estrada</title>
+				<title>{`${post.title} | Noah Estrada`}</title>
 			</Head>
 			<main className={classes.body + " section__padding"}>
 				<h1>{post.title}</h1>

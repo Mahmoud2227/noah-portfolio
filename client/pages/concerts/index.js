@@ -24,7 +24,7 @@ const index = ({concerts}) => {
 	return (
 		<>
 			<Head>
-				<title>Concerts | Noah Estrada</title>
+				<title>{"Concerts | Noah Estrada"}</title>
 			</Head>
 			<main className={classes.body + " section__padding"}>
 				<h1>Concerts</h1>

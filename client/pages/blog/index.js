@@ -43,7 +43,7 @@ const index = ({posts, postsLength}) => {
 	return (
 		<>
 			<Head>
-				<title>Blog | Noah Estrada</title>
+				<title>{"Blog | Noah Estrada"}</title>
 			</Head>
 			<main className={classes.body + " section__padding"}>
 				<h1 className='gradient-text'>Blog</h1>
