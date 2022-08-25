@@ -1,9 +1,15 @@
 import React, {useState, useEffect} from "react";
+import {createPortal} from "react-dom";
 
 let audioCtx;
 let audioSource;
 
 const Visualizer = React.memo(({audio, curTrack, isPlaying}) => {
+	useEffect(()=> {
+		audioCtx=null;
+		audioSource=null;
+	},[])
+
 	useEffect(() => {
 		const canvas = document.getElementById("visualizer");
 		canvas.width = window.innerWidth;
@@ -85,7 +91,7 @@ const Visualizer = React.memo(({audio, curTrack, isPlaying}) => {
 			}
 		}
 	}, [curTrack, isPlaying]);
-	return <canvas id='visualizer'></canvas>;
+	return createPortal(<canvas id='visualizer'></canvas>,document.getElementById("__next"));
 });
 
 export default Visualizer;

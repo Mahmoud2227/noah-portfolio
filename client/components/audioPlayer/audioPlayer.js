@@ -190,7 +190,7 @@ const AudioPlayer = ({trackList, getActiveTrack, curTrack, setCurTrack, type}) =
 					/>
 				</div>
 			</div>
-			{<Visualizer audio={audio} curTrack={curTrack} isPlaying={isPlaying} />}
+			{audio && <Visualizer audio={audio} curTrack={curTrack} isPlaying={isPlaying} />}
 		</>
 	);
 };

@@ -13,7 +13,6 @@
     "@sanity/default-layout",
     "@sanity/default-login",
     "@sanity/desk-tool",
-    "dashboard-widget-document-chart",
     "@sanity/color-input",
     "concerts-list",
     "content-list"
