@@ -1,7 +1,7 @@
 {
   "parts": [
     {
-      "name": "part:@sanity/dashboard/widget/concerts-list",
+      "name": "part:@sanity/dashboard/widget/content-list",
       "implements": "part:@sanity/dashboard/widget",
       "path": "index.js"
     }

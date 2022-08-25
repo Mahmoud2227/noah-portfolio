@@ -15,7 +15,8 @@
     "@sanity/desk-tool",
     "dashboard-widget-document-chart",
     "@sanity/color-input",
-    "concerts-list"
+    "concerts-list",
+    "content-list"
   ],
   "env": {
     "development": {

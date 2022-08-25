@@ -1,34 +1,40 @@
 export default {
 	widgets: [
 		{
-			name: "cats",
+			name: "concerts-list",
 			layout: {
-				width: "small",
-				height: "100%",
+				width: "medium",
 			},
-			options:{
-				header: "A cat",
-			}
 		},
 		{
-			name: "cats",
+			name: "content-list",
 			layout: {
-				width: "small",
-				height: "100%",
+				width: "medium",
 			},
-			options:{
-				header: "A cat",
-			}
+			options: {
+				title: "Latest Blog Posts",
+				type: "post",
+			},
 		},
 		{
-			name: "cats",
+			name: "content-list",
 			layout: {
-				width: "small",
-				height: "100%",
+				width: "medium",
 			},
-			options:{
-				header: "A cat",
-			}
+			options: {
+				title: "Latest Albums",
+				type: "album",
+			},
+		},
+		{
+			name: "content-list",
+			layout: {
+				width: "medium",
+			},
+			options: {
+				title: "Latest Singles",
+				type: "single",
+			},
 		},
 	],
 };
