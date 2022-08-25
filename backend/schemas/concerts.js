@@ -49,6 +49,7 @@ export default {
 			title: "Attendees Count",
 			type: "number",
 			initialValue: 0,
+			hidden: false,
 		},
 		{
 			name: "cover",
