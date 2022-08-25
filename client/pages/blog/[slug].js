@@ -57,6 +57,9 @@ const BlogPost = ({post}) => {
 						width={1100}
 						height={500}
 						objectFit='cover'
+						blurDataURL={ImageUrlFor(post.coverImage).quality(5).blur(3).url()}
+						placeholder='blur'
+						alt={post.title}
 					/>
 				</div>
 				<div className={classes.content}>

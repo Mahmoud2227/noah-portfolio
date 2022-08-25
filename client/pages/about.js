@@ -20,10 +20,12 @@ const about = ({testimonials, aboutData}) => {
 						<div className={classes.image}>
 							<Image
 								src={imageUrlFor(aboutData.aboutImage).url()}
+								alt='About Me Image'
 								width={300}
 								height={450}
 								objectFit='contain'
-								alt='About Me Image'
+								blurDataURL={imageUrlFor(aboutData.aboutImage).quality(5).blur(3).url()}
+								placeholder='blur'
 							/>
 						</div>
 					</div>
