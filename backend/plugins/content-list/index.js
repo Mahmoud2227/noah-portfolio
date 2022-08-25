@@ -13,7 +13,7 @@ function ContentList({title, type}) {
 		setIsLoading(true);
 		client
 			.fetch(
-				`*[_type == "${type}"] | order(_createdAt desc)[0...6]{
+				`*[_type == "${type}"] | order(_createdAt desc)[0...7]{
 					title,
 					_createdAt,
 					_id
