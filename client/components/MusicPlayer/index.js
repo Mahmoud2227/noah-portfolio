@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {useSelector, useDispatch} from "react-redux";
+import {motion} from "framer-motion";
 
-import {nextSong, prevSong, playPause} from "../../redux/features/playerSlice";
+import {nextSong, prevSong, playPause, toggleHidden} from "../../redux/features/playerSlice";
 import Controls from "./Controls/Controls";
 import Player from "./Player/Player";
 import SeekBar from "./SeekBar/SeekBar";
@@ -9,6 +10,16 @@ import Track from "./Track/Track";
 import VolumeBar from "./VolumeBar/VolumeBar";
 
 import classes from "./musicPlayer.module.scss";
+import Toggle from "./Toggle/Toggle";
+
+const playerVariants = {
+	hidden: {
+		bottom: "-12%",
+	},
+	visible: {
+		bottom: "0%",
+	},
+};
 
 const MusicPlayer = () => {
 	const {
@@ -19,7 +30,7 @@ const MusicPlayer = () => {
 		currentIndex,
 		isActive,
 		isPlaying,
-		isLoading,
+		isHidden,
 	} = useSelector((state) => state.player);
 	const [duration, setDuration] = useState(0);
 	const [seekTime, setSeekTime] = useState(0);
@@ -64,7 +75,12 @@ const MusicPlayer = () => {
 	};
 
 	return (
-		<div className={classes.body}>
+		<motion.div
+			className={classes.body}
+			variants={playerVariants}
+			initial='visible'
+			animate={isHidden ? "hidden" : "visible"}>
+			<Toggle isHidden={isHidden} toggleHidden={() => dispatch(toggleHidden())} />
 			<Track
 				isPlaying={isPlaying}
 				isActive={isActive}
@@ -76,7 +92,6 @@ const MusicPlayer = () => {
 				<Controls
 					isPlaying={isPlaying}
 					isActive={isActive}
-					isLoading={isLoading}
 					repeat={repeat}
 					setRepeat={setRepeat}
 					shuffle={shuffle}
@@ -113,7 +128,7 @@ const MusicPlayer = () => {
 				onChange={(event) => setVolume(event.target.value)}
 				setVolume={setVolume}
 			/>
-		</div>
+		</motion.div>
 	);
 };
 

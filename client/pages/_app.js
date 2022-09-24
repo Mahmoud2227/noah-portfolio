@@ -16,6 +16,15 @@ import MusicPlayer from "../components/MusicPlayer";
 import {wrapper} from "../redux/store";
 import {Provider} from "react-redux";
 
+const playerVariants = {
+	hidden: {
+		bottom: "-100%",
+	},
+	visible: {
+		bottom: "0",
+	},
+};
+
 function MyApp({Component, ...rest}) {
 	const {props, store} = wrapper.useWrappedStore(rest);
 
@@ -84,9 +93,9 @@ function MyApp({Component, ...rest}) {
 			{isLoading && <PreLoading />}
 			{brands && <NavBar brands={brands.music} />}
 			{!pageIsLoading && <Component {...props.pageProps} />}
-			<div className='musicPlayer_wrapper'>
+			{/* <div className='musicPlayer_wrapper'>
+			</div> */}
 				<MusicPlayer />
-			</div>
 			{pageIsLoading && <Spinner />}
 			<Footer brands={brands.social} />
 		</Provider>

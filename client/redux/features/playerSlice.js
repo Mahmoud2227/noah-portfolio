@@ -45,6 +45,9 @@ const playerSlice = createSlice({
 		playPause: (state, action) => {
 			state.isPlaying = action.payload;
 		},
+		toggleHidden: (state) => {
+			state.isHidden = !state.isHidden;
+		},
 	},
 	extraReducers: {
 		[HYDRATE]: (state, action) => {
@@ -53,6 +56,6 @@ const playerSlice = createSlice({
 	},
 });
 
-export const {setActiveSong, nextSong, prevSong, playPause, setLoading} = playerSlice.actions;
+export const {setActiveSong, nextSong, prevSong, playPause, toggleHidden} = playerSlice.actions;
 
 export default playerSlice.reducer;
