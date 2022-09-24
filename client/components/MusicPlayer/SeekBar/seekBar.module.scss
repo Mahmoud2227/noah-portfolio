@@ -1,0 +1,28 @@
+.body {
+	display: flex;
+	align-items: center;
+
+	button {
+		color: white;
+		background: none;
+		font-size: 1.5rem;
+		border: none;
+		cursor: pointer;
+
+		&:first-of-type {
+			margin-right: 10px;
+		}
+
+		&:last-of-type {
+			margin-left: 10px;
+		}
+	}
+
+  input {
+    display: block;
+    height: 4px;
+    width: 24rem;
+    margin: 0 1rem;
+    border-radius: 2px;
+  }
+}

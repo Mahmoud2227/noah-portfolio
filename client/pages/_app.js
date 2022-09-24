@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import {useState, useEffect, useMemo} from "react";
 import {useRouter} from "next/router";
 import Head from "next/head";
 import Script from "next/script";
@@ -11,8 +11,14 @@ import PreLoading from "../components/PreLoading/PreLoading";
 import Spinner from "../components/UI/Spinner/Spinner";
 
 import "../styles/globals.scss";
+import MusicPlayer from "../components/MusicPlayer";
 
-function MyApp({Component, pageProps}) {
+import {wrapper} from "../redux/store";
+import {Provider} from "react-redux";
+
+function MyApp({Component, ...rest}) {
+	const {props, store} = wrapper.useWrappedStore(rest);
+
 	const [brands, setBrands] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [pageIsLoading, setPageIsLoading] = useState(false);
@@ -56,7 +62,7 @@ function MyApp({Component, pageProps}) {
 	}, [router]);
 
 	return (
-		<>
+		<Provider store={store}>
 			<Head>
 				<title>Noah Estrada</title>
 			</Head>
@@ -77,10 +83,13 @@ function MyApp({Component, pageProps}) {
 			</Script>
 			{isLoading && <PreLoading />}
 			{brands && <NavBar brands={brands.music} />}
-			{!pageIsLoading && <Component {...pageProps} />}
+			{!pageIsLoading && <Component {...props.pageProps} />}
+			<div className='musicPlayer_wrapper'>
+				<MusicPlayer />
+			</div>
 			{pageIsLoading && <Spinner />}
 			<Footer brands={brands.social} />
-		</>
+		</Provider>
 	);
 }
 

@@ -4,12 +4,23 @@ import {motion} from "framer-motion";
 import ImageUrlFor from "../../utils/imageUrlFor";
 import AudioPlayer from "../audioPlayer/audioPlayer";
 
+import {useDispatch, useSelector} from "react-redux";
+
+import {setActiveSong} from "../../redux/features/playerSlice";
+
 import classes from "./newAlbum.module.scss";
 
 import getContainerVariants from "../../ContainerVariants";
 
 const NewAlbum = ({albumData}) => {
 	const [curTrack, setCurTrack] = useState(albumData.songs[0]);
+
+	const dispatch = useDispatch();
+
+	const clicking = () => {
+		dispatch(setActiveSong({song: curTrack, album: albumData, i: 0}));
+	};
+
 	return (
 		<motion.div
 			className={classes.body}
@@ -24,6 +35,7 @@ const NewAlbum = ({albumData}) => {
 					height={500}
 					blurDataURL={ImageUrlFor(albumData.cover).width(400).height(400).quality(5).blur(3).url()}
 					placeholder='blur'
+					onClick={clicking}
 				/>
 			</motion.div>
 			<motion.div className={classes.content} variants={getContainerVariants("right")}>

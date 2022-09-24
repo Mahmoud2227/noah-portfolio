@@ -1,0 +1,11 @@
+.body {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+
+	input {
+		height: 4px;
+		width: 10rem;
+		margin-left: 0.5rem;
+	}
+}

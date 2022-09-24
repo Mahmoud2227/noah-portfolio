@@ -1,0 +1,37 @@
+.body {
+	// flex-1 flex items-center justify-start
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+
+	// isPlaying && isActive ? "animate-[spin_3s_linear_infinite]" : ""
+	// 		} hidden sm:block h-16 w-16 mr-4`}
+
+	.coverContainer {
+		// position: relative;
+		margin-right: 1rem;
+		height: 4rem;
+		width: 4rem;
+
+		img {
+			border-radius: 50%;
+		}
+	}
+
+	.song-info {
+		width: 50%;
+
+		p {
+			&.active {
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			&.notActive {
+				opacity: 0.5;
+			}
+		}
+	}
+}
