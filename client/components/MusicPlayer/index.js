@@ -14,10 +14,12 @@ import Toggle from "./Toggle/Toggle";
 
 const playerVariants = {
 	hidden: {
-		bottom: "-12%",
+		bottom: "-5rem",
+		paddingTop: "2rem",
 	},
 	visible: {
-		bottom: "0%",
+		bottom: "0rem",
+		paddingTop: "0rem",
 	},
 };
 
