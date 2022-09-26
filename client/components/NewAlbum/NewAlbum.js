@@ -6,19 +6,30 @@ import AudioPlayer from "../audioPlayer/audioPlayer";
 
 import {useDispatch, useSelector} from "react-redux";
 
-import {setActiveSong} from "../../redux/features/playerSlice";
+import {setActiveSong, playPause} from "../../redux/features/playerSlice";
 
 import classes from "./newAlbum.module.scss";
 
 import getContainerVariants from "../../ContainerVariants";
+import {FaPause, FaPlay} from "react-icons/fa";
 
 const NewAlbum = ({albumData}) => {
 	const [curTrack, setCurTrack] = useState(albumData.songs[0]);
 
 	const dispatch = useDispatch();
+	const {meta, isPlaying} = useSelector((state) => state.player);
 
-	const clicking = () => {
-		dispatch(setActiveSong({song: curTrack, album: albumData, i: 0}));
+	const playHandler = () => {
+		if (meta?.id === albumData.id) {
+			dispatch(playPause(!isPlaying));
+		} else {
+			const meta = {
+				id: albumData.id,
+				cover: albumData.cover,
+				title: albumData.title,
+			};
+			dispatch(setActiveSong({song: curTrack,playlist:albumData.songs, meta, i: 0}));
+		}
 	};
 
 	return (
@@ -35,8 +46,10 @@ const NewAlbum = ({albumData}) => {
 					height={500}
 					blurDataURL={ImageUrlFor(albumData.cover).width(400).height(400).quality(5).blur(3).url()}
 					placeholder='blur'
-					onClick={clicking}
 				/>
+				<span className={classes["play-icon"]} onClick={playHandler}>
+					{isPlaying ? <FaPause /> : <FaPlay />}
+				</span>
 			</motion.div>
 			<motion.div className={classes.content} variants={getContainerVariants("right")}>
 				<h2 className='gradient-text'>New Album</h2>

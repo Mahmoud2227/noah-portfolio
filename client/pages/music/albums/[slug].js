@@ -1,25 +1,31 @@
-import {useState} from "react";
 import Head from "next/head";
 import Image from "next/image";
-import {IoPlay} from "react-icons/io5";
+import {FaPlay, FaPause} from "react-icons/fa";
 import {motion} from "framer-motion";
+import {useDispatch, useSelector} from "react-redux";
 
 import BrandLogo from "../../../components/UI/BrandLogo/BrandLogo";
-import AudioPlayer from "../../../components/audioPlayer/audioPlayer";
 import SongsList from "../../../components/SongsList/SongsList";
 import sanity from "../../../lib/sanity";
 import imageUrlFor from "../../../utils/imageUrlFor";
 import getContainerVariants from "../../../ContainerVariants";
+import {playPause, setActiveSong} from "../../../redux/features/playerSlice";
 
 import classes from "../../../styles/AlbumPage.module.scss";
 
 import cd from "../../../assets/cd.png";
 
 const AlbumPage = ({album}) => {
-	const [activeTrack, setActiveTrack] = useState(0);
-	const [curTrack, setCurTrack] = useState(album.songs[0]);
-	const getActiveTrack = (trackIndex) => {
-		setActiveTrack(trackIndex);
+	const dispatch = useDispatch();
+	const {meta, isPlaying} = useSelector((state) => state.player);
+
+	const handleClick = () => {
+		const meta = {
+			id: album.id,
+			title: album.title,
+			cover: album.cover,
+		};
+		dispatch(setActiveSong({song: album.songs[0], i: 0, playlist: album.songs, meta}));
 	};
 
 	return (
@@ -65,7 +71,15 @@ const AlbumPage = ({album}) => {
 									priority
 								/>
 								<span className={classes["play-icon"]}>
-									<IoPlay />
+									{album.id === meta?.id ? (
+										isPlaying ? (
+											<FaPause onClick={() => dispatch(playPause(false))} />
+										) : (
+											<FaPlay onClick={() => dispatch(playPause(true))} />
+										)
+									) : (
+										<FaPlay onClick={handleClick} />
+									)}
 								</span>
 							</div>
 						</div>
@@ -96,14 +110,7 @@ const AlbumPage = ({album}) => {
 						whileInView='onScreen'
 						viewport={{once: true}}
 						variants={getContainerVariants("right")}>
-						<AudioPlayer
-							trackList={album.songs}
-							getActiveTrack={getActiveTrack}
-							curTrack={curTrack}
-							setCurTrack={setCurTrack}
-							type='album'
-						/>
-						<SongsList songs={album.songs} activeTrack={activeTrack} setCurTrack={setCurTrack} />
+						<SongsList album={album} />
 					</motion.div>
 				</motion.div>
 			</main>
@@ -125,7 +132,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
 	const query = `*[_type == "album" && slug.current == "${context.params.slug}"][0]{
-    title,releaseDate,cover,songs,musicBrands,songs[]{'url':audio.asset->url,title,duration,_key}
+    title,releaseDate,cover,songs,musicBrands,songs[]{'url':audio.asset->url,title,duration,_key},"id":_id
   }`;
 	const album = await sanity.fetch(query);
 	return {

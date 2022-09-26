@@ -2,8 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {HYDRATE} from "next-redux-wrapper";
 
 const initialState = {
-	currentAlbum: "",
-	albumCover: "",
+	meta:null,
 	currentSongs: [],
 	currentIndex: null,
 	isActive: false,
@@ -19,14 +18,14 @@ const playerSlice = createSlice({
 		setActiveSong: (state, action) => {
 			state.activeSong = action.payload.song;
 
-			if (action.payload?.album) {
-				state.currentSongs = action.payload.album.songs;
-				state.currentAlbum = action.payload.album.title;
-				state.albumCover = action.payload.album.cover;
+			if (action.payload?.meta) {
+				state.currentSongs = action.payload.playlist;
+				state.meta = action.payload.meta;
 			}
 
 			state.currentIndex = action.payload.i;
 			state.isActive = true;
+			state.isPlaying = true;
 		},
 
 		nextSong: (state, action) => {

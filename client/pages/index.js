@@ -7,7 +7,7 @@ import Contact from "../components/Contact/Contact";
 import Hero from "../components/Hero/Hero";
 import NewAlbum from "../components/NewAlbum/NewAlbum";
 import NextEvent from "../components/NextEvent/NextEvent";
-import Subscription from "../components/Subscription/Subscription";
+// import Subscription from "../components/Subscription/Subscription";
 
 export default function Home({nextConcert, newAlbum, homeData}) {
 	return (
@@ -38,7 +38,7 @@ export const getStaticProps = async () => {
 		title,images,date,location,"slug":slug.current,"id":_id
 		},
 		"newAlbum":*[_type == 'album'] | order(releaseDate desc)[0]{
-		title,cover,songs[]{'url':audio.asset->url,title,duration,_key}
+		title,cover,songs[]{'url':audio.asset->url,title,duration,_key},"id":_id
 		},
 		"homeData": *[_type == 'siteSettings'][0] {
 			homeBackground,saying1,saying2

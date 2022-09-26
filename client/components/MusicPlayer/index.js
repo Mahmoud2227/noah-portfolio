@@ -25,8 +25,7 @@ const playerVariants = {
 
 const MusicPlayer = () => {
 	const {
-		currentAlbum,
-		albumCover,
+		meta,
 		activeSong,
 		currentSongs,
 		currentIndex,
@@ -87,8 +86,8 @@ const MusicPlayer = () => {
 				isPlaying={isPlaying}
 				isActive={isActive}
 				activeSong={activeSong}
-				cover={albumCover}
-				albumTitle={currentAlbum}
+				cover={meta?.cover}
+				albumTitle={meta?.title}
 			/>
 			<div className={classes.player}>
 				<Controls
