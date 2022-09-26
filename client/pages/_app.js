@@ -1,29 +1,20 @@
-import {useState, useEffect, useMemo} from "react";
+import {useState, useEffect} from "react";
 import {useRouter} from "next/router";
 import Head from "next/head";
 import Script from "next/script";
+import {AnimatePresence} from "framer-motion";
 
 import sanity from "../lib/sanity";
+import {wrapper} from "../redux/store";
+import {Provider} from "react-redux";
 
 import NavBar from "../components/NavBar/NavBar";
 import Footer from "../components/Footer/Footer";
+import MusicPlayer from "../components/MusicPlayer";
 import PreLoading from "../components/PreLoading/PreLoading";
 import Spinner from "../components/UI/Spinner/Spinner";
 
 import "../styles/globals.scss";
-import MusicPlayer from "../components/MusicPlayer";
-
-import {wrapper} from "../redux/store";
-import {Provider} from "react-redux";
-
-const playerVariants = {
-	hidden: {
-		bottom: "-100%",
-	},
-	visible: {
-		bottom: "0",
-	},
-};
 
 function MyApp({Component, ...rest}) {
 	const {props, store} = wrapper.useWrappedStore(rest);
@@ -93,9 +84,9 @@ function MyApp({Component, ...rest}) {
 			{isLoading && <PreLoading />}
 			{brands && <NavBar brands={brands.music} />}
 			{!pageIsLoading && <Component {...props.pageProps} />}
-			{/* <div className='musicPlayer_wrapper'>
-			</div> */}
+			<AnimatePresence>
 				<MusicPlayer />
+			</AnimatePresence>
 			{pageIsLoading && <Spinner />}
 			<Footer brands={brands.social} />
 		</Provider>

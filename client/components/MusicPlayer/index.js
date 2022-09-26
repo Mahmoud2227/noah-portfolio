@@ -13,26 +13,26 @@ import classes from "./musicPlayer.module.scss";
 import Toggle from "./Toggle/Toggle";
 
 const playerVariants = {
+	initial: {
+		opacity: 0,
+		bottom: "-7rem",
+	},
 	hidden: {
+		opacity: 1,
 		bottom: "-5rem",
 		paddingTop: "2rem",
 	},
 	visible: {
+		opacity: 1,
 		bottom: "0rem",
 		paddingTop: "0rem",
 	},
 };
 
 const MusicPlayer = () => {
-	const {
-		meta,
-		activeSong,
-		currentSongs,
-		currentIndex,
-		isActive,
-		isPlaying,
-		isHidden,
-	} = useSelector((state) => state.player);
+	const {meta, activeSong, currentSongs, currentIndex, isActive, isPlaying, isHidden} = useSelector(
+		(state) => state.player
+	);
 	const [duration, setDuration] = useState(0);
 	const [seekTime, setSeekTime] = useState(0);
 	const [appTime, setAppTime] = useState(0);
@@ -76,60 +76,64 @@ const MusicPlayer = () => {
 	};
 
 	return (
-		<motion.div
-			className={classes.body}
-			variants={playerVariants}
-			initial='visible'
-			animate={isHidden ? "hidden" : "visible"}>
-			<Toggle isHidden={isHidden} toggleHidden={() => dispatch(toggleHidden())} />
-			<Track
-				isPlaying={isPlaying}
-				isActive={isActive}
-				activeSong={activeSong}
-				cover={meta?.cover}
-				albumTitle={meta?.title}
-			/>
-			<div className={classes.player}>
-				<Controls
-					isPlaying={isPlaying}
-					isActive={isActive}
-					repeat={repeat}
-					setRepeat={setRepeat}
-					shuffle={shuffle}
-					setShuffle={setShuffle}
-					currentSongs={currentSongs}
-					handlePlayPause={handlePlayPause}
-					handlePrevSong={handlePrevSong}
-					handleNextSong={handleNextSong}
-				/>
-				<SeekBar
-					value={appTime}
-					min='0'
-					max={duration}
-					onInput={(event) => setSeekTime(event.target.value)}
-					setSeekTime={setSeekTime}
-					appTime={appTime}
-				/>
-				<Player
-					activeSong={activeSong}
-					volume={volume}
-					isPlaying={isPlaying}
-					seekTime={seekTime}
-					repeat={repeat}
-					currentIndex={currentIndex}
-					onEnded={handleNextSong}
-					onTimeUpdate={(event) => setAppTime(event.target.currentTime)}
-					onLoadedData={(event) => setDuration(event.target.duration)}
-				/>
-			</div>
-			<VolumeBar
-				value={volume}
-				min='0'
-				max='1'
-				onChange={(event) => setVolume(event.target.value)}
-				setVolume={setVolume}
-			/>
-		</motion.div>
+		<>
+			{isActive && (
+				<motion.div
+					className={classes.body}
+					variants={playerVariants}
+					initial='initial'
+					animate={isHidden ? "hidden" : "visible"}>
+					<Toggle isHidden={isHidden} toggleHidden={() => dispatch(toggleHidden())} />
+					<Track
+						isPlaying={isPlaying}
+						isActive={isActive}
+						activeSong={activeSong}
+						cover={meta?.cover}
+						albumTitle={meta?.title}
+					/>
+					<div className={classes.player}>
+						<Controls
+							isPlaying={isPlaying}
+							isActive={isActive}
+							repeat={repeat}
+							setRepeat={setRepeat}
+							shuffle={shuffle}
+							setShuffle={setShuffle}
+							currentSongs={currentSongs}
+							handlePlayPause={handlePlayPause}
+							handlePrevSong={handlePrevSong}
+							handleNextSong={handleNextSong}
+						/>
+						<SeekBar
+							value={appTime}
+							min='0'
+							max={duration}
+							onInput={(event) => setSeekTime(event.target.value)}
+							setSeekTime={setSeekTime}
+							appTime={appTime}
+						/>
+						<Player
+							activeSong={activeSong}
+							volume={volume}
+							isPlaying={isPlaying}
+							seekTime={seekTime}
+							repeat={repeat}
+							currentIndex={currentIndex}
+							onEnded={handleNextSong}
+							onTimeUpdate={(event) => setAppTime(event.target.currentTime)}
+							onLoadedData={(event) => setDuration(event.target.duration)}
+						/>
+					</div>
+					<VolumeBar
+						value={volume}
+						min='0'
+						max='1'
+						onChange={(event) => setVolume(event.target.value)}
+						setVolume={setVolume}
+					/>
+				</motion.div>
+			)}
+		</>
 	);
 };
 
