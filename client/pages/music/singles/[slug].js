@@ -6,7 +6,7 @@ import {FaPlay, FaPause} from "react-icons/fa";
 import BrandLogo from "../../../components/UI/BrandLogo/BrandLogo";
 import sanity from "../../../lib/sanity";
 import imageUrlFor from "../../../utils/imageUrlFor";
-import getContainerVariants from "../../../ContainerVariants";
+import getContainerVariants from "../../../utils/ContainerVariants";
 import {useSelector, useDispatch} from "react-redux";
 import {setActiveSong,playPause} from "../../../redux/features/playerSlice";
 

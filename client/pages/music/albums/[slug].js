@@ -8,7 +8,7 @@ import BrandLogo from "../../../components/UI/BrandLogo/BrandLogo";
 import SongsList from "../../../components/SongsList/SongsList";
 import sanity from "../../../lib/sanity";
 import imageUrlFor from "../../../utils/imageUrlFor";
-import getContainerVariants from "../../../ContainerVariants";
+import getContainerVariants from "../../../utils/ContainerVariants";
 import {playPause, setActiveSong} from "../../../redux/features/playerSlice";
 
 import classes from "../../../styles/AlbumPage.module.scss";

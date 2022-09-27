@@ -7,7 +7,7 @@ import {motion} from "framer-motion";
 import sanity from "../../lib/sanity";
 import imageUrlFor from "../../utils/imageUrlFor";
 import formatDate from "../../utils/formatDate";
-import getContainerVariants from "../../ContainerVariants";
+import getContainerVariants from "../../utils/ContainerVariants";
 
 import Button from "../UI/Button/Button";
 

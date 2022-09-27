@@ -15,6 +15,7 @@ import PreLoading from "../components/PreLoading/PreLoading";
 import Spinner from "../components/UI/Spinner/Spinner";
 
 import "../styles/globals.scss";
+import Loader from "../components/UI/Loader/Loader";
 
 function MyApp({Component, ...rest}) {
 	const {props, store} = wrapper.useWrappedStore(rest);
@@ -87,7 +88,8 @@ function MyApp({Component, ...rest}) {
 			<AnimatePresence>
 				<MusicPlayer />
 			</AnimatePresence>
-			{pageIsLoading && <Spinner />}
+			{/* <Loader/> */}
+			{pageIsLoading && <Loader />}
 			<Footer brands={brands.social} />
 		</Provider>
 	);

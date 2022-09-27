@@ -2,6 +2,7 @@ import {useState} from "react";
 import Image from "next/image";
 import {motion} from "framer-motion";
 import ImageUrlFor from "../../utils/imageUrlFor";
+import {FaPause, FaPlay} from "react-icons/fa";
 import AudioPlayer from "../audioPlayer/audioPlayer";
 
 import {useDispatch, useSelector} from "react-redux";
@@ -10,8 +11,7 @@ import {setActiveSong, playPause} from "../../redux/features/playerSlice";
 
 import classes from "./newAlbum.module.scss";
 
-import getContainerVariants from "../../ContainerVariants";
-import {FaPause, FaPlay} from "react-icons/fa";
+import getContainerVariants from "../../utils/ContainerVariants";
 
 const NewAlbum = ({albumData}) => {
 	const [curTrack, setCurTrack] = useState(albumData.songs[0]);
