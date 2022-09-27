@@ -8,7 +8,7 @@ import sanity from "../../../lib/sanity";
 import imageUrlFor from "../../../utils/imageUrlFor";
 import getContainerVariants from "../../../ContainerVariants";
 import {useSelector, useDispatch} from "react-redux";
-import {setActiveSong} from "../../../redux/features/playerSlice";
+import {setActiveSong,playPause} from "../../../redux/features/playerSlice";
 
 import classes from "../../../styles/SinglePage.module.scss";
 
@@ -69,7 +69,7 @@ const SinglePage = ({single}) => {
 									height={300}
 									priority
 								/>
-								<span className={classes["play-icon"]} onClick={handleClick}>
+								<span className={classes["play-icon"]}>
 									{single.id === meta?.id ? (
 										isPlaying ? (
 											<FaPause onClick={() => dispatch(playPause(false))} />
