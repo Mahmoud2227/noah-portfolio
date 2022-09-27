@@ -1,22 +1,32 @@
-import {useState} from "react";
 import Head from "next/head";
-import {motion} from "framer-motion";
-
 import Image from "next/image";
+import {motion} from "framer-motion";
+import {FaPlay, FaPause} from "react-icons/fa";
+
 import BrandLogo from "../../../components/UI/BrandLogo/BrandLogo";
 import sanity from "../../../lib/sanity";
 import imageUrlFor from "../../../utils/imageUrlFor";
-import {IoPlay} from "react-icons/io5";
-import AudioPlayer from "../../../components/audioPlayer/audioPlayer";
-
 import getContainerVariants from "../../../ContainerVariants";
+import {useSelector, useDispatch} from "react-redux";
+import {setActiveSong} from "../../../redux/features/playerSlice";
 
 import classes from "../../../styles/SinglePage.module.scss";
 
 import cd from "../../../assets/cd.png";
 
 const SinglePage = ({single}) => {
-	const [curTrack, setCurTrack] = useState(single);
+	const dispatch = useDispatch();
+	const {meta, isPlaying} = useSelector((state) => state.player);
+
+	const handleClick = () => {
+		const meta = {
+			id: single.id,
+			title: null,
+			cover: single.cover,
+		};
+		dispatch(setActiveSong({song: single, i: 0, playlist: [single], meta}));
+	}
+
 	return (
 		<>
 			<Head>
@@ -59,8 +69,16 @@ const SinglePage = ({single}) => {
 									height={300}
 									priority
 								/>
-								<span className={classes["play-icon"]}>
-									<IoPlay />
+								<span className={classes["play-icon"]} onClick={handleClick}>
+									{single.id === meta?.id ? (
+										isPlaying ? (
+											<FaPause onClick={() => dispatch(playPause(false))} />
+										) : (
+											<FaPlay onClick={() => dispatch(playPause(true))} />
+										)
+									) : (
+										<FaPlay onClick={handleClick} />
+									)}
 								</span>
 							</div>
 						</div>
@@ -91,14 +109,7 @@ const SinglePage = ({single}) => {
 						initial='offScreen'
 						whileInView='onScreen'
 						viewport={{once: true}}
-						variants={getContainerVariants("right")}>
-						<AudioPlayer
-							trackList={[single]}
-							curTrack={curTrack}
-							setCurTrack={setCurTrack}
-							type='single'
-						/>
-					</motion.div>
+						variants={getContainerVariants("right")}></motion.div>
 				</div>
 			</main>
 		</>
@@ -119,7 +130,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
 	const query = `*[_type=='single' && slug.current == '${context.params.slug}'][0]{
-  title,cover,releaseDate,musicBrands,
+  title,cover,releaseDate,musicBrands,"id":_id,
   "url": audio.asset -> url
   }`;
 	const single = await sanity.fetch(query);
