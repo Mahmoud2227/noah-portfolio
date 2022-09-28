@@ -1,21 +1,17 @@
-import {useState} from "react";
 import Image from "next/image";
 import {motion} from "framer-motion";
-import ImageUrlFor from "../../utils/imageUrlFor";
 import {FaPause, FaPlay} from "react-icons/fa";
-import AudioPlayer from "../audioPlayer/audioPlayer";
 
 import {useDispatch, useSelector} from "react-redux";
-
 import {setActiveSong, playPause} from "../../redux/features/playerSlice";
+
+import ImageUrlFor from "../../utils/imageUrlFor";
+import getContainerVariants from "../../utils/ContainerVariants";
 
 import classes from "./newAlbum.module.scss";
 
-import getContainerVariants from "../../utils/ContainerVariants";
 
 const NewAlbum = ({albumData}) => {
-	const [curTrack, setCurTrack] = useState(albumData.songs[0]);
-
 	const dispatch = useDispatch();
 	const {meta, isPlaying} = useSelector((state) => state.player);
 
@@ -58,12 +54,6 @@ const NewAlbum = ({albumData}) => {
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vitae magna at elit porta
 					aliquam.
 				</p>
-				<AudioPlayer
-					trackList={albumData.songs}
-					type='album'
-					curTrack={curTrack}
-					setCurTrack={setCurTrack}
-				/>
 			</motion.div>
 		</motion.div>
 	);

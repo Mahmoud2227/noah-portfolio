@@ -12,10 +12,9 @@ import NavBar from "../components/NavBar/NavBar";
 import Footer from "../components/Footer/Footer";
 import MusicPlayer from "../components/MusicPlayer";
 import PreLoading from "../components/PreLoading/PreLoading";
-import Spinner from "../components/UI/Spinner/Spinner";
+import Loader from "../components/UI/Loader/Loader";
 
 import "../styles/globals.scss";
-import Loader from "../components/UI/Loader/Loader";
 
 function MyApp({Component, ...rest}) {
 	const {props, store} = wrapper.useWrappedStore(rest);
@@ -88,7 +87,6 @@ function MyApp({Component, ...rest}) {
 			<AnimatePresence>
 				<MusicPlayer />
 			</AnimatePresence>
-			{/* <Loader/> */}
 			{pageIsLoading && <Loader />}
 			<Footer brands={brands.social} />
 		</Provider>
