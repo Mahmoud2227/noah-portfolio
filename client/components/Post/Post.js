@@ -8,22 +8,33 @@ import getTimeDiff from "../../utils/getTimeDiff";
 
 import classes from "./post.module.scss";
 
-const postVariants = {
-	hidden: {
-		opacity: 0,
-		y: "50%",
-	},
-	visible: {
-		opacity: 1,
-		y: 0,
-	},
+const getPostVariants = (index) => {
+	return {
+		hidden: {
+			opacity: 0,
+			y: "50%",
+			x: index % 2 == 0 ? "50%" : "-50%",
+		},
+		visible: {
+			opacity: 1,
+			y: 0,
+			x: 0,
+			transition: {
+				duration: 0.5,
+			},
+		},
+	};
 };
 
-const Post = ({post}) => {
+const Post = ({post, index}) => {
 	const PublishedDate = getTimeDiff(new Date(post._createdAt));
 
 	return (
-		<motion.article className={classes.body} variants={postVariants} >
+		<motion.article
+			className={classes.body}
+			variants={getPostVariants(index)}
+			whileInView={"visible"}
+			initial='hidden'>
 			<Link href={`/blog/${post.slug.current}`}>
 				<a className={classes["cover-container"]} title={post.title}>
 					<Image src={ImageUrlFor(post.coverImage).url()} layout='fill' objectFit='cover' />

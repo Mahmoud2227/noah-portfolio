@@ -52,8 +52,8 @@ const index = ({posts, postsLength}) => {
 					initial='hidden'
 					animate='visible'
 					variants={containerVariants}>
-					{postsList.map((post) => (
-						<Post post={post} key={post._id} />
+					{postsList.map((post,i) => (
+						<Post post={post} index={i} key={post._id} />
 					))}
 				</motion.div>
 				{pagination * 5 < postsLength && (
