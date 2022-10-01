@@ -24,7 +24,7 @@ const NewAlbum = ({albumData}) => {
 				cover: albumData.cover,
 				title: albumData.title,
 			};
-			dispatch(setActiveSong({song: curTrack,playlist:albumData.songs, meta, i: 0}));
+			dispatch(setActiveSong({song: albumData.songs[0], playlist: albumData.songs, meta, i: 0}));
 		}
 	};
 
