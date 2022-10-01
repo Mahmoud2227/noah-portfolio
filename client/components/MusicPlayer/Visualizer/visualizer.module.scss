@@ -1,0 +1,17 @@
+#canvas, #glow-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  pointer-events: none;
+}
+
+#canvas {
+  z-index: 1;
+}
+
+#glow-layer {
+  z-index: 0;
+}

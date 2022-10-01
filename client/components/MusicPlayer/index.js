@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {motion} from "framer-motion";
 
@@ -11,6 +11,7 @@ import VolumeBar from "./VolumeBar/VolumeBar";
 
 import classes from "./musicPlayer.module.scss";
 import Toggle from "./Toggle/Toggle";
+import Visualizer from "./Visualizer/Visualizer";
 
 const playerVariants = {
 	initial: {
@@ -30,6 +31,7 @@ const playerVariants = {
 };
 
 const MusicPlayer = () => {
+	const ref = useRef(null);
 	const {meta, activeSong, currentSongs, currentIndex, isActive, isPlaying, isHidden} = useSelector(
 		(state) => state.player
 	);
@@ -122,6 +124,7 @@ const MusicPlayer = () => {
 							onEnded={handleNextSong}
 							onTimeUpdate={(event) => setAppTime(event.target.currentTime)}
 							onLoadedData={(event) => setDuration(event.target.duration)}
+							ref={ref}
 						/>
 					</div>
 					<VolumeBar
@@ -131,6 +134,7 @@ const MusicPlayer = () => {
 						onChange={(event) => setVolume(event.target.value)}
 						setVolume={setVolume}
 					/>
+					<Visualizer audio={ref?.current} />
 				</motion.div>
 			)}
 		</>
