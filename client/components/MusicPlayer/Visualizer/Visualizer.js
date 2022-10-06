@@ -1,6 +1,6 @@
 import {useRef, useEffect} from "react";
 import {createPortal} from "react-dom"
-import BubbleVisualizer from "./BubbleVisualizer";
+import BubbleVisualizer from "./BubbleVisualizer/BubbleVisualizer";
 
 import classes from "./visualizer.module.scss";
 

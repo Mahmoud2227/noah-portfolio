@@ -1,4 +1,4 @@
-import Vector2 from "./Vector2.min";
+import Vector2 from "../Vector2";
 
 class Particle {
 	constructor(index, parent) {
