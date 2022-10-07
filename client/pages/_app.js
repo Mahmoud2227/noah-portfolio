@@ -13,6 +13,7 @@ import Footer from "../components/Footer/Footer";
 import MusicPlayer from "../components/MusicPlayer";
 import PreLoading from "../components/PreLoading/PreLoading";
 import Loader from "../components/UI/Loader/Loader";
+import SettingsModal from "../components/SettingsModal";
 
 import "../styles/globals.scss";
 
@@ -88,6 +89,7 @@ function MyApp({Component, ...rest}) {
 				<MusicPlayer />
 			</AnimatePresence>
 			{pageIsLoading && <Loader />}
+			<SettingsModal />
 			<Footer brands={brands.social} />
 		</Provider>
 	);
