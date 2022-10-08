@@ -8,12 +8,8 @@ import sanity from "../lib/sanity";
 import {wrapper} from "../redux/store";
 import {Provider} from "react-redux";
 
-import NavBar from "../components/NavBar/NavBar";
-import Footer from "../components/Footer/Footer";
-import MusicPlayer from "../components/MusicPlayer";
-import PreLoading from "../components/PreLoading/PreLoading";
+import { NavBar,Footer,MusicPlayer,PreLoading,SettingsModal } from "../components";
 import Loader from "../components/UI/Loader/Loader";
-import SettingsModal from "../components/SettingsModal";
 
 import "../styles/globals.scss";
 

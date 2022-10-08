@@ -1,6 +1,7 @@
 import Head from "next/head";
 
-import Contact from "../components/Contact/Contact";
+import { Contact } from "../components";
+
 import sanity from "../lib/sanity";
 import imageUrlFor from "../utils/imageUrlFor";
 

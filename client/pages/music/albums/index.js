@@ -2,7 +2,8 @@ import Head from "next/head";
 import {motion} from "framer-motion";
 
 import sanity from "../../../lib/sanity";
-import MusicCard from "../../../components/MusicCard/MusicCard";
+
+import { MusicCard } from "../../../components";
 
 import classes from "../../../styles/Albums.module.scss";
 

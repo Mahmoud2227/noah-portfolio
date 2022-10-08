@@ -3,11 +3,7 @@ import Head from "next/head";
 import sanity from "../lib/sanity";
 import formatDate from "../utils/formatDate";
 
-import Contact from "../components/Contact/Contact";
-import Hero from "../components/Hero/Hero";
-import NewAlbum from "../components/NewAlbum/NewAlbum";
-import NextEvent from "../components/NextEvent/NextEvent";
-// import Subscription from "../components/Subscription/Subscription";
+import {Contact,Hero,NewAlbum,NextEvent} from "../components"
 
 export default function Home({nextConcert, newAlbum, homeData}) {
 	return (

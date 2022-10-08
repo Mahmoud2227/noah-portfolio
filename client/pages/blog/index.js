@@ -2,9 +2,10 @@ import {useState, useEffect} from "react";
 import Head from "next/head";
 import {motion} from "framer-motion";
 
-import Button from "../../components/UI/Button/Button";
-import Post from "../../components/Post/Post";
 import sanity from "../../lib/sanity";
+
+import Button from "../../components/UI/Button/Button";
+import {Post} from "../../components";
 
 import classes from "../../styles/Blog.module.scss";
 

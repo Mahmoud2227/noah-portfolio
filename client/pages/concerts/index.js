@@ -1,8 +1,8 @@
 import Head from "next/head";
 import {motion} from "framer-motion";
 
-import NextEvent from "../../components/NextEvent/NextEvent";
-import ConcertCard from "../../components/ConcertCard/ConcertCard";
+import { NextEvent,ConcertCard } from "../../components";
+
 import sanity from "../../lib/sanity";
 import formatDate from "../../utils/formatDate";
 

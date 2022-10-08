@@ -2,13 +2,14 @@ import Head from "next/head";
 import Image from "next/image";
 import {motion} from "framer-motion";
 import {FaPlay, FaPause} from "react-icons/fa";
+import {useSelector, useDispatch} from "react-redux";
+import {setActiveSong,playPause} from "../../../redux/features/playerSlice";
 
-import BrandLogo from "../../../components/UI/BrandLogo/BrandLogo";
 import sanity from "../../../lib/sanity";
 import imageUrlFor from "../../../utils/imageUrlFor";
 import getContainerVariants from "../../../utils/ContainerVariants";
-import {useSelector, useDispatch} from "react-redux";
-import {setActiveSong,playPause} from "../../../redux/features/playerSlice";
+
+import BrandLogo from "../../../components/UI/BrandLogo/BrandLogo";
 
 import classes from "../../../styles/SinglePage.module.scss";
 

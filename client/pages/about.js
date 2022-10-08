@@ -2,7 +2,8 @@ import Head from "next/head";
 import Image from "next/image";
 import imageUrlFor from "../utils/imageUrlFor";
 
-import Testimonials from "../components/Testimonials/Testimonials";
+import { Testimonials } from "../components";
+
 import sanity from "../lib/sanity";
 
 import classes from "../styles/About.module.scss";
