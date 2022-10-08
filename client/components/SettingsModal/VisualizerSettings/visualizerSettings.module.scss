@@ -1,34 +1,51 @@
 .visualizer_options {
-	display: flex;
-	gap: 2rem;
-
-	input {
-		position: absolute;
-		visibility: hidden;
-
-		&:checked + label {
-			background: #202022cc;
-		}
+	h2 {
+		font-size: 1rem;
 	}
 
-	label {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		gap: 0.5rem;
+	form {
+		.types {
+			display: flex;
+			justify-content: center;
+			gap: 2rem;
+			margin-block: 1.2rem;
 
-		background-color: #ccc;
-		border-radius: 5px;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-		width: fit-content;
-		width: 100px;
-		height: 100px;
+			input {
+				position: absolute;
+				visibility: hidden;
 
-		cursor: pointer;
+				&:checked + label {
+					background: #202022cc;
+				}
+			}
 
-		svg {
-			font-size: 1.5rem;
+			label {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				gap: 0.5rem;
+
+				background-color: #ccc;
+				border-radius: 5px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+				width: fit-content;
+				width: 100px;
+				height: 100px;
+
+				cursor: pointer;
+
+				svg {
+					font-size: 1.5rem;
+				}
+			}
+		}
+
+		.options {
+			h3 {
+				margin-bottom: 0.5rem;
+				font-size: 0.8rem;
+			}
 		}
 	}
 }

@@ -5,13 +5,18 @@ const initialState = {
 	isHidden: true,
 	theme: "dark",
 	visualizer: {
-		type: "bubbles",
-		options: {},
+		type: "spectrum",
+		options: {
+			backlight: true,
+			bars: true,
+			particles: true,
+			glow: true,
+		},
 	},
 };
 
-const optionsSlice = createSlice({
-	name: "options",
+const settingsSlice = createSlice({
+	name: "settings",
 	initialState,
 	reducers: {
 		toggleHidden: (state) => {
@@ -28,6 +33,6 @@ const optionsSlice = createSlice({
 	},
 });
 
-export const {setVisualizer, toggleHidden} = optionsSlice.actions;
+export const {setVisualizer, toggleHidden} = settingsSlice.actions;
 
-export default optionsSlice.reducer;
+export default settingsSlice.reducer;

@@ -2,13 +2,13 @@ import {configureStore} from "@reduxjs/toolkit";
 import {createWrapper} from "next-redux-wrapper";
 
 import playerReducer from "./features/playerSlice";
-import optionsReducer from "./features/optionsSlice";
+import settingsReducer from "./features/settingsSlice";
 
 export const makeStore = () => {
 	return configureStore({
 		reducer: {
 			player: playerReducer,
-			options: optionsReducer,
+			settings: settingsReducer,
 		},
 	});
 };

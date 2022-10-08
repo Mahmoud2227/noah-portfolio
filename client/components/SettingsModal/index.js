@@ -3,13 +3,13 @@ import VisualizerOptions from './VisualizerSettings/VisualizerSettings'
 
 import classes from './settingsModal.module.scss'
 
-const Options = () => {
+const settingsModal = () => {
   return (
     <div className={classes.body}>
-      <h1>Options</h1>
+      <h1>Settings</h1>
       <VisualizerOptions/>
     </div>
   )
 }
 
-export default Options
+export default settingsModal;
