@@ -257,28 +257,18 @@ class ParticleController extends VectorArrayObjectController {
 }
 
 class AudioController {
-	constructor(audio) {
-    this.audio = audio;
+	constructor(analyser) {
+		this.analyser = analyser;
 		this.initAudio();
 	}
 
 	initAudio() {
-		this.ctx = new AudioContext();
-		this.source = this.ctx.createMediaElementSource(this.audio);
+		// this.analyser.smoothingTimeConstant = 0.88;
+		// this.analyser.minDecibels = -140;
+		// this.analyser.maxDecibels = -10;
+		// this.analyser.fftSize = 1024;
 
-		this.gainNode = this.ctx.createGain();
-
-		this.analyser = this.ctx.createAnalyser();
-		this.analyser.smoothingTimeConstant = 0.88;
-		this.analyser.minDecibels = -140;
-		this.analyser.maxDecibels = -10;
-		this.analyser.fftSize = 1024;
-
-		this.source.connect(this.gainNode);
-		this.gainNode.connect(this.analyser);
-		this.analyser.connect(this.ctx.destination);
-
-		this.gainNode.gain.value = 0.8;
+		// this.gainNode.gain.value = 0.8;
 		this.freqData = new Uint8Array(this.analyser.frequencyBinCount);
 	}
 	getFrequencyData() {
@@ -289,7 +279,7 @@ class AudioController {
 
 class Canvas {
 	constructor(canvas) {
-    this.canvas = canvas;
+		this.canvas = canvas;
 		this.ctx = this.canvas.getContext("2d");
 		this.frame = document.createElement("canvas");
 		this.buffer = this.frame.getContext("2d");
@@ -341,16 +331,18 @@ class Canvas {
 }
 
 class SpectrumVisualizer {
-	constructor(canvas, audio) {
+	constructor(canvas, analyser, requestIdRef) {
 		this.canvas = new Canvas(canvas);
-		this.audio = new AudioController(audio);
+		this.audio = new AudioController(analyser);
 		this.particles = new ParticleController(
 			this.audio.analyser.frequencyBinCount,
-			this.audio.analyser.frequencyBinCount/2,
+			this.audio.analyser.frequencyBinCount / 2,
 			this.canvas
 		);
-    this.drawParticles = true;
-		this.update();
+		this.requestIdRef = requestIdRef;
+		this.drawParticles = true;
+		// this.update();
+		this.draw(this.audio.getFrequencyData());
 	}
 	draw(freqData) {
 		const spectrumWidth = 0.5 * freqData.length;
@@ -415,9 +407,8 @@ class SpectrumVisualizer {
 	}
 	update() {
 		this.draw(this.audio.getFrequencyData());
-		window.requestAnimationFrame(this.update.bind(this));
+		this.requestIdRef.current = requestAnimationFrame(this.update.bind(this));
 	}
 }
-
 
 export default SpectrumVisualizer;

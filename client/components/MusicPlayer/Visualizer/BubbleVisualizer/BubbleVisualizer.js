@@ -48,18 +48,17 @@ class Particle {
 }
 
 class BubbleVisualizer {
-	constructor(canvas, glowLayer, audio) {
+	constructor(canvas, glowLayer, analyser, requestIdRef) {
 		this.globalMovement = new Vector2();
-    this.canvas = canvas;
-    this.glowLayer = glowLayer;
-    this.audio = audio;
+		this.canvas = canvas;
+		this.glowLayer = glowLayer;
+		this.analyser = analyser;
+		this.requestIdRef = requestIdRef;
 		this.initCanvas();
 		this.initAudio();
 		this.populate();
-		this.render();
-		window.onresize = () => {
-			this.resize();
-		};
+		// this.render();
+		window.addEventListener("resize", this.resize.bind(this));
 	}
 	initCanvas() {
 		this.tick = 0;
@@ -74,22 +73,13 @@ class BubbleVisualizer {
 		this.canvas.height = this.glowLayer.height = this.dimensions.y = window.innerHeight;
 	}
 	initAudio() {
-		this.audioCtx = new AudioContext();
+		// this.analyser.smoothingTimeConstant = 0.92;
+		// this.analyser.fftSize = 2048;
+		// this.analyser.minDecibels = -125;
+		// this.analyser.maxDecibels = -10;
 
-		this.source = this.audioCtx.createMediaElementSource(this.audio);
-		this.gainNode = this.audioCtx.createGain();
+		// this.gainNode.gain.value = this.audio.volume;
 
-		this.analyser = this.audioCtx.createAnalyser();
-		this.analyser.smoothingTimeConstant = 0.92;
-		this.analyser.fftSize = 2048;
-		this.analyser.minDecibels = -125;
-		this.analyser.maxDecibels = -10;
-
-		this.source.connect(this.gainNode);
-		this.gainNode.connect(this.analyser);
-		this.analyser.connect(this.audioCtx.destination);
-
-		this.gainNode.gain.value = this.audio.volume;
 		this.freqData = new Uint8Array(this.analyser.frequencyBinCount);
 	}
 	populate() {
@@ -125,7 +115,7 @@ class BubbleVisualizer {
 		if (this.wave) this.globalMovement.x = Math.sin(this.tick * 0.01) * 2;
 		this.analyser.getByteFrequencyData(this.freqData);
 		this.update();
-		window.requestAnimationFrame(this.render.bind(this));
+		this.requestIdRef.current = requestAnimationFrame(this.render.bind(this));
 	}
 }
 
