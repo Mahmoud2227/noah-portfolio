@@ -32,7 +32,7 @@ const VisualizerOptions = {
 			default: true,
 		},
 		{
-			name: "ShowBars",
+			name: "showBars",
 			type: "checkbox",
 			label: "Bars",
 			default: true,
@@ -82,6 +82,7 @@ const VisualizerSettings = () => {
 						id='bubbles'
 						name='visualizer'
 						value='bubbles'
+						checked={settings.type === "bubbles"}
 						onChange={onVisualizerTypeChange}
 					/>
 					<label htmlFor='bubbles'>
@@ -93,6 +94,7 @@ const VisualizerSettings = () => {
 						id='bars'
 						name='visualizer'
 						value='bars'
+						checked={settings.type === "bars"}
 						onChange={onVisualizerTypeChange}
 					/>
 					<label htmlFor='bars'>
@@ -104,7 +106,7 @@ const VisualizerSettings = () => {
 						id='spectrum'
 						name='visualizer'
 						value='spectrum'
-						defaultChecked
+						checked={settings.type === "spectrum"}
 						onChange={onVisualizerTypeChange}
 					/>
 					<label htmlFor='spectrum'>
@@ -121,7 +123,7 @@ const VisualizerSettings = () => {
 									type={option.type}
 									id={option.name}
 									name={option.name}
-									defaultChecked={option.default}
+									checked={settings?.options[option.name]}
 									onChange={onOptionChange}
 								/>
 								<label htmlFor={option.name}>{option.label}</label>

@@ -1,14 +1,17 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {HYDRATE} from "next-redux-wrapper";
 
+const localStorageVisualizer =
+	typeof window !== "undefined" ? JSON.parse(localStorage?.getItem("visualizer")) : null;
+
 const initialState = {
 	isHidden: true,
 	theme: "dark",
-	visualizer: {
+	visualizer: localStorageVisualizer || {
 		type: "spectrum",
 		options: {
 			backlight: true,
-			bars: true,
+			showBars: true,
 			particles: true,
 			glow: true,
 		},
@@ -24,6 +27,7 @@ const settingsSlice = createSlice({
 		},
 		setVisualizer: (state, action) => {
 			state.visualizer = action.payload;
+			localStorage.setItem("visualizer", JSON.stringify(action.payload));
 		},
 	},
 	extraReducers: {
