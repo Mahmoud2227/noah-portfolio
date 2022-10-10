@@ -32,7 +32,7 @@ const VisualizerOptions = {
 			default: true,
 		},
 		{
-			name: "bars",
+			name: "ShowBars",
 			type: "checkbox",
 			label: "Bars",
 			default: true,
@@ -64,6 +64,13 @@ const VisualizerSettings = () => {
 		});
 		dispatch(setVisualizer({type, options}));
 	};
+
+	const onOptionChange = (e) => {
+		const {name, value, type} = e.target;
+		const options = {...settings.options};
+		options[name] = type === "checkbox" ? e.target.checked : value;
+		dispatch(setVisualizer({type: settings.type, options}));
+	}
 
 	return (
 		<div className={classes["visualizer_options"]}>
@@ -115,6 +122,7 @@ const VisualizerSettings = () => {
 									id={option.name}
 									name={option.name}
 									defaultChecked={option.default}
+									onChange={onOptionChange}
 								/>
 								<label htmlFor={option.name}>{option.label}</label>
 							</div>

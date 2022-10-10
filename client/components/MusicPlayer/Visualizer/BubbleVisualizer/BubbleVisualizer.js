@@ -48,12 +48,12 @@ class Particle {
 }
 
 class BubbleVisualizer {
-	constructor(canvas, glowLayer, analyser, requestIdRef) {
+	constructor(canvas, glowLayer, analyser, options) {
 		this.globalMovement = new Vector2();
 		this.canvas = canvas;
 		this.glowLayer = glowLayer;
 		this.analyser = analyser;
-		this.requestIdRef = requestIdRef;
+		this.options = options;
 		this.initCanvas();
 		this.initAudio();
 		this.populate();
@@ -62,7 +62,7 @@ class BubbleVisualizer {
 	}
 	initCanvas() {
 		this.tick = 0;
-		this.wave = true;
+		this.wave = this.options.wave;
 		this.ctx = this.canvas.getContext("2d");
 		this.glowCtx = this.glowLayer.getContext("2d");
 		this.dimensions = {};

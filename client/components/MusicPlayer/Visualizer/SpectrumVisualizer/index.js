@@ -5,13 +5,15 @@ import Visualizer from "./SpectrumVisualizer";
 const SpectrumVisualizer = ({classes, analyser, options}) => {
 	const canvas = useRef(null);
 
+	const {particles} = options;
+
 	useEffect(() => {
 		let visualizer;
 		if (canvas && analyser) {
 			visualizer = new Visualizer(canvas.current, analyser, options);
 		}
 		return () => visualizer?.cancelAnimation();
-	}, [canvas, analyser]);
+	}, [canvas, analyser, options]);
 	return createPortal(
 		<canvas id={classes.canvas} ref={canvas} />,
 		document.getElementById("__next")

@@ -12,7 +12,7 @@ const BubbleVisualizer = ({classes, analyser,options}) => {
 			visualizer = new Visualizer(canvas.current, growLayer.current, analyser, options);
 		}
 		return () => visualizer?.cancelAnimation();
-	}, [canvas, growLayer, analyser]);
+	}, [canvas, growLayer, analyser, options]);
 	return createPortal(
 		<>
 			<canvas id={classes.canvas} ref={canvas} />

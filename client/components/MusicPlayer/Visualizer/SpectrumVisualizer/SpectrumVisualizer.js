@@ -330,7 +330,7 @@ class Canvas {
 }
 
 class SpectrumVisualizer {
-	constructor(canvas, analyser, requestIdRef) {
+	constructor(canvas, analyser, options) {
 		this.canvas = new Canvas(canvas);
 		this.audio = new AudioController(analyser);
 		this.particles = new ParticleController(
@@ -338,8 +338,7 @@ class SpectrumVisualizer {
 			this.audio.analyser.frequencyBinCount / 2,
 			this.canvas
 		);
-		this.requestIdRef = requestIdRef;
-		this.drawParticles = true;
+		this.drawParticles = options.particles;
 		this.update();
 		this.draw(this.audio.getFrequencyData());
 	}
