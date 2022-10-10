@@ -2,19 +2,15 @@ import {useRef, useEffect} from "react";
 import {createPortal} from "react-dom";
 import Visualizer from "./SpectrumVisualizer";
 
-const SpectrumVisualizer = ({classes, analyser}) => {
+const SpectrumVisualizer = ({classes, analyser, options}) => {
 	const canvas = useRef(null);
-	let requestIdRef = useRef(null);
 
 	useEffect(() => {
 		let visualizer;
 		if (canvas && analyser) {
-			visualizer = new Visualizer(canvas.current, analyser, requestIdRef);
-			requestIdRef.current = requestAnimationFrame(visualizer.update.bind(visualizer));
+			visualizer = new Visualizer(canvas.current, analyser, options);
 		}
-		return () => {
-			cancelAnimationFrame(requestIdRef.current);
-		};
+		return () => visualizer?.cancelAnimation();
 	}, [canvas, analyser]);
 	return createPortal(
 		<canvas id={classes.canvas} ref={canvas} />,

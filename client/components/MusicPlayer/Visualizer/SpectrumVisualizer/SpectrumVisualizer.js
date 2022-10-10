@@ -263,12 +263,11 @@ class AudioController {
 	}
 
 	initAudio() {
-		// this.analyser.smoothingTimeConstant = 0.88;
-		// this.analyser.minDecibels = -140;
-		// this.analyser.maxDecibels = -10;
-		// this.analyser.fftSize = 1024;
+		this.analyser.smoothingTimeConstant = 0.88;
+		this.analyser.minDecibels = -140;
+		this.analyser.maxDecibels = -10;
+		this.analyser.fftSize = 1024;
 
-		// this.gainNode.gain.value = 0.8;
 		this.freqData = new Uint8Array(this.analyser.frequencyBinCount);
 	}
 	getFrequencyData() {
@@ -341,7 +340,7 @@ class SpectrumVisualizer {
 		);
 		this.requestIdRef = requestIdRef;
 		this.drawParticles = true;
-		// this.update();
+		this.update();
 		this.draw(this.audio.getFrequencyData());
 	}
 	draw(freqData) {
@@ -407,7 +406,10 @@ class SpectrumVisualizer {
 	}
 	update() {
 		this.draw(this.audio.getFrequencyData());
-		this.requestIdRef.current = requestAnimationFrame(this.update.bind(this));
+		this.requestAnimationFrame = requestAnimationFrame(this.update.bind(this));
+	}
+	cancelAnimation() {
+		cancelAnimationFrame(this.requestAnimationFrame);
 	}
 }
 

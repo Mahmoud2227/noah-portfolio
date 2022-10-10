@@ -57,7 +57,7 @@ class BubbleVisualizer {
 		this.initCanvas();
 		this.initAudio();
 		this.populate();
-		// this.render();
+		this.render();
 		window.addEventListener("resize", this.resize.bind(this));
 	}
 	initCanvas() {
@@ -73,12 +73,10 @@ class BubbleVisualizer {
 		this.canvas.height = this.glowLayer.height = this.dimensions.y = window.innerHeight;
 	}
 	initAudio() {
-		// this.analyser.smoothingTimeConstant = 0.92;
-		// this.analyser.fftSize = 2048;
-		// this.analyser.minDecibels = -125;
-		// this.analyser.maxDecibels = -10;
-
-		// this.gainNode.gain.value = this.audio.volume;
+		this.analyser.smoothingTimeConstant = 0.92;
+		this.analyser.fftSize = 2048;
+		this.analyser.minDecibels = -125;
+		this.analyser.maxDecibels = -10;
 
 		this.freqData = new Uint8Array(this.analyser.frequencyBinCount);
 	}
@@ -115,7 +113,10 @@ class BubbleVisualizer {
 		if (this.wave) this.globalMovement.x = Math.sin(this.tick * 0.01) * 2;
 		this.analyser.getByteFrequencyData(this.freqData);
 		this.update();
-		this.requestIdRef.current = requestAnimationFrame(this.render.bind(this));
+		this.requestAnimationFrame = requestAnimationFrame(this.render.bind(this));
+	}
+	cancelAnimation() {
+		cancelAnimationFrame(this.requestAnimationFrame);
 	}
 }
 
