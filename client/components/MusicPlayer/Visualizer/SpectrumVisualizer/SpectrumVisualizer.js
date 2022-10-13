@@ -408,7 +408,7 @@ class SpectrumVisualizer {
 		this.requestAnimationFrame = requestAnimationFrame(this.update.bind(this));
 	}
 	setOptions(options) {
-		this.drawParticles = options.particles;
+		this.options = options;
 	}
 	cancelAnimation() {
 		cancelAnimationFrame(this.requestAnimationFrame);
