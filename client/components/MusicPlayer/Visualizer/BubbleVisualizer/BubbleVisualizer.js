@@ -115,6 +115,9 @@ class BubbleVisualizer {
 		this.update();
 		this.requestAnimationFrame = requestAnimationFrame(this.render.bind(this));
 	}
+	setOptions(options) {
+		this.options = options;
+	}
 	cancelAnimation() {
 		cancelAnimationFrame(this.requestAnimationFrame);
 	}

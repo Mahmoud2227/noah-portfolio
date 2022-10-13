@@ -338,7 +338,7 @@ class SpectrumVisualizer {
 			this.audio.analyser.frequencyBinCount / 2,
 			this.canvas
 		);
-		this.drawParticles = options.particles;
+		this.options = options;
 		this.update();
 		this.draw(this.audio.getFrequencyData());
 	}
@@ -352,7 +352,7 @@ class SpectrumVisualizer {
 		this.drawBacklight(freqData);
 		for (let i = 0; i < this.particles.count; i++) {
 			data = freqData[i];
-			this.drawParticles && this.particles.drawRenderTarget(i, data, this.avgFrequency);
+			this.options.particles && this.particles.drawRenderTarget(i, data, this.avgFrequency);
 			if (i < spectrumWidth) {
 				x = (i / spectrumWidth) * this.canvas.origin.x;
 				y = this.canvas.dimensions.y;
@@ -406,6 +406,9 @@ class SpectrumVisualizer {
 	update() {
 		this.draw(this.audio.getFrequencyData());
 		this.requestAnimationFrame = requestAnimationFrame(this.update.bind(this));
+	}
+	setOptions(options) {
+		this.drawParticles = options.particles;
 	}
 	cancelAnimation() {
 		cancelAnimationFrame(this.requestAnimationFrame);

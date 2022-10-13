@@ -1,16 +1,17 @@
-import {useRef, useEffect} from "react";
+import {useRef, useEffect,useState} from "react";
 import {createPortal} from "react-dom";
 import Visualizer from "./SpectrumVisualizer";
 
 const SpectrumVisualizer = ({classes, analyser, options}) => {
 	const canvas = useRef(null);
-
-	const {particles} = options;
-
+	const [visualizer,setVisualizer] = useState(null);
+	
 	useEffect(() => {
-		let visualizer;
-		if (canvas && analyser) {
-			visualizer = new Visualizer(canvas.current, analyser, options);
+		if (!visualizer && canvas && analyser) {
+			setVisualizer(new Visualizer(canvas.current, analyser, options));
+		}
+		if (options && visualizer) {
+			visualizer.setOptions(options);
 		}
 		return () => visualizer?.cancelAnimation();
 	}, [canvas, analyser, options]);

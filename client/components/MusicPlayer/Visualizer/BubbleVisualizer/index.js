@@ -1,16 +1,21 @@
-import {useRef, useEffect} from "react";
+import {useRef, useEffect,useState} from "react";
 import {createPortal} from "react-dom";
 import Visualizer from "./BubbleVisualizer";
 
 const BubbleVisualizer = ({classes, analyser,options}) => {
 	const canvas = useRef(null);
 	const growLayer = useRef(null);
+	const [visualizer,setVisualizer] = useState(null);
 
 	useEffect(() => {
-		let visualizer;
-		if (canvas && growLayer && analyser) {
-			visualizer = new Visualizer(canvas.current, growLayer.current, analyser, options);
+		if (!visualizer && canvas && growLayer && analyser) {
+			setVisualizer(new Visualizer(canvas.current, growLayer.current, analyser, options));
 		}
+
+		if (options && visualizer) {
+			visualizer.setOptions(options);
+		}
+
 		return () => visualizer?.cancelAnimation();
 	}, [canvas, growLayer, analyser, options]);
 	return createPortal(
