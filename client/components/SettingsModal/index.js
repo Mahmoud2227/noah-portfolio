@@ -1,15 +1,22 @@
-import React from 'react'
-import VisualizerOptions from './VisualizerSettings/VisualizerSettings'
+import React from "react";
+import { useSelector } from "react-redux";
 
-import classes from './settingsModal.module.scss'
+import VisualizerOptions from "./VisualizerSettings/VisualizerSettings";
+import ToggleBtn from "./ToggleBtn/ToggleBtn";
+
+import classes from "./settingsModal.module.scss";
 
 const settingsModal = () => {
-  return (
-    <div className={classes.body}>
-      <h1>Settings</h1>
-      <VisualizerOptions/>
-    </div>
-  )
-}
+  const isHidden = useSelector((state) => state.settings.isHidden);
+	return (
+		<>
+			<ToggleBtn />
+			{!isHidden && <div className={classes.body}>
+				<h1>Settings</h1>
+				<VisualizerOptions />
+			</div>}
+		</>
+	);
+};
 
 export default settingsModal;
