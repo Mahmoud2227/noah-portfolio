@@ -5,14 +5,16 @@ import Visualizer from "./BubbleVisualizer";
 const BubbleVisualizer = ({classes, analyser, options}) => {
 	const canvas = useRef(null);
 	const growLayer = useRef(null);
+	const animationIdRef = useRef(null);
 	const [visualizer, setVisualizer] = useState(null);
 
 	useEffect(() => {
 		if (!visualizer && canvas && growLayer && analyser) {
-			setVisualizer(new Visualizer(canvas.current, growLayer.current, analyser, options));
+			setVisualizer(new Visualizer(canvas.current, growLayer.current, analyser, options, animationIdRef));
 		}
-		return () => visualizer?.cancelAnimation();
-	}, [canvas, growLayer, analyser]);
+		animationIdRef.current = visualizer && requestAnimationFrame(visualizer.render.bind(visualizer));
+		return () => cancelAnimationFrame(animationIdRef.current);
+	}, [canvas, growLayer, analyser,visualizer]);
 
 	useEffect(() => {
 		if (options && visualizer) {

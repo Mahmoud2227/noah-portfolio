@@ -48,12 +48,13 @@ class Particle {
 }
 
 class BubbleVisualizer {
-	constructor(canvas, glowLayer, analyser, options) {
+	constructor(canvas, glowLayer, analyser, options,animationIdRef) {
 		this.globalMovement = new Vector2();
 		this.canvas = canvas;
 		this.glowLayer = glowLayer;
 		this.analyser = analyser;
 		this.options = options;
+		this.animationIdRef = animationIdRef;
 		this.initCanvas();
 		this.initAudio();
 		this.populate();
@@ -113,13 +114,11 @@ class BubbleVisualizer {
 		if (this.wave) this.globalMovement.x = Math.sin(this.tick * 0.01) * 2;
 		this.analyser.getByteFrequencyData(this.freqData);
 		this.update();
-		this.requestAnimationFrame = requestAnimationFrame(this.render.bind(this));
+		cancelAnimationFrame(this.animationIdRef.current);
+		this.animationIdRef.current = requestAnimationFrame(this.render.bind(this));
 	}
 	setOptions(options) {
 		this.wave = options.wave;
-	}
-	cancelAnimation() {
-		cancelAnimationFrame(this.requestAnimationFrame);
 	}
 }
 

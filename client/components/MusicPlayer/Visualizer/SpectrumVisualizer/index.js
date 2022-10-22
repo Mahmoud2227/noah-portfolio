@@ -4,14 +4,17 @@ import Visualizer from "./SpectrumVisualizer";
 
 const SpectrumVisualizer = ({classes, analyser, options}) => {
 	const canvas = useRef(null);
+	const animationIdRef = useRef(null);
 	const [visualizer, setVisualizer] = useState(null);
+
 
 	useEffect(() => {
 		if (!visualizer && canvas && analyser) {
-			setVisualizer(new Visualizer(canvas.current, analyser, options));
+			setVisualizer(new Visualizer(canvas.current, analyser, options, animationIdRef));
 		}
-		return () => visualizer?.cancelAnimation();
-	}, [canvas, analyser]);
+		animationIdRef.current = visualizer && requestAnimationFrame(visualizer.render.bind(visualizer));
+		return () => cancelAnimationFrame(animationIdRef.current);
+	}, [canvas, analyser,visualizer]);
 
 	useEffect(() => {
 		if (options && visualizer) {

@@ -330,7 +330,7 @@ class Canvas {
 }
 
 class SpectrumVisualizer {
-	constructor(canvas, analyser, options) {
+	constructor(canvas, analyser, options,animationIdRef) {
 		this.canvas = new Canvas(canvas);
 		this.audio = new AudioController(analyser);
 		this.particles = new ParticleController(
@@ -339,7 +339,8 @@ class SpectrumVisualizer {
 			this.canvas
 		);
 		this.options = options;
-		this.update();
+		this.animationIdRef = animationIdRef;
+		this.render();
 		this.draw(this.audio.getFrequencyData());
 	}
 	draw(freqData) {
@@ -403,15 +404,13 @@ class SpectrumVisualizer {
 		this.canvas.render();
 		this.canvas.ctx.restore();
 	}
-	update() {
+	render() {
 		this.draw(this.audio.getFrequencyData());
-		this.requestAnimationFrame = requestAnimationFrame(this.update.bind(this));
+		cancelAnimationFrame(this.animationIdRef.current);
+		this.animationIdRef.current = requestAnimationFrame(this.render.bind(this));
 	}
 	setOptions(options) {
 		this.options = options;
-	}
-	cancelAnimation() {
-		cancelAnimationFrame(this.requestAnimationFrame);
 	}
 }
 
